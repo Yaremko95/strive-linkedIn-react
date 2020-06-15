@@ -19,6 +19,7 @@ function RightRail(props) {
     },
   });
   const classes = useStyles();
+
   return (
     <Col md={4} className={classes.container}>
       <CustomLink color={"rgba(0,0,0,.6)"} underlined={false} size={"1.2rem"}>
@@ -35,7 +36,7 @@ function RightRail(props) {
         padding={"6px"}
         margin={"10px 0"}
       />
-      <BrowseMapContainer />
+      <BrowseMapContainer {...props} />
     </Col>
   );
 }

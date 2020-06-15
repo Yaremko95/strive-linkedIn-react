@@ -1,16 +1,15 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import RightRail from "../components/ui/Right.Rail";
-import ProfileJumbotron from "../components/ProfileJumbotron";
+import ProfileJumbotron from "../components/ui/ember/ProfileJumbotron";
+import DataSource from "../data/DataSource";
+import ProfileContainer from "../components/ui/profile/ProfileContainer";
 
 function Profile(props) {
   return (
-    <>
-      <Row>
-        <ProfileJumbotron />
-        <RightRail />
-      </Row>
-    </>
+    <DataSource query={"all"}>
+      <ProfileContainer />
+    </DataSource>
   );
 }
 

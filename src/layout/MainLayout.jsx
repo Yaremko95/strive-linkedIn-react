@@ -14,9 +14,8 @@ function MainLayout(props) {
   return (
     <>
       <NavBar />
-      <Container>
-        className={classes.main}>{props.children}
-      </Container>
+      <hr />
+      <Container className={classes.main}>{props.children}</Container>
       <Footer />
     </>
   );

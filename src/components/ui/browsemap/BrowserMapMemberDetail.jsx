@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
 
 function BrowserMapMemberDetail(props) {
-  const useStyles = createUseStyles({
+  const useStyles = createUseStyles((theme) => ({
     container: {
       padding: "0 0 0 8px",
       flex: " 1 0 0",
@@ -14,43 +14,46 @@ function BrowserMapMemberDetail(props) {
       maxWidth: "200px",
       position: "relative",
       overflow: "hidden",
-      fontSize: "1.2rem",
-      fontWeight: "600",
-      color: "rgba(0,0,0,.9)",
+      fontSize: theme.text.size.t12,
+      fontWeight: theme.text.weight.bold,
+      color: theme.text.color.dark,
       paddingBottom: "0",
     },
     nameAndIcon: {
       display: "flex",
     },
     distanceBadge: {
-      fontWeight: "400",
+      fontWeight: theme.text.weight.normal,
       verticalAlign: "baseline",
       position: "relative",
-      fontSize: "1rem",
-      lineHeight: "1.42857",
-      color: "rgba(0,0,0,.6)",
+      fontSize: theme.text.size.t1,
+
+      color: theme.text.color.dark,
       marginLeft: "10px",
     },
-    p: {
-      fontSize: "1rem",
-      lineHeight: "1.2",
-      fontWeight: "400",
-      color: "rgba(0,0,0,.9)",
+    span: {
+      fontSize: theme.text.size.t1,
+
+      fontWeight: theme.text.weight.normal,
+      color: theme.text.color.dark,
       maxWidth: "200px",
     },
-  });
+  }));
   const classes = useStyles();
+  const { user } = props;
   return (
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-          <span>Diego Banovaz</span>
+          <span>
+            {user.name} {user.surname}
+          </span>
           <span>
             <span className={classes.distanceBadge}>2nd</span>
           </span>
         </span>
       </span>
-      <span className={classes.p}>Computer Engineer & Startup Enthusiast</span>
+      <span className={classes.span}>{user.bio}</span>
     </div>
   );
 }
