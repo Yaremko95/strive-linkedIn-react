@@ -1,16 +1,22 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
-import RightRail from "../components/ui/Right.Rail";
-import ProfileJumbotron from "../components/ui/ember/ProfileJumbotron";
+import React, { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import DataSource from "../data/DataSource";
 import ProfileContainer from "../components/ui/profile/ProfileContainer";
 
 function Profile(props) {
+  const { params } = props.match;
+  const [query, setQuery] = React.useState("");
+  useEffect(() => {
+    setQuery(props.match.params.username);
+  }, [params]);
+  if (params) {
+    console.log(params);
+  }
   return (
-    <DataSource query={"all"}>
+    <DataSource query={params ? params.username : "all"}>
       <ProfileContainer />
     </DataSource>
   );
 }
 
-export default Profile;
+export default withRouter(Profile);

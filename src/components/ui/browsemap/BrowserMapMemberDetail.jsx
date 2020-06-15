@@ -28,7 +28,7 @@ function BrowserMapMemberDetail(props) {
       position: "relative",
       fontSize: theme.text.size.t1,
 
-      color: theme.text.color.dark,
+      color: theme.text.color.light,
       marginLeft: "10px",
     },
     span: {

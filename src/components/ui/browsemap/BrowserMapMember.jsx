@@ -20,7 +20,7 @@ function BrowserMapMember(props) {
   });
   const classes = useStyles();
   const { user } = props;
-  console.log(user);
+
   return (
     <Link className={classes.container} to={`/profile/${user.username}`}>
       <ProfileImage

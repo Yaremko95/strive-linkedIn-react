@@ -19,7 +19,7 @@ class DataSource extends Component {
     }
   };
 
-  fetchData = () => {
+  fetchData = async () => {
     const { query } = this.props;
     if (query !== "all") {
       this.fetchUser(query);
@@ -49,7 +49,7 @@ class DataSource extends Component {
   };
   render() {
     const { user, users } = this.state;
-    return user || users ? (
+    return user && users ? (
       React.cloneElement(this.props.children, { users, user })
     ) : (
       <div>Loading...</div>
