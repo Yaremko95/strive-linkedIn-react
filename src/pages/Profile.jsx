@@ -5,7 +5,6 @@ import RightRail from "../components/ui/Right.Rail";
 function Profile(props) {
   return (
     <>
-      <h1>LinkedIn</h1>
       <Row>
         <Col md={8}></Col>
         <RightRail />

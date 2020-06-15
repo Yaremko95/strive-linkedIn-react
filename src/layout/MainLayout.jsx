@@ -14,7 +14,6 @@ function MainLayout(props) {
     <>
       <NavBar />
       <Container>
-        {" "}
         className={classes.main}>{props.children}
       </Container>
     </>
