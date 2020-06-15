@@ -1,13 +1,12 @@
-import React from 'react';
-import './App.css';
-import NavBar from './Components/NavBar';
+
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import RouterHOC from "./route/RouterHOC";
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar />
-    </div>
-  );
+  return <RouterHOC />;
+
 }
 
 export default App;
