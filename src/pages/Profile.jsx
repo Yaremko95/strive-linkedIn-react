@@ -1,12 +1,13 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import RightRail from "../components/ui/Right.Rail";
+import ProfileJumbotron from "../components/ProfileJumbotron";
 
 function Profile(props) {
   return (
     <>
       <Row>
-        <Col md={8}></Col>
+        <ProfileJumbotron />
         <RightRail />
       </Row>
     </>
