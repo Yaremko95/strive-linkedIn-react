@@ -3,8 +3,10 @@ import { Col } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { BsQuestionCircle } from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
 import CustomLink from "./links/CustomLink";
 import Break from "./themantic-break/Break";
+import CustomCard from "./cards/CustomCard";
 
 function RightRail(props) {
   const useStyles = createUseStyles({
@@ -23,6 +25,13 @@ function RightRail(props) {
       <CustomLink color={"rgba(0,0,0,.6)"} underlined={false} size={"1.2rem"}>
         Add Profile in Another Language <BsQuestionCircle />
       </CustomLink>
+      <CustomCard
+        background={"fff"}
+        height={"300px"}
+        width={"100%"}
+        padding={"6px"}
+        margin={"10px 0"}
+      />
     </Col>
   );
 }

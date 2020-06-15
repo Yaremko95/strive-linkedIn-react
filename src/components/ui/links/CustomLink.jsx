@@ -16,6 +16,7 @@ function CustomLink({ color, underlined, size, children }) {
       justifyContent: "space-between",
       color: color,
       fontSize: size,
+
       lineHeight: "1.5",
       fontWeight: "600",
       textDecoration: underlined ? "underline" : "none",
