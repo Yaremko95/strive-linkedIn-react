@@ -39,6 +39,7 @@ class ProfileJumbotron extends Component {
         alignItems:'center',
         justifyContent:'end',
         marginTop:'3.5rem'
+       
         
       }
       const PenIconStyle={
@@ -68,7 +69,11 @@ class ProfileJumbotron extends Component {
         backgroundSize:'100% 190px',
         backgroundRepeat:'no-repeat',
         margin:'0',
-        padding:'0'
+        padding:'0',
+        borderRadius:'0px',
+        border:'1px solid #DCDCDC',
+        backgroundColor:'white',
+        boxShadow:' 0 6px 40px rgba(0,0,0,0.3)'
        
       }
       const SpanStyle={
@@ -85,6 +90,9 @@ class ProfileJumbotron extends Component {
       const pStyle={
         padding:'12px',
         margin:'0px',
+       
+      }
+      const ExitIconStyle={
        
       }
       return (
@@ -122,8 +130,14 @@ class ProfileJumbotron extends Component {
             
             
   
-          <div style={DottedDivStyle}><div style={pStyle}><b>Show recruiters you're open</b> to job opportunities-you control who sees this
-          <br/><span style={{display:'flex', color:'#0073B1'}}><b>Get started</b></span></div></div>
+          <div style={DottedDivStyle}>
+          {/* <div className='row'><i style={ExitIconStyle}class="fa fa-times" aria-hidden="true"></i></div> */}
+            
+            <div style={pStyle}><b>Show recruiters you're open</b> to job opportunities-you control who sees this
+          <br/><span style={{display:'flex', color:'#0073B1'}}><b>Get started</b></span>
+          
+
+          </div></div>
           </div>
         
           </Jumbotron>
