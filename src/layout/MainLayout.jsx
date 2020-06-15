@@ -1,13 +1,15 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import { createUseStyles } from "react-jss";
 
 function MainLayout(props) {
-  return (
-    <Container>
-      <h1>LinkedIn</h1>
-      <Row>{props.children}</Row>
-    </Container>
-  );
+  const useStyles = createUseStyles((theme) => ({
+    main: {
+      fontFamily: "'Source Sans Pro', sans-serif",
+    },
+  }));
+  const classes = useStyles();
+  return <Container className={classes.main}>{props.children}</Container>;
 }
 
 export default MainLayout;
