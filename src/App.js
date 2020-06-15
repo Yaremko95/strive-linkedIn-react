@@ -1,15 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import ProfileJumbotron from './Components/ProfileJumbotron'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import RouterHOC from "./route/RouterHOC";
 
 function App() {
-  return (
-    <div className="App">
-      <ProfileJumbotron/>
-    </div>
-  );
+  return <RouterHOC />;
+
 }
 
 export default App;
