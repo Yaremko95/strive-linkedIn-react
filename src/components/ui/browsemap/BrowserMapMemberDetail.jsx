@@ -21,6 +21,7 @@ function BrowserMapMemberDetail(props) {
     },
     nameAndIcon: {
       display: "flex",
+      lineHeight: "0.9",
     },
     distanceBadge: {
       fontWeight: theme.text.weight.normal,

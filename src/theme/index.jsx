@@ -3,6 +3,10 @@ export default {
     darkblue: "#283E4A",
     lightblue: "#0073b1",
   },
+  secondary: {
+    light: "#c2dbe7",
+    lighter: "#E1E9EE",
+  },
   text: {
     color: {
       light: "rgba(0,0,0,.6)",

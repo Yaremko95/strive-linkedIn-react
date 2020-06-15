@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { createUseStyles } from "react-jss";
-import NavBar from "./NavBar";
+import NavBar from "../components/ui/navBar/NavBar";
 import Footer from "../components/Footer";
 
 function MainLayout(props) {
