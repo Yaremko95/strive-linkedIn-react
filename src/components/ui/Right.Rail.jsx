@@ -7,6 +7,9 @@ import { AiOutlineHome } from "react-icons/ai";
 import CustomLink from "./links/CustomLink";
 import Break from "./themantic-break/Break";
 import CustomCard from "./cards/CustomCard";
+import Profile from "../../pages/Profile";
+import ProfileImage from "./profile-images/ProfileImage";
+import BrowseMapContainer from "./browsemap/BrowseMapContainer";
 
 function RightRail(props) {
   const useStyles = createUseStyles({
@@ -32,6 +35,7 @@ function RightRail(props) {
         padding={"6px"}
         margin={"10px 0"}
       />
+      <BrowseMapContainer />
     </Col>
   );
 }

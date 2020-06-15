@@ -21,4 +21,10 @@ export default [
     layout: MainLayout,
     component: Profile,
   },
+  {
+    path: "/profile/:username",
+    exact: true,
+    layout: MainLayout,
+    component: Profile,
+  },
 ];
