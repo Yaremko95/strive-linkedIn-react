@@ -9,12 +9,12 @@ export default [
     layout: MainLayout,
     component: Home,
   },
-  {
-    path: "/me",
-    exact: true,
-    layout: MainLayout,
-    component: Profile,
-  },
+  // {
+  //   path: "/me",
+  //   exact: true,
+  //   layout: MainLayout,
+  //   component: Profile,
+  // },
   {
     path: "/edit-profile",
     exact: true,
