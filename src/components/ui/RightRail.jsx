@@ -19,15 +19,28 @@ function RightRail(props) {
     },
   });
   const classes = useStyles();
+  const { user } = props;
   return (
     <Col md={4} className={classes.container}>
-      <CustomLink color={"rgba(0,0,0,.6)"} underlined={false} size={"1.2rem"}>
-        Edit Public Profile & URL <BsQuestionCircle />
-      </CustomLink>
-      <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
-      <CustomLink color={"rgba(0,0,0,.6)"} underlined={false} size={"1.2rem"}>
-        Add Profile in Another Language <BsQuestionCircle />
-      </CustomLink>
+      {user.username === "user27" && (
+        <>
+          <CustomLink
+            color={"rgba(0,0,0,.6)"}
+            underlined={false}
+            size={"1.2rem"}
+          >
+            Edit Public Profile & URL <BsQuestionCircle />
+          </CustomLink>
+          <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
+          <CustomLink
+            color={"rgba(0,0,0,.6)"}
+            underlined={false}
+            size={"1.2rem"}
+          >
+            Add Profile in Another Language <BsQuestionCircle />
+          </CustomLink>
+        </>
+      )}
       <CustomCard
         background={"fff"}
         height={"300px"}
@@ -35,7 +48,7 @@ function RightRail(props) {
         padding={"6px"}
         margin={"10px 0"}
       />
-      <BrowseMapContainer />
+      <BrowseMapContainer {...props} />
     </Col>
   );
 }

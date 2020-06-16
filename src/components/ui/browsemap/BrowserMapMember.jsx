@@ -19,10 +19,18 @@ function BrowserMapMember(props) {
     },
   });
   const classes = useStyles();
+
+  const { user } = props;
+
   return (
-    <Link className={classes.container} to={"/profile/username"}>
-      <ProfileImage src={"assets/image.jpg"} width={"56px"} height={"56px"} />
-      <BrowserMapMemberDetail />
+    <Link className={classes.container} to={`/profile/${user.username}`}>
+      <ProfileImage
+        src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
+        width={"56px"}
+        height={"56px"}
+      />
+      <BrowserMapMemberDetail user={user} />
+
     </Link>
   );
 }
