@@ -19,6 +19,7 @@ function BrowserMapMember(props) {
     },
   });
   const classes = useStyles();
+
   const { user } = props;
 
   return (
@@ -29,6 +30,7 @@ function BrowserMapMember(props) {
         height={"56px"}
       />
       <BrowserMapMemberDetail user={user} />
+
     </Link>
   );
 }
