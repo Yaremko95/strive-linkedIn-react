@@ -8,7 +8,7 @@ import theme from "./theme";
 function App(props) {
   return (
     <>
-      <ThemeProvider theme={them}>
+      <ThemeProvider theme={theme}>
         <RouterHOC />;
       </ThemeProvider>
     </>
