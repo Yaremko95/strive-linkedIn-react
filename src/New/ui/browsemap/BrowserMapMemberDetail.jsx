@@ -3,7 +3,10 @@ import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
 
 function BrowserMapMemberDetail(props) {
+
   const useStyles = createUseStyles((theme) => ({
+
+
     container: {
       padding: "0 0 0 8px",
       flex: " 1 0 0",
@@ -14,13 +17,17 @@ function BrowserMapMemberDetail(props) {
       maxWidth: "200px",
       position: "relative",
       overflow: "hidden",
+
       fontSize: theme.text.size.t12,
       fontWeight: theme.text.weight.bold,
       color: theme.text.color.dark,
+
+   
       paddingBottom: "0",
     },
     nameAndIcon: {
       display: "flex",
+
       lineHeight: "0.9",
     },
     distanceBadge: {
@@ -42,19 +49,24 @@ function BrowserMapMemberDetail(props) {
   }));
   const classes = useStyles();
   const { user } = props;
+
   return (
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
+
           <span>
             {user.name} {user.surname}
           </span>
+
           <span>
             <span className={classes.distanceBadge}>2nd</span>
           </span>
         </span>
       </span>
+
       <span className={classes.span}>{user.bio}</span>
+
     </div>
   );
 }
