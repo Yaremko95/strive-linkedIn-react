@@ -8,15 +8,12 @@ import Break from "../themantic-break/Break";
 import { Col } from "react-bootstrap";
 
 function BrowseMapContainer(props) {
-
   const useStyles = createUseStyles((theme) => ({
-
     container: {
       marginTop: "24px",
       padding: "24px 12px 8px",
     },
     title: {
-
       fontSize: theme.text.size.t12,
 
       lineHeight: "1.5",
@@ -27,7 +24,6 @@ function BrowseMapContainer(props) {
       listStyle: "none inside",
       marginTop: "16px",
     },
-
   }));
   const classes = useStyles();
   const { users } = props;
@@ -51,7 +47,7 @@ function BrowseMapContainer(props) {
         ))}
       </div>
     </>
-
+  );
 }
 
 export default BrowseMapContainer;
