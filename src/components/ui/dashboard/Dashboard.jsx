@@ -16,6 +16,7 @@ function Dashboard(props) {
     },
   }));
   const classes = useStyles();
+  console.log("experience", props)
   return (
     <ContainerCard background={"#F3F1F3"}>
       <h2 className={classes.h2}>Your Dashboard</h2>

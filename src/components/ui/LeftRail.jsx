@@ -12,7 +12,7 @@ function LeftRail(props) {
   return (
     <Col lg={8}>
       <ProfileJumbotron {...props} />
-      <Dashboard />
+      <Dashboard {...props} />
     </Col>
   );
 }

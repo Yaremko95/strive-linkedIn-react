@@ -7,6 +7,7 @@ class DataSource extends Component {
     this.state = {
       user: undefined,
       users: [],
+      experience: []
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
   }
@@ -23,9 +24,21 @@ class DataSource extends Component {
     const { query } = this.props;
     if (query !== "all") {
       this.fetchUser(query);
+      this.fetchExperience(query)
     }
     this.fetchUsers();
   };
+
+  fetchExperience = async (query) => {
+    let response = await fetch(this.url + query + '/experience', {
+      headers: {
+        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+      },
+    });
+    let experience = await response.json();
+    this.setState({ experience });
+    console.log(this.state.experience);
+  }
 
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
@@ -48,12 +61,12 @@ class DataSource extends Component {
     // console.log(this.state.users);
   };
   render() {
-    const { user, users } = this.state;
+    const { user, users, experience } = this.state;
     return user && users ? (
-      React.cloneElement(this.props.children, { users, user })
+      React.cloneElement(this.props.children, { users, user, experience })
     ) : (
-      <div>Loading...</div>
-    );
+        <div>Loading...</div>
+      );
   }
 }
 
