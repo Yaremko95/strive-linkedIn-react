@@ -2,6 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import ProfileJumbotron from "../cards/ProfileJumbotron";
 import RightRail from "../RightRail";
+import LeftRail from "../LeftRail";
 
 function ProfileContainer(props) {
   console.log("inProfileContainer", props);
@@ -9,7 +10,7 @@ function ProfileContainer(props) {
     <>
       {props.user && (
         <Row>
-          <ProfileJumbotron {...props} />
+          <LeftRail {...props} />
           <RightRail {...props} />
         </Row>
       )}
