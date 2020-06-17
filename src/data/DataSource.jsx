@@ -23,10 +23,21 @@ class DataSource extends Component {
     const { query } = this.props;
     if (query !== "all") {
       this.fetchUser(query);
+      this.fetchExperience(query);
     }
     this.fetchUsers();
   };
-
+  fetchExperience = async (query) => {
+    let response = await fetch(this.url + query + "/experiences", {
+      headers: {
+        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+      },
+    });
+    let experience = await response.json();
+    console.log("test", experience);
+    this.setState({ experience });
+    console.log(this.state.experience);
+  };
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
       headers: {

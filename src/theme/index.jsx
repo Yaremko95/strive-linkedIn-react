@@ -10,12 +10,12 @@ export default {
   text: {
     color: {
       light: "rgba(0,0,0,.6)",
-      dark: "rgba(0,0,0,.9)",
+      dark: "rgba(0,0,0,.7)",
     },
     size: {
       t1: "1rem",
       t12: "1.2rem",
-      t20: "2rem",
+      t20: "1.6rem",
     },
     weight: {
       bold: "600",

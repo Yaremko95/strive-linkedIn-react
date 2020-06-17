@@ -7,6 +7,7 @@ import {
   Button,
   Jumbotron,
 } from "react-bootstrap";
+import CardTitle from "./ui/titles/CardTitle";
 
 function ProfileJumbotron(props) {
   const ColStyle = {
@@ -107,7 +108,7 @@ function ProfileJumbotron(props) {
               style={ProfileImageStyle}
               src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
             />
-            <h4 style={h3Style}> {user.name}</h4>
+            <CardTitle>{user.name}</CardTitle>
             <h6 style={h3Style}>{user.bio}</h6>
             <h7 style={h3Style}>
               Spain &nbsp;.&nbsp;&nbsp;{" "}
