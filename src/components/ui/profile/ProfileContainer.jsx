@@ -9,6 +9,7 @@ function ProfileContainer(props) {
   return (
     <>
       {props.user && (
+        
         <Row>
           <LeftRail {...props} />
           <RightRail {...props} />

@@ -8,6 +8,10 @@ class DataSource extends Component {
       user: undefined,
       users: [],
       experience: [],
+      profilestrength:{
+        strength:'',
+        percentage:null
+      }
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
   }
@@ -38,7 +42,19 @@ class DataSource extends Component {
     });
     let experience = await response.json();
     this.setState({ experience });
-    console.log("console", experience);
+    if(experience.length===0||experience.length===1){
+      let profilestrength={strength:'Beginner',percentage:25}
+      this.setState({ profilestrength });
+    }
+    else if(experience.length>1&&experience.length<3) {
+      let profilestrength={strength:'Intermediate',percentage:50}
+      this.setState({ profilestrength });
+    }
+    else if(experience.length>=3) {
+      let profilestrength={strength:'Advanced',percentage:100}
+      this.setState({ profilestrength });
+    }
+  
   };
 
   fetchUser = async (query) => {
@@ -72,9 +88,9 @@ class DataSource extends Component {
   //   this.setState({ experience });
   // }
   render() {
-    const { user, users, experience } = this.state;
+    const { user, users, experience,profilestrength } = this.state;
     return user && users ? (
-      React.cloneElement(this.props.children, { users, user, experience })
+      React.cloneElement(this.props.children,profilestrength ? { users, user, experience, profilestrength }:{ users, user, experience })
     ) : (
       <div>Loading...</div>
     );

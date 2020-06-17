@@ -26,11 +26,12 @@ function CardEExp(props) {
   return (
     <Link className={classes.container} /* to={`/profile/${user.username}`} */>
       <ProfileImage
-        src={"/assets/LinkedInNoPic.png"}
+        src={"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"}
         width={"56px"}
         height={"56px"}
       />
-      <BrowserMapEExp />
+      
+      <BrowserMapEExp profilesexperience={props.profilesexperience}/>
       {/* <BrowserMapMemberDetail user={user} /> */}
 
     </Link>

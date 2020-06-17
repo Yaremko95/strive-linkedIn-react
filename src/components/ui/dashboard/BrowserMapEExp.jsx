@@ -51,20 +51,21 @@ function BrowserMapEExp(props) {
   const { user } = props;
 
   return (
+    
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
 
           <span>
-            Title
+            {props.profilesexperience.role}
           </span>
-          
+          {/* {console.log('USEREXPERIENCE',props.profilesexperience)} */}
         </span>
       </span>
 
-      <span className={classes.span}>Company</span>
-      <span className={classes.span}>Year</span>
-      <span className={classes.span}>Location</span>
+      <span className={classes.span}>{props.profilesexperience.company}</span>
+      <span className={classes.span}>{props.profilesexperience.startDate}</span>
+      <span className={classes.span}>{props.profilesexperience.area}</span>
 
     </div>
   );

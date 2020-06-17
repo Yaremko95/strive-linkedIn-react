@@ -23,13 +23,11 @@ function ContainerEExp(props) {
   }));
   const classes = useStyles(); */
   return (
-    <ContainerCard>
+    <ContainerCard background='white'>
         <h2>Experience</h2>
       <div>
-          
-        <CardEExp />
-        <CardEExp />
-        <CardEExp />
+      {props.experience.map(experience=>(<CardEExp profilesexperience={experience}/>))}
+        
       </div>
     </ContainerCard>
   );
