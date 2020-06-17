@@ -11,13 +11,16 @@ class DataSource extends Component {
       profilestrength:{
         strength:'',
         percentage:null
-      }
+      },
+      posts: [],
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
+    this.urlPost = "https://striveschool.herokuapp.com/api/posts/"
   }
   componentDidMount() {
     this.fetchData();
     this.fetchExperience();
+    this.fetchPost();
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
@@ -30,6 +33,7 @@ class DataSource extends Component {
     if (query !== "all") {
       this.fetchUser(query);
       this.fetchExperience(query);
+      this.fetchPost(query);
     }
     this.fetchUsers();
   };
@@ -77,6 +81,17 @@ class DataSource extends Component {
     this.setState({ users });
     // console.log(this.state.users);
   };
+
+  fetchPost = async () => {
+    let response = await fetch(this.urlPost, {
+      headers: {
+        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+      },
+    });
+    let posts = await response.json();
+    this.setState({ posts });
+    // console.log(this.state.users);
+  };
   // fetchExperience=async()=>{
   //   let response = await fetch('https://striveschool.herokuapp.com/api/profile/user20/experiences', {
   //     headers: {
@@ -90,10 +105,8 @@ class DataSource extends Component {
   render() {
     const { user, users, experience,profilestrength } = this.state;
     return user && users ? (
-      React.cloneElement(this.props.children,profilestrength ? { users, user, experience, profilestrength }:{ users, user, experience })
-    ) : (
-      <div>Loading...</div>
-    );
+      React.cloneElement(this.props.children,profilestrength ? { users, user, experience, profilestrength, posts }:{ users, user, experience, posts })
+   
   }
 }
 

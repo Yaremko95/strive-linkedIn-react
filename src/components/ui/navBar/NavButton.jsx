@@ -3,14 +3,14 @@ import { Nav } from "react-bootstrap";
 import { createUseStyles } from "react-jss";
 import ProfileImage from "../profile-images/ProfileImage";
 
-function NavButton(props) {
+function NavButton({item, color}) {
   const useStyles = createUseStyles((theme) => ({
     container: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      color: theme.secondary.lighter,
+      color: color ? color : theme.secondary.lighter,
       marginRight: "20px",
     },
     icon: {
@@ -22,7 +22,7 @@ function NavButton(props) {
     },
   }));
   const classes = useStyles();
-  const { item } = props;
+ 
   return (
     <div className={classes.container}>
       {item.icon ? (
