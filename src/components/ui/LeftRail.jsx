@@ -5,6 +5,7 @@ import { createUseStyles } from "react-jss";
 import Dashboard from "./dashboard/Dashboard";
 import ProgressBarComponent from './ProgressBarSection/ProgressBarComponent'
 import ExperienceComponent from '../ExperienceSection/ExperienceComponent'
+import ContainerEExp from "./dashboard/ContainerEExp";
 
 function LeftRail(props) {
   const useStyle = createUseStyles({
@@ -14,11 +15,12 @@ function LeftRail(props) {
   return (
     <Col lg={8}>
       <ProfileJumbotron {...props} />
-      <ProgressBarComponent/>
-      <Dashboard />
-      <ExperienceComponent/>
+      <ProgressBarComponent {...props}/>
+    
+    
       
       <Dashboard {...props} />
+      <ContainerEExp {...props} />
     </Col>
   );
 }
