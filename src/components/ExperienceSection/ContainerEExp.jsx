@@ -41,6 +41,7 @@ function ContainerEExp(props) {
         <UpdateData
           method={"POST"}
           endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences`}
+          {...props}
         >
           <ExperienceForm />
         </UpdateData>

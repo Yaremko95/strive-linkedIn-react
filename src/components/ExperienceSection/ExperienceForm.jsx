@@ -78,6 +78,16 @@ function ExperienceForm(props) {
           value={data.area}
           onChange={(e) => setData({ area: e.target.value })}
         />
+        <InputLabel>Area</InputLabel>
+        <InputField
+          required={true}
+          type="text"
+          placeholder="ImageUrl"
+          name="image"
+          id="image"
+          value={data.image}
+          onChange={(e) => setData({ image: e.target.value })}
+        />
         <div
           style={{
             width: "100%",

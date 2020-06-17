@@ -4,6 +4,9 @@ import CardTitle from "../titles/CardTitle";
 
 function ModalCustom(props) {
   const [show, setShow] = React.useState(false);
+  const closeModal = () => {
+    setShow(false);
+  };
 
   return (
     <>
@@ -19,7 +22,12 @@ function ModalCustom(props) {
         <Modal.Header closeButton>
           <CardTitle>{props.title}</CardTitle>
         </Modal.Header>
-        <Modal.Body>{props.children}</Modal.Body>
+        <Modal.Body>
+          {" "}
+          {React.cloneElement(props.children, {
+            closeModal: () => closeModal(),
+          })}
+        </Modal.Body>
       </Modal>
     </>
   );
