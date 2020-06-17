@@ -5,7 +5,7 @@ import { createUseStyles } from "react-jss";
 import Dashboard from "./dashboard/Dashboard";
 import ProgressBarComponent from "./ProgressBarSection/ProgressBarComponent";
 
-import ContainerEExp from "./dashboard/ContainerEExp";
+import ContainerEExp from "../ExperienceSection/ContainerEExp";
 
 function LeftRail(props) {
   return (
