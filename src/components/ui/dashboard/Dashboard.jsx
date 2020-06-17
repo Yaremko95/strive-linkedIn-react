@@ -13,6 +13,7 @@ function Dashboard(props) {
     },
   }));
   const classes = useStyles();
+  console.log("experience", props);
   return (
     <ContainerCard background={"#F3F1F3"}>
       <CardTitle>Your Dashboard</CardTitle>

@@ -3,18 +3,18 @@ import { Col } from "react-bootstrap";
 import ProfileJumbotron from "../ProfileJumbotron";
 import { createUseStyles } from "react-jss";
 import Dashboard from "./dashboard/Dashboard";
-import ExperienceContainer from "./Experience/ExperienceContainer";
+import ProgressBarComponent from "./ProgressBarSection/ProgressBarComponent";
+
+import ContainerEExp from "./dashboard/ContainerEExp";
 
 function LeftRail(props) {
-  const useStyle = createUseStyles({
-    container: {},
-  });
-  const classes = useStyle();
   return (
     <Col lg={8}>
       <ProfileJumbotron {...props} />
-      <Dashboard />
-      <ExperienceContainer />
+      <ProgressBarComponent {...props} />
+
+      <Dashboard {...props} />
+      <ContainerEExp {...props} />
     </Col>
   );
 }

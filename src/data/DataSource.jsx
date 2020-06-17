@@ -7,11 +7,13 @@ class DataSource extends Component {
     this.state = {
       user: undefined,
       users: [],
+      experience: [],
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
   }
   componentDidMount() {
     this.fetchData();
+    this.fetchExperience();
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
@@ -27,6 +29,7 @@ class DataSource extends Component {
     }
     this.fetchUsers();
   };
+
   fetchExperience = async (query) => {
     let response = await fetch(this.url + query + "/experiences", {
       headers: {
@@ -34,10 +37,10 @@ class DataSource extends Component {
       },
     });
     let experience = await response.json();
-    console.log("test", experience);
     this.setState({ experience });
-    console.log(this.state.experience);
+    console.log("console", experience);
   };
+
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
       headers: {
@@ -58,10 +61,20 @@ class DataSource extends Component {
     this.setState({ users });
     // console.log(this.state.users);
   };
+  // fetchExperience=async()=>{
+  //   let response = await fetch('https://striveschool.herokuapp.com/api/profile/user20/experiences', {
+  //     headers: {
+  //       Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+  //     },
+  //   });
+  //   let experience = await response.json();
+  //   console.log('experience for user20',experience)
+  //   this.setState({ experience });
+  // }
   render() {
-    const { user, users } = this.state;
+    const { user, users, experience } = this.state;
     return user && users ? (
-      React.cloneElement(this.props.children, { users, user })
+      React.cloneElement(this.props.children, { users, user, experience })
     ) : (
       <div>Loading...</div>
     );

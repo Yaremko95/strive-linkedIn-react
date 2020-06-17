@@ -29,8 +29,8 @@ function ProfileJumbotron(props) {
   };
   const ProfileImageStyle = {
     width: "170px",
-    borderRadius: "90px",
-    border: "2px solid black",
+    borderRadius: "200px",
+    border: "3px solid rgba(0,0,0,0.08)",
     marginTop: "3rem",
     marginRight: "0.8rem",
   };
