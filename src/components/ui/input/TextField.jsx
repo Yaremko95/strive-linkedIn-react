@@ -1,7 +1,8 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { Form } from "react-bootstrap";
 
-function TextField({ name, id, placeholder, type, value, onChange }) {
+function TextField({ name, id, placeholder, type, value, onChange, required }) {
   const useStyles = createUseStyles((theme) => ({
     input: {
       fontSize: "1rem",
@@ -25,7 +26,9 @@ function TextField({ name, id, placeholder, type, value, onChange }) {
   }));
   const classes = useStyles();
   return (
-    <textarea
+    <Form.Control
+      as={"textarea"}
+      required={required}
       className={classes.input}
       name={name}
       id={id}

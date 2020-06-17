@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import CardTitle from "../titles/CardTitle";
 
 function ModalCustom(props) {
   const [show, setShow] = React.useState(false);
@@ -16,9 +17,7 @@ function ModalCustom(props) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Custom Modal Styling
-          </Modal.Title>
+          <CardTitle>{props.title}</CardTitle>
         </Modal.Header>
         <Modal.Body>{props.children}</Modal.Body>
       </Modal>

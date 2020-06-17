@@ -34,7 +34,10 @@ function ContainerEExp(props) {
     <ContainerCard background="white">
       <CardTitle>Experience</CardTitle>
 
-      <ModalCustom button={<MdAdd style={{ color: "black" }} />}>
+      <ModalCustom
+        title={"Add Experience"}
+        button={<MdAdd style={{ color: "black" }} />}
+      >
         <UpdateData
           method={"POST"}
           endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences`}

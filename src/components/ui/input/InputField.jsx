@@ -1,7 +1,17 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { Form } from "react-bootstrap";
 
-function InputField({ name, id, placeholder, type, value, onChange, width }) {
+function InputField({
+  name,
+  id,
+  placeholder,
+  type,
+  value,
+  onChange,
+  width,
+  required,
+}) {
   const useStyles = createUseStyles((theme) => ({
     input: {
       fontSize: "1rem",
@@ -23,7 +33,8 @@ function InputField({ name, id, placeholder, type, value, onChange, width }) {
   }));
   const classes = useStyles();
   return (
-    <input
+    <Form.Control
+      required={required}
       className={classes.input}
       name={name}
       id={id}
