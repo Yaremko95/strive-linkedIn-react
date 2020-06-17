@@ -7,6 +7,10 @@ import CardEExp from "./CardEExp";
 import CardTitle from "../ui/titles/CardTitle";
 import UpdateData from "../../data/UpdateData";
 import ExperienceForm from "./ExperienceForm";
+import ModalCustom from "../ui/modals/ModalCustom";
+import NavButton from "../ui/navBar/NavButton";
+import { MdAdd } from "react-icons/all";
+import { Modal } from "react-bootstrap";
 
 function ContainerEExp(props) {
   /* const useStyles = createUseStyles((theme) => ({
@@ -29,17 +33,20 @@ function ContainerEExp(props) {
   return (
     <ContainerCard background="white">
       <CardTitle>Experience</CardTitle>
+
+      <ModalCustom button={<MdAdd style={{ color: "black" }} />}>
+        <UpdateData
+          method={"POST"}
+          endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences`}
+        >
+          <ExperienceForm />
+        </UpdateData>
+      </ModalCustom>
       <div>
         {props.experience.map((experience) => (
           <CardEExp profilesexperience={experience} />
         ))}
       </div>
-      <UpdateData
-        method={"POST"}
-        endpoint={`https://striveschool.herokuapp.com/api/posts/`}
-      >
-        <ExperienceForm />
-      </UpdateData>
     </ContainerCard>
   );
 }
