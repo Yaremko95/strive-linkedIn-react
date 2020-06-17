@@ -18,6 +18,7 @@ function LeftRail(props) {
       <Dashboard />
       <ExperienceComponent/>
       
+      <Dashboard {...props} />
     </Col>
   );
 }
