@@ -10,6 +10,7 @@ import { MdAdd } from "react-icons/all";
 import UpdateData from "../../data/UpdateData";
 import ExperienceForm from "./ExperienceForm";
 import ContainerCard from "../ui/cards/ContainerCard";
+import Auth from "../../authorization/Auth";
 
 function CardEExp(props) {
   const useStyles = createUseStyles({
@@ -30,19 +31,21 @@ function CardEExp(props) {
   console.log("profilesexperience", props.profilesexperience);
   return (
     <>
-      <ModalCustom
-        title={"Add Experience"}
-        button={<MdAdd style={{ color: "black" }} />}
-      >
-        <UpdateData
-          data={profilesexperience}
-          method={"PUT"}
-          endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences/${profilesexperience._id}`}
-          {...props}
+      {Auth.user === user.username && (
+        <ModalCustom
+          title={"Add Experience"}
+          button={<MdAdd style={{ color: "black" }} />}
         >
-          <ExperienceForm />
-        </UpdateData>
-      </ModalCustom>
+          <UpdateData
+            data={profilesexperience}
+            method={"PUT"}
+            endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences/${profilesexperience._id}`}
+            {...props}
+          >
+            <ExperienceForm />
+          </UpdateData>
+        </ModalCustom>
+      )}
       <Link
         className={classes.container} /* to={`/profile/${user.username}`} */
       >

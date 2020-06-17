@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Auth from "../authorization/Auth";
 class UpdateData extends Component {
   constructor(props) {
     super(props);
@@ -33,14 +33,13 @@ class UpdateData extends Component {
       method: method,
       body: JSON.stringify(this.state.data),
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
         "Content-Type": "application/json",
       },
     });
     if (response.ok) {
       closeModal();
       newFetch();
-      alert("works");
     } else {
       let error = await response.json();
       console.log(error);

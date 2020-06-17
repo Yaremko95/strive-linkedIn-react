@@ -23,8 +23,11 @@ class DataSource extends Component {
   };
 
   fetchData = async () => {
-    const { query } = this.props;
+    let { query } = this.props;
     if (query !== "all") {
+      if (query === "me") {
+        query = Auth.user;
+      }
       this.fetchUser(query);
       this.fetchExperience(query);
     }
@@ -34,7 +37,7 @@ class DataSource extends Component {
   fetchExperience = async (query) => {
     let response = await fetch(this.url + query + "/experiences", {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let experience = await response.json();
@@ -44,7 +47,7 @@ class DataSource extends Component {
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let user = await response.json();
@@ -54,23 +57,14 @@ class DataSource extends Component {
   fetchUsers = async () => {
     let response = await fetch(this.url, {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let users = await response.json();
     this.setState({ users });
     // console.log(this.state.users);
   };
-  // fetchExperience=async()=>{
-  //   let response = await fetch('https://striveschool.herokuapp.com/api/profile/user20/experiences', {
-  //     headers: {
-  //       Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
-  //     },
-  //   });
-  //   let experience = await response.json();
-  //   console.log('experience for user20',experience)
-  //   this.setState({ experience });
-  // }
+
   render() {
     const { user, users, experience, profilestrength } = this.state;
     return users ? (
