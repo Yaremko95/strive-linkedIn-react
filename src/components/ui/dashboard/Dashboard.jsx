@@ -3,6 +3,9 @@ import ContainerCard from "../cards/ContainerCard";
 import { createUseStyles } from "react-jss";
 import SalaryInsights from "./SalaryInsights";
 import DashboardAnalytics from "./DashboardAnalytics";
+import CardEExp from "./CardEExp";
+import ContainerEExp from "./ContainerEExp";
+
 
 function Dashboard(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -23,7 +26,7 @@ function Dashboard(props) {
         <i>Private to You</i>
       </span>
       <DashboardAnalytics />
-
+      
       <SalaryInsights />
     </ContainerCard>
   );
