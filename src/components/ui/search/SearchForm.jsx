@@ -56,6 +56,7 @@ class SearchForm extends Component{
    this.setState({suggestions:filteredArray})
   
  }
+
   
 
   render(){
@@ -63,14 +64,14 @@ class SearchForm extends Component{
     <div className={"d-flex"}>
       <div style={{display:'block'}}>
         <div style={{display:'flex'}}>
-        <input  onChange={this.catchInput}/>
+        <input onChange={this.catchInput}/>
          
         </div>
       
       <ListGroup style={suggestionStyle}>
         {this.state.input&&
           this.state.suggestions.map(suggestion=>
-          (  <ListGroup.Item style={{width:'206px'}}>{suggestion.name}</ListGroup.Item>))
+          (  <ListGroup.Item style={{width:'206px'}} >{suggestion.name}</ListGroup.Item>))
         }
       </ListGroup>
     </div>
