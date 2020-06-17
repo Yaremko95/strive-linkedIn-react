@@ -7,11 +7,13 @@ class DataSource extends Component {
     this.state = {
       user: undefined,
       users: [],
+      experience:[]
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
   }
   componentDidMount() {
     this.fetchData();
+    this.fetchExperience()
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
@@ -47,6 +49,16 @@ class DataSource extends Component {
     this.setState({ users });
     // console.log(this.state.users);
   };
+  // fetchExperience=async()=>{
+  //   let response = await fetch('https://striveschool.herokuapp.com/api/profile/user20/experiences', {
+  //     headers: {
+  //       Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+  //     },
+  //   });
+  //   let experience = await response.json();
+  //   console.log('experience for user20',experience)
+  //   this.setState({ experience });
+  // }
   render() {
     const { user, users } = this.state;
     return user && users ? (
