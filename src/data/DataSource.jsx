@@ -100,13 +100,13 @@ class DataSource extends Component {
   //   this.setState({ experience });
   // }
   render() {
-    const { user, users, experience, profilestrength } = this.state;
+    const { user, users, experience, profilestrength, posts } = this.state;
     return user && users ? (
       React.cloneElement(
         this.props.children,
         profilestrength
-          ? { users, user, experience, profilestrength }
-          : { users, user, experience }
+          ? { users, user, experience, profilestrength, posts }
+          : { users, user, experience, posts }
       )
     ) : (
       <div>Loading...</div>
