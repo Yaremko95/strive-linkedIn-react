@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Auth from "../authorization/Auth";
 
 class DataSource extends Component {
   constructor(props) {
@@ -8,10 +9,6 @@ class DataSource extends Component {
       user: undefined,
       users: [],
       experience: [],
-      profilestrength: {
-        strength: "",
-        percentage: null,
-      },
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
   }
@@ -42,16 +39,6 @@ class DataSource extends Component {
     });
     let experience = await response.json();
     this.setState({ experience });
-    if (experience.length === 0 || experience.length === 1) {
-      let profilestrength = { strength: "Beginner", percentage: 25 };
-      this.setState({ profilestrength });
-    } else if (experience.length > 1 && experience.length < 3) {
-      let profilestrength = { strength: "Intermediate", percentage: 50 };
-      this.setState({ profilestrength });
-    } else if (experience.length >= 3) {
-      let profilestrength = { strength: "Advanced", percentage: 100 };
-      this.setState({ profilestrength });
-    }
   };
 
   fetchUser = async (query) => {
@@ -86,19 +73,13 @@ class DataSource extends Component {
   // }
   render() {
     const { user, users, experience, profilestrength } = this.state;
-    return user && users ? (
-      React.cloneElement(
-        this.props.children,
-        profilestrength
-          ? {
-              users,
-              user,
-              experience,
-              profilestrength,
-              newFetch: () => this.fetchData(),
-            }
-          : { users, user, experience, newFetch: () => this.fetchData() }
-      )
+    return users ? (
+      React.cloneElement(this.props.children, {
+        users,
+        user,
+        experience,
+        newFetch: () => this.fetchData(),
+      })
     ) : (
       <div>Loading...</div>
     );

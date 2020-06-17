@@ -9,6 +9,7 @@ function BrowserMapEExp(props) {
       flex: " 1 0 0",
       display: "flex",
       flexDirection: "column",
+      paddingLeft: "10px",
     },
     name: {
       maxWidth: "200px",

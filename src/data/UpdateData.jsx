@@ -3,8 +3,9 @@ import React, { Component } from "react";
 class UpdateData extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      data: {},
+      data: this.props.data || {},
       validated: false,
     };
     console.log("updateData", this.props);

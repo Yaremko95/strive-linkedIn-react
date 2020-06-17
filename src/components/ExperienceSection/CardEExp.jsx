@@ -4,6 +4,12 @@ import { createUseStyles } from "react-jss";
 import ProfileImage from "../ui/profile-images/ProfileImage";
 import BrowserMapMemberDetail from "../ui/browsemap/BrowserMapMemberDetail";
 import BrowserMapEExp from "./BrowserMapEExp";
+import Break from "../ui/themantic-break/Break";
+import ModalCustom from "../ui/modals/ModalCustom";
+import { MdAdd } from "react-icons/all";
+import UpdateData from "../../data/UpdateData";
+import ExperienceForm from "./ExperienceForm";
+import ContainerCard from "../ui/cards/ContainerCard";
 
 function CardEExp(props) {
   const useStyles = createUseStyles({
@@ -20,21 +26,44 @@ function CardEExp(props) {
   });
   const classes = useStyles();
 
-  const { user } = props;
+  const { user, profilesexperience } = props;
   console.log("profilesexperience", props.profilesexperience);
   return (
-    <Link className={classes.container} /* to={`/profile/${user.username}`} */>
-      <ProfileImage
-        src={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"
-        }
-        width={"56px"}
-        height={"56px"}
-      />
+    <>
+      <ModalCustom
+        title={"Add Experience"}
+        button={<MdAdd style={{ color: "black" }} />}
+      >
+        <UpdateData
+          data={profilesexperience}
+          method={"PUT"}
+          endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences/${profilesexperience._id}`}
+          {...props}
+        >
+          <ExperienceForm />
+        </UpdateData>
+      </ModalCustom>
+      <Link
+        className={classes.container} /* to={`/profile/${user.username}`} */
+      >
+        <ProfileImage
+          src={
+            props.profilesexperience.image
+              ? props.profilesexperience.image
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"
+          }
+          width={"56px"}
+          height={"56px"}
+        />
 
-      <BrowserMapEExp profilesexperience={props.profilesexperience} />
-      {/* <BrowserMapMemberDetail user={user} /> */}
-    </Link>
+        <BrowserMapEExp profilesexperience={props.profilesexperience} />
+        {/* <BrowserMapMemberDetail user={user} /> */}
+      </Link>
+
+      <div style={{ width: "calc(100% - 52px)", marginLeft: "auto" }}>
+        <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
+      </div>
+    </>
   );
 }
 

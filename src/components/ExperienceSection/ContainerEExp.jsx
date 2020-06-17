@@ -11,6 +11,7 @@ import ModalCustom from "../ui/modals/ModalCustom";
 import NavButton from "../ui/navBar/NavButton";
 import { MdAdd } from "react-icons/all";
 import { Modal } from "react-bootstrap";
+import Break from "../ui/themantic-break/Break";
 
 function ContainerEExp(props) {
   /* const useStyles = createUseStyles((theme) => ({
@@ -48,9 +49,10 @@ function ContainerEExp(props) {
       </ModalCustom>
       <div>
         {props.experience.map((experience) => (
-          <CardEExp profilesexperience={experience} />
+          <CardEExp {...props} profilesexperience={experience} />
         ))}
       </div>
+      <hr />
     </ContainerCard>
   );
 }
