@@ -101,7 +101,7 @@ class DataSource extends Component {
   // }
   render() {
     const { user, users, experience, profilestrength, posts } = this.state;
-    return user && users ? (
+    return users ? (
       React.cloneElement(
         this.props.children,
         profilestrength
