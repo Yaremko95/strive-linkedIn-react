@@ -35,23 +35,26 @@ function NFCard(props) {
 
   return (
     <>
-      <div className={classes.container}>
-        {posts.map((post) => (
-          <ContainerCard>
+      
+        {posts.reverse().map((post) => (
+          <ContainerCard background='white'>
             <div className={classes.item}>
               <BrowserMapMemberContainer>
                 <BrowserPostMember post={post} />
               </BrowserMapMemberContainer>
-
-              <ContainerCard>
-                {post.user.image && (
-                  <Image
+            
+            
+                {/* {post.user.image && (
+                 
+                  <Image style={{width:'100px'}}
                     src={post.user.image}
                     alt="..."
                     className="img-thumbnail"
+                
                   />
-                )}
-              </ContainerCard>
+                   
+                )} */}
+              
               <Nav
                 className=" d-flex justify-content-between ml-auto"
                 className={classes.title.color}
@@ -65,7 +68,7 @@ function NFCard(props) {
             </div>
           </ContainerCard>
         ))}
-      </div>
+
     </>
   );
 }

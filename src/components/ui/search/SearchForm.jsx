@@ -2,7 +2,7 @@ import React, { useEffect, useState, Component } from "react";
 import { createUseStyles } from "react-jss";
 import { GoSearch } from "react-icons/go";
 
-import { withRouter, useParams } from "react-router-dom";
+import { withRouter, useParams,Link } from "react-router-dom";
 import { render } from "@testing-library/react";
 import {ListGroup} from 'react-bootstrap'
 
@@ -71,7 +71,8 @@ class SearchForm extends Component{
       <ListGroup style={suggestionStyle}>
         {this.state.input&&
           this.state.suggestions.map(suggestion=>
-          (  <ListGroup.Item style={{width:'206px'}} >{suggestion.name}</ListGroup.Item>))
+          ( <Link to={'/profile/'+suggestion.username} ><ListGroup.Item style={{width:'206px'}} >
+            {suggestion.name}</ListGroup.Item></Link>))
         }
       </ListGroup>
     </div>
