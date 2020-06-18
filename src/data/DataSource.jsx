@@ -9,6 +9,7 @@ class DataSource extends Component {
       user: undefined,
       users: [],
       experience: [],
+      posts: [],
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
     this.urlPost = "https://striveschool.herokuapp.com/api/posts/";
@@ -46,6 +47,15 @@ class DataSource extends Component {
     let experience = await response.json();
     this.setState({ experience });
   };
+  fetchPost = async (query) => {
+    let response = await fetch(this.urlPost, {
+      headers: {
+        Authorization: Auth.auth,
+      },
+    });
+    let posts = await response.json();
+    this.setState({ posts });
+  };
 
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
@@ -69,13 +79,14 @@ class DataSource extends Component {
   };
 
   render() {
-    const { user, users, experience, profilestrength } = this.state;
+    const { user, users, experience, posts } = this.state;
     return users ? (
       React.cloneElement(this.props.children, {
         users,
         user,
         experience,
         newFetch: () => this.fetchData(),
+        posts,
       })
     ) : (
       <div>Loading...</div>
