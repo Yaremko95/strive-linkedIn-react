@@ -115,7 +115,7 @@ function ProfileJumbotron(props) {
               style={ProfileImageStyle}
               src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
             />
-            <CardTitle>{user.name}</CardTitle>
+            <CardTitle>{user.name+' '+user.surname}</CardTitle>
             <h6 style={h3Style}>{user.bio}</h6>
             <h7 style={h3Style}>
               Spain &nbsp;.&nbsp;&nbsp;{" "}

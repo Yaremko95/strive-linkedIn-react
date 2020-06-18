@@ -1,14 +1,6 @@
 import React from "react";
-import DataSource from "../../../data/DataSource";
+import NewsFeed from "../NewsFeed/NewsFeed";
 
-function HomeContainer(props) {
-  console.log("Homepage", props);
-  return (
-    <div>
-      {" "}
-      <h1>{JSON.stringify(props.users)}</h1>
-    </div>
-  );
+export default function HomeContainer(props) {
+  return <NewsFeed {...props} />;
 }
-
-export default HomeContainer;
