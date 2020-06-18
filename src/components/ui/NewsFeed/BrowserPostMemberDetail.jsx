@@ -1,6 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
+import {Link} from 'react-router-dom'
 
 function BrowserPostMemberDetail(props) {
 
@@ -56,7 +57,7 @@ function BrowserPostMemberDetail(props) {
         <span className={classes.nameAndIcon}>
 
           <span>
-            {post.user.name} {post.user.surname}
+           <Link to={'/profile/'+post.username}>{post.user.name} {post.user.surname}</Link>
           </span>
 
           <span>
