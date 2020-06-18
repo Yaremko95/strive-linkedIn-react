@@ -9,7 +9,6 @@ class DataSource extends Component {
       user: undefined,
       users: [],
       experience: [],
-      posts: [],
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
     this.urlPost = "https://striveschool.herokuapp.com/api/posts/";

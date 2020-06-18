@@ -12,6 +12,7 @@ export default function NavBar() {
     main: {
       backgroundColor: theme.primary.darkblue,
       padding: ".3rem 0",
+      height:'54px'
     },
     logo: {
       height: "2rem",
