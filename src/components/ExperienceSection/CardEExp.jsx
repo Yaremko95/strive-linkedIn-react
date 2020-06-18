@@ -34,7 +34,7 @@ function CardEExp(props) {
   console.log("profilesexperience", props.profilesexperience);
   return (
     <>
-      <CardItemContainer>
+      <CardItemContainer >
         <div className={"w-100"}>
           <Link
             className={classes.container} /* to={`/profile/${user.username}`} */
@@ -66,6 +66,7 @@ function CardEExp(props) {
               </IconButton>
             }
           >
+       
             <UpdateData
               data={profilesexperience}
               method={"PUT"}

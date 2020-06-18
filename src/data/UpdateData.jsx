@@ -11,6 +11,7 @@ class UpdateData extends Component {
     console.log("updateData", this.props);
   }
   onSubmit = async (event) => {
+    
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -45,14 +46,37 @@ class UpdateData extends Component {
       console.log(error);
     }
   };
+  getDelete=async()=>{
+    
+
+    const { endpoint, newFetch, closeModal } = this.props;
+    let response = await fetch(endpoint, {
+      method:'Delete',
+     
+      headers: {
+        Authorization: Auth.auth,
+        "Content-Type": "application/json",
+      },
+    });
+   
+    if (response.ok) {
+
+      closeModal();
+      newFetch();
+    } else {
+      let error = await response.json();
+      console.log(error);
+    }
+  }
 
   render() {
-    console.log(this.state);
+    
     const { data } = this.state;
     return React.cloneElement(this.props.children, {
       state: this.state,
       setData: (state) => this.setState({ data: { ...data, ...state } }),
       onSubmit: (e) => this.onSubmit(e),
+      getDelete:()=>this.getDelete()
     });
   }
 }

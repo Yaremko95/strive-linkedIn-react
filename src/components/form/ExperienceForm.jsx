@@ -7,8 +7,8 @@ import Button from "../ui/button/Button";
 
 function ExperienceForm(props) {
   const { data, validated } = props.state;
-  const { setData, onSubmit } = props;
-
+  const { setData, onSubmit ,getDelete} = props;
+console.log('THISPROPSSSSSSSSSS',props)
   return (
     <div style={{ padding: "0 20px" }}>
       <Form noValidate validated={validated} onSubmit={(e) => onSubmit(e)}>
@@ -96,11 +96,15 @@ function ExperienceForm(props) {
             justifyContent: "flex-end",
           }}
         >
-          <Button type={"submit"} variant={"filled"}>
+          <Button type={"submit"} variant={"filled"} >
             Submit
           </Button>
+          <Button type={"button"}  onClick={getDelete}>
+            Delete
+      </Button>
         </div>
       </Form>
+    
     </div>
   );
 }
