@@ -30,8 +30,10 @@ class DataSource extends Component {
       }
       this.fetchUser(query);
       this.fetchExperience(query);
+    } else {
+      this.fetchUser("me");
+      this.fetchUsers();
     }
-    this.fetchUsers();
   };
 
   fetchExperience = async (query) => {

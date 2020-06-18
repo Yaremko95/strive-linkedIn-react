@@ -14,11 +14,11 @@ function ExperienceForm(props) {
       <Form noValidate validated={validated} onSubmit={(e) => onSubmit(e)}>
         <InputLabel>Role</InputLabel>
         <InputField
-          required={true}
+          reme="role"
+          idquired={true}
           type="text"
           placeholder="Role"
-          name="role"
-          id="role"
+          na="role"
           value={data.role}
           onChange={(e) => setData({ role: e.target.value })}
         />
@@ -96,6 +96,7 @@ function ExperienceForm(props) {
             justifyContent: "flex-end",
           }}
         >
+          //type file
           <Button type={"submit"} variant={"filled"}>
             Submit
           </Button>
