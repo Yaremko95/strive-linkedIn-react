@@ -1,8 +1,15 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import CardTitle from "../titles/CardTitle";
+import { createUseStyles } from "react-jss";
 
 function ModalCustom(props) {
+  const useStyles = createUseStyles((theme) => ({
+    button: {
+      cursor: "pointer",
+    },
+  }));
+  const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const closeModal = () => {
     setShow(false);
@@ -10,7 +17,9 @@ function ModalCustom(props) {
 
   return (
     <>
-      <span onClick={() => setShow(true)}>{props.button}</span>
+      <span className={classes.button} onClick={() => setShow(true)}>
+        {props.button}
+      </span>
       <Modal
         show={show}
         onHide={() => setShow(false)}

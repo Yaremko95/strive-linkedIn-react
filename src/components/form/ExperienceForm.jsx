@@ -1,21 +1,23 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
+import { Form, Button, Image } from "react-bootstrap";
 import InputField from "../ui/input/InputField";
 import TextField from "../ui/input/TextField";
 import InputLabel from "../ui/input/InputLabel";
-import Button from "../ui/button/Button";
+import UploadFile from "../../data/UploadFile";
+import ModalCustom from "../ui/modals/ModalCustom";
+// import Button from "../ui/button/Button";
 
 function ExperienceForm(props) {
   const { data, validated } = props.state;
-  const { setData, onSubmit ,getDelete} = props;
-console.log('THISPROPSSSSSSSSSS',props)
+  const { setData, onSubmit, getDelete } = props;
+  console.log("THISPROPSSSSSSSSSS", props);
   return (
     <div style={{ padding: "0 20px" }}>
       <Form noValidate validated={validated} onSubmit={(e) => onSubmit(e)}>
         <InputLabel>Role</InputLabel>
         <InputField
           reme="role"
-          idquired={true}
+          required={true}
           type="text"
           placeholder="Role"
           na="role"
@@ -96,16 +98,27 @@ console.log('THISPROPSSSSSSSSSS',props)
             justifyContent: "flex-end",
           }}
         >
-          //type file
-          <Button type={"submit"} variant={"filled"}>
-            Submit
-          </Button>
-          <Button type={"button"}  onClick={getDelete}>
+          {/*<UploadFile*/}
+          {/*  {...props}*/}
+          {/*  type={"profile"}*/}
+          {/*  query={`profile/${user.username}/picture`}*/}
+          {/*>*/}
+          {/*  {({ handleInputClick, handleUpload, toBase64 }) => (*/}
+          {/*    <>*/}
+          {/*      <Image src={user.image} style={ProfileImageStyle} />*/}
+          {/*      <Button onClick={() => handleInputClick()}>Choose Image</Button>*/}
+          {/*      {toBase64 && (*/}
+          {/*        <Button onClick={() => handleUpload()}>Save</Button>*/}
+          {/*      )}*/}
+          {/*    </>*/}
+          {/*  )}*/}
+          {/*</UploadFile>*/}
+          <Button type={"submit"}>Submit</Button>
+          <Button type={"button"} onClick={getDelete}>
             Delete
-      </Button>
+          </Button>
         </div>
       </Form>
-    
     </div>
   );
 }

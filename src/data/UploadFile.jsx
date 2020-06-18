@@ -11,7 +11,7 @@ class UploadFile extends Component {
       data: {},
     };
     this.ref = React.createRef();
-    console.log(this.state);
+    console.log("upload", this.props);
   }
 
   encodeImageFileAsURL = (element) => {
@@ -30,10 +30,11 @@ class UploadFile extends Component {
     this.ref.current.click();
   };
   handleUpload = async () => {
+    const { type, query, newFetch, closeModal } = this.props;
     const formData = new FormData();
-    formData.append("profile", this.state.file);
+    formData.append(type, this.state.file);
     const response = await fetch(
-      `https://striveschool.herokuapp.com/api/profile/user27/picture`,
+      `https://striveschool.herokuapp.com/api/${query}`,
       {
         method: "POST",
         body: formData,
@@ -44,7 +45,8 @@ class UploadFile extends Component {
     );
     if (response.ok) {
       let data = await response.json();
-      alert("success");
+      closeModal();
+      newFetch();
       this.setState({ data });
     } else {
       let error = await response.json();
@@ -63,8 +65,11 @@ class UploadFile extends Component {
           hidden
           onChange={this.encodeImageFileAsURL}
         />
-        <Button onClick={() => this.handleInputClick()}>Choose File</Button>
-        <Button onClick={() => this.handleUpload()}>Upload</Button>
+        {this.props.children({
+          handleInputClick: () => this.handleInputClick(),
+          handleUpload: () => this.handleUpload(),
+          ...this.state,
+        })}
       </>
     );
   }
