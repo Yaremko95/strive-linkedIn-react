@@ -17,6 +17,7 @@ class ProgressBarComponent extends Component {
   }
   
   render() {
+    {console.log('here')}
     let profilestrength
     const style={
     backgroundColor:'white !important'
