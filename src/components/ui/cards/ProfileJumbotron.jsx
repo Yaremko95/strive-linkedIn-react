@@ -8,6 +8,13 @@ import {
   Jumbotron,
 } from "react-bootstrap";
 import ProfileImage from "../profile-images/ProfileImage";
+import Auth from "../../../authorization/Auth";
+import ModalCustom from "../modals/ModalCustom";
+import IconButton from "../button/IconButton";
+import { BsPencil } from "react-icons/all";
+import UpdateData from "../../../data/UpdateData";
+import ExperienceForm from "../../form/ExperienceForm";
+import CardItemContainer from "./CardItemContainer";
 
 function ProfileJumbotron(props) {
   const ColStyle = {
@@ -137,7 +144,23 @@ function ProfileJumbotron(props) {
                 More...
               </Button>
               <div style={PenIconStyle}>
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {Auth.user === user.username && (
+                  <ModalCustom
+                    title={"Update Experience"}
+                    button={
+                      <IconButton>
+                        <BsPencil />
+                      </IconButton>
+                    }
+                  >
+                    <UpdateData
+                      data={user}
+                      method={"PUT"}
+                      endpoint={`https://striveschool.herokuapp.com/api/profile/`}
+                      {...props}
+                    ></UpdateData>
+                  </ModalCustom>
+                )}
               </div>
             </Col>
           </Row>

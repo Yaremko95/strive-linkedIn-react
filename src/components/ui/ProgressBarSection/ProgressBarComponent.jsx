@@ -1,20 +1,47 @@
-import React, { Component } from 'react'
-import ContainerCard from '../cards/ContainerCard'
-import {ProgressBar} from 'react-bootstrap'
+import React, { Component } from "react";
+import ContainerCard from "../cards/ContainerCard";
+import { ProgressBar } from "react-bootstrap";
+import CardTitle from "../titles/CardTitle";
 
-class ProgressBarComponent extends Component {
-  
-  render() {
-    const style={
-    backgroundColor:'white !important'
-    }
+const spanStyle = {
+  fontWeight: "bold",
+  color: "black",
+};
+
+function ProgressBarComponent(props) {
+  const { experience } = props;
+
+  if (experience.length === 0 || experience.length === 1) {
     return (
-        <ContainerCard style={style}>
-          <h5 style={{color:'#666666',paddingBottom:'17px'}}>Profile Strength: </h5>
-           <ProgressBar animated now={45} />
-        </ContainerCard>
-    )
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Beginner</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={25} />
+      </ContainerCard>
+    );
+  } else if (experience.length > 1 && experience.length < 3) {
+    return (
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Intermediate</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={50} />
+      </ContainerCard>
+    );
+  } else {
+    return (
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Advanced</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={100} />
+      </ContainerCard>
+    );
   }
 }
 
-export default ProgressBarComponent
+export default ProgressBarComponent;

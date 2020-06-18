@@ -36,7 +36,7 @@ export default [
   },
   {
     label: "Me",
-    to: "/",
+    to: "/profile/me",
     secondaryIcon: AiFillCaretDown,
   },
   {

@@ -1,17 +1,15 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import Break from "../themantic-break/Break";
+import Break from "../ui/themantic-break/Break";
 
 function BrowserMapEExp(props) {
-
   const useStyles = createUseStyles((theme) => ({
-
-
     container: {
       padding: "0 0 0 8px",
       flex: " 1 0 0",
       display: "flex",
       flexDirection: "column",
+      paddingLeft: "10px",
     },
     name: {
       maxWidth: "200px",
@@ -22,7 +20,6 @@ function BrowserMapEExp(props) {
       fontWeight: theme.text.weight.bold,
       color: theme.text.color.dark,
 
-   
       paddingBottom: "0",
     },
     nameAndIcon: {
@@ -54,18 +51,14 @@ function BrowserMapEExp(props) {
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-
-          <span>
-            Title
-          </span>
-          
+          <span>{props.profilesexperience.role}</span>
+          {/* {console.log('USEREXPERIENCE',props.profilesexperience)} */}
         </span>
       </span>
 
-      <span className={classes.span}>Company</span>
-      <span className={classes.span}>Year</span>
-      <span className={classes.span}>Location</span>
-
+      <span className={classes.span}>{props.profilesexperience.company}</span>
+      <span className={classes.span}>{props.profilesexperience.startDate}</span>
+      <span className={classes.span}>{props.profilesexperience.area}</span>
     </div>
   );
 }
