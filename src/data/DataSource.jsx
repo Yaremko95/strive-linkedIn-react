@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Auth from "../authorization/Auth";
 
 class DataSource extends Component {
   constructor(props) {
@@ -8,11 +9,6 @@ class DataSource extends Component {
       user: undefined,
       users: [],
       experience: [],
-      profilestrength: {
-        strength: "",
-        percentage: null,
-      },
-      posts: [],
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
     this.urlPost = "https://striveschool.herokuapp.com/api/posts/";
@@ -29,8 +25,11 @@ class DataSource extends Component {
   };
 
   fetchData = async () => {
-    const { query } = this.props;
+    let { query } = this.props;
     if (query !== "all") {
+      if (query === "me") {
+        query = Auth.user;
+      }
       this.fetchUser(query);
       this.fetchExperience(query);
       this.fetchPost(query);
@@ -41,27 +40,17 @@ class DataSource extends Component {
   fetchExperience = async (query) => {
     let response = await fetch(this.url + query + "/experiences", {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let experience = await response.json();
     this.setState({ experience });
-    if (experience.length === 0 || experience.length === 1) {
-      let profilestrength = { strength: "Beginner", percentage: 25 };
-      this.setState({ profilestrength });
-    } else if (experience.length > 1 && experience.length < 3) {
-      let profilestrength = { strength: "Intermediate", percentage: 50 };
-      this.setState({ profilestrength });
-    } else if (experience.length >= 3) {
-      let profilestrength = { strength: "Advanced", percentage: 100 };
-      this.setState({ profilestrength });
-    }
   };
 
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let user = await response.json();
@@ -71,7 +60,7 @@ class DataSource extends Component {
   fetchUsers = async () => {
     let response = await fetch(this.url, {
       headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+        Authorization: Auth.auth,
       },
     });
     let users = await response.json();
@@ -79,35 +68,15 @@ class DataSource extends Component {
     // console.log(this.state.users);
   };
 
-  fetchPost = async () => {
-    let response = await fetch(this.urlPost, {
-      headers: {
-        Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
-      },
-    });
-    let posts = await response.json();
-    this.setState({ posts });
-    // console.log(this.state.users);
-  };
-  // fetchExperience=async()=>{
-  //   let response = await fetch('https://striveschool.herokuapp.com/api/profile/user20/experiences', {
-  //     headers: {
-  //       Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
-  //     },
-  //   });
-  //   let experience = await response.json();
-  //   console.log('experience for user20',experience)
-  //   this.setState({ experience });
-  // }
   render() {
-    const { user, users, experience, profilestrength, posts } = this.state;
+    const { user, users, experience, profilestrength } = this.state;
     return users ? (
-      React.cloneElement(
-        this.props.children,
-        profilestrength
-          ? { users, user, experience, profilestrength, posts }
-          : { users, user, experience, posts }
-      )
+      React.cloneElement(this.props.children, {
+        users,
+        user,
+        experience,
+        newFetch: () => this.fetchData(),
+      })
     ) : (
       <div>Loading...</div>
     );

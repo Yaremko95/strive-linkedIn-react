@@ -1,36 +1,47 @@
-import React, { Component } from 'react'
-import ContainerCard from '../cards/ContainerCard'
-import {ProgressBar} from 'react-bootstrap'
+import React, { Component } from "react";
+import ContainerCard from "../cards/ContainerCard";
+import { ProgressBar } from "react-bootstrap";
+import CardTitle from "../titles/CardTitle";
 
-const spanStyle={
-    fontWeight:'bold',
-    color:'black'
-}
+const spanStyle = {
+  fontWeight: "bold",
+  color: "black",
+};
 
-class ProgressBarComponent extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       
-    }
+function ProgressBarComponent(props) {
+  const { experience } = props;
+
+  if (experience.length === 0 || experience.length === 1) {
+    return (
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Beginner</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={25} />
+      </ContainerCard>
+    );
+  } else if (experience.length > 1 && experience.length < 3) {
+    return (
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Intermediate</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={50} />
+      </ContainerCard>
+    );
+  } else {
+    return (
+      <ContainerCard background="white" style={{ backgroundColor: "white" }}>
+        <CardTitle>
+          Profile Strength: &nbsp;
+          <span style={spanStyle}>Advanced</span>{" "}
+        </CardTitle>
+        <ProgressBar animated now={100} />
+      </ContainerCard>
+    );
   }
-  
-  render() {
-    let profilestrength
-    const style={
-    backgroundColor:'white !important'
-    }
-        return (
-          
-        <ContainerCard background='white' style={style}>
-          <h5 style={{color:'#666666',paddingBottom:'17px'}}>Profile Strength: &nbsp;
-          <span style={spanStyle} >{this.props.profilestrength.strength}</span>  </h5>
-           <ProgressBar animated now={this.props.profilestrength.percentage} />
-        </ContainerCard>
-    )
-
-}
 }
 
-export default ProgressBarComponent
+export default ProgressBarComponent;

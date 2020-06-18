@@ -1,7 +1,7 @@
 export default {
   primary: {
     darkblue: "#283E4A",
-    lightblue: "#0073b1",
+    lightblue: "#0399ea",
   },
   secondary: {
     light: "#c2dbe7",
