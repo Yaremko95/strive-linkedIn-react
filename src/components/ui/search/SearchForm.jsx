@@ -39,6 +39,7 @@ class SearchForm extends Component{
       suggestions:[]
    }
  }
+ LG=document.querySelector('#LG')
  url = "https://striveschool.herokuapp.com/api/profile/";
  componentDidMount=async()=>{
   let response = await fetch(this.url, {
@@ -55,8 +56,12 @@ class SearchForm extends Component{
    const filteredArray = this.state.users.filter(user => user.name.toLowerCase().includes(inputsearch));
    this.setState({suggestions:filteredArray})
   
+ 
  }
-
+ hideList=(suggestion)=>{
+  this.props.history.push('/profile/'+suggestion.username)
+  this.setState({input:''})
+ }
   
 
   render(){
@@ -68,11 +73,13 @@ class SearchForm extends Component{
          
         </div>
       
-      <ListGroup style={suggestionStyle}>
+      <ListGroup id='LG'style={suggestionStyle}>
         {this.state.input&&
           this.state.suggestions.map(suggestion=>
-          ( <Link to={'/profile/'+suggestion.username} ><ListGroup.Item style={{width:'206px'}} >
-            {suggestion.name}</ListGroup.Item></Link>))
+          ( <ListGroup.Item onClick={()=>this.hideList(suggestion)} style={{width:'206px'}} >
+            {suggestion.name}</ListGroup.Item>))
+
+            // <Link to={'/profile/'+suggestion.username}  >
         }
       </ListGroup>
     </div>

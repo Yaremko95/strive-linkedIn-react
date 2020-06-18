@@ -13,6 +13,7 @@ class DataSource extends Component {
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
     this.urlPost = "https://striveschool.herokuapp.com/api/posts/";
+    
   }
   componentDidMount() {
     this.fetchData();

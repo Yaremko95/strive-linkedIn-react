@@ -1,7 +1,8 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
-import {Link} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
+
 
 function BrowserPostMemberDetail(props) {
 
