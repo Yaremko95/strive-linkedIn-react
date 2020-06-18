@@ -16,8 +16,6 @@ class DataSource extends Component {
   }
   componentDidMount() {
     this.fetchData();
-    this.fetchExperience();
-    this.fetchPost();
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
@@ -34,8 +32,11 @@ class DataSource extends Component {
       this.fetchUser(query);
       this.fetchExperience(query);
       this.fetchPost(query);
+    } else {
+      this.fetchUsers();
+      this.fetchUser("me");
+      this.fetchPost();
     }
-    this.fetchUsers();
   };
 
   fetchExperience = async (query) => {
@@ -47,7 +48,7 @@ class DataSource extends Component {
     let experience = await response.json();
     this.setState({ experience });
   };
-  fetchPost = async (query) => {
+  fetchPost = async () => {
     let response = await fetch(this.urlPost, {
       headers: {
         Authorization: Auth.auth,
