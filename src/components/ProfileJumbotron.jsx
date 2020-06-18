@@ -14,6 +14,7 @@ import IconButton from "./ui/button/IconButton";
 import { BsPencil } from "react-icons/all";
 import UpdateData from "../data/UpdateData";
 import ProfileForm from "./form/ProfileForm";
+import UploadFile from "../data/UploadFile";
 
 function ProfileJumbotron(props) {
   const ColStyle = {
@@ -135,9 +136,11 @@ function ProfileJumbotron(props) {
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+
             <Button style={MoreProfilebtn} variant="light">
               More...
             </Button>
+
             <div style={PenIconStyle}>
               {Auth.user === user.username && (
                 <ModalCustom
@@ -176,6 +179,7 @@ function ProfileJumbotron(props) {
             </div>
           </div>
         </div>
+        <UploadFile />
       </Jumbotron>
     </>
   );
