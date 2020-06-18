@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-function CardHeader(props) {
+function CardItemContainer(props) {
   const useStyles = createUseStyles({
     container: {
       display: "flex",
@@ -12,4 +12,4 @@ function CardHeader(props) {
   return <div className={classes.container}>{props.children}</div>;
 }
 
-export default CardHeader;
+export default CardItemContainer;

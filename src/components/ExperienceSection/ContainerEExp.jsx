@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 import CardEExp from "./CardEExp";
 import CardTitle from "../ui/titles/CardTitle";
 import UpdateData from "../../data/UpdateData";
-import ExperienceForm from "./ExperienceForm";
+import ExperienceForm from "../form/ExperienceForm";
 import ModalCustom from "../ui/modals/ModalCustom";
 import NavButton from "../ui/navBar/NavButton";
 import { MdAdd } from "react-icons/all";
 import { Modal } from "react-bootstrap";
 import Break from "../ui/themantic-break/Break";
 import Auth from "../../authorization/Auth";
-import CardHeader from "../ui/cards/CardHeader";
+import CardItemContainer from "../ui/cards/CardItemContainer";
+import IconButton from "../ui/button/IconButton";
 
 function ContainerEExp(props) {
   /* const useStyles = createUseStyles((theme) => ({
@@ -35,12 +36,16 @@ function ContainerEExp(props) {
   const { user } = props;
   return (
     <ContainerCard background="white">
-      <CardHeader>
+      <CardItemContainer>
         <CardTitle>Experience</CardTitle>
         {Auth.user === user.username && (
           <ModalCustom
             title={"Add Experience"}
-            button={<MdAdd style={{ color: "black" }} />}
+            button={
+              <IconButton>
+                <MdAdd />
+              </IconButton>
+            }
           >
             <UpdateData
               method={"POST"}
@@ -51,7 +56,7 @@ function ContainerEExp(props) {
             </UpdateData>
           </ModalCustom>
         )}
-      </CardHeader>
+      </CardItemContainer>
 
       <div className={"mt-3"}>
         {props.experience.map((experience) => (
