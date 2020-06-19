@@ -5,6 +5,7 @@ import TextField from "../ui/input/TextField";
 import InputLabel from "../ui/input/InputLabel";
 import UploadFile from "../../data/UploadFile";
 import ModalCustom from "../ui/modals/ModalCustom";
+import { RiDeleteBin6Line } from "react-icons/all";
 // import Button from "../ui/button/Button";
 
 function ExperienceForm(props) {
@@ -98,17 +99,10 @@ function ExperienceForm(props) {
             justifyContent: "flex-end",
           }}
         >
-   
-          <Button type={"submit"} variant={"filled"}>
-            Submit
-          </Button>
-     
+          <Button type={"submit"}>Submit</Button>
         </div>
       </Form>
-           <Button type={"button"}  onClick={getDelete}>
-            Delete
-      </Button>
-    
+      <RiDeleteBin6Line type={"button"} onClick={getDelete} />
     </div>
   );
 }

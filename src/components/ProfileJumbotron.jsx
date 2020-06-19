@@ -150,13 +150,27 @@ function ProfileJumbotron(props) {
                           border: "3px solid rgba(0,0,0,0.08)",
                         }}
                       />
-                      <div>
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          marginTop: "2rem",
+                        }}
+                      >
                         <Button onClick={() => handleInputClick()}>
                           Choose Image
                         </Button>
-                        {toBase64 && (
-                          <Button onClick={() => handleUpload()}>Save</Button>
-                        )}
+                        {/*{toBase64 && (*/}
+                        <Button
+                          style={{
+                            marginLeft: "1rem",
+                          }}
+                          onClick={() => handleUpload()}
+                        >
+                          Save
+                        </Button>
+                        {/*)}*/}
                       </div>
                     </div>
                   )}

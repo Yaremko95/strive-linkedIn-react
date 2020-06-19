@@ -6,6 +6,7 @@ import InputLabel from "../ui/input/InputLabel";
 import { Button, Image } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import UploadFile from "../../data/UploadFile";
+import { RiDeleteBin6Line } from "react-icons/all";
 
 function PostForm(props) {
   const { data, validated, id } = props.state;
@@ -30,14 +31,21 @@ function PostForm(props) {
                 "d-flex flex-column w-100 justify-content-center align-items-center"
               }
             >
-              <div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginTop: "2rem",
+                }}
+              >
                 <Button onClick={() => handleInputClick()}>Choose Image</Button>
                 {toBase64 && (
                   <>
                     {/*<Button onClick={() => handleUpload()}>Save</Button>*/}
                   </>
                 )}{" "}
-                <Button type={"submit"} variant={"filled"}>
+                <Button style={{ marginLeft: "1rem" }} type={"submit"}>
                   Post
                 </Button>
               </div>
@@ -45,9 +53,7 @@ function PostForm(props) {
           )}
         </UploadFile>
       </Form>
-      <Button type={"button"} onClick={getDelete}>
-        Delete
-      </Button>
+      <RiDeleteBin6Line type={"button"} onClick={getDelete} />
     </>
   );
 }

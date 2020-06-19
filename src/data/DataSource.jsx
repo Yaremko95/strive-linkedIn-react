@@ -10,6 +10,7 @@ class DataSource extends Component {
       users: [],
       experience: [],
       posts: [],
+      loading: false,
     };
     this.url = "https://striveschool.herokuapp.com/api/profile/";
     this.urlPost = "https://striveschool.herokuapp.com/api/posts/";
@@ -24,12 +25,14 @@ class DataSource extends Component {
   };
 
   fetchData = async () => {
+    // this.setState({ loading: true });
     let { query } = this.props;
     console.log("query", query);
     if (!query) {
       this.fetchUser(Auth.user);
       this.fetchPost(query);
       this.fetchUsers();
+      this.setState({ loading: false });
     } else {
       if (query === "me") {
         query = Auth.user;
@@ -40,6 +43,7 @@ class DataSource extends Component {
       this.fetchUser(query);
       // this.fetchPost();
       this.fetchExperience(query);
+      // this.setState({ loading: false });
     }
   };
 
@@ -84,7 +88,7 @@ class DataSource extends Component {
   };
 
   render() {
-    const { user, users, experience, posts } = this.state;
+    const { user, users, experience, posts, loading } = this.state;
     return users && user ? (
       React.cloneElement(this.props.children, {
         users,
@@ -92,9 +96,10 @@ class DataSource extends Component {
         experience,
         newFetch: () => this.fetchData(),
         posts,
+        loading,
       })
     ) : (
-      <div>Loading...</div>
+      <div></div>
     );
   }
 }

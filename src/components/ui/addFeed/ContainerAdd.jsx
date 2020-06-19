@@ -1,21 +1,18 @@
-import React from 'react'
-import { Card, Button } from 'react-bootstrap'
-import { createUseStyles } from 'react-jss'
+import React from "react";
+import { Card, Button } from "react-bootstrap";
+import { createUseStyles } from "react-jss";
 import { MdAdd } from "react-icons/all";
 
-
 //import IconButton from "../ui/button/IconButton";
-import IconButton from '../button/IconButton'
+import IconButton from "../button/IconButton";
 //import ProfileImage from "../ui/profile-images/ProfileImage";
-import ProfileImage from '../profile-images/ProfileImage'
-
+import ProfileImage from "../profile-images/ProfileImage";
+import ContainerCard from "../cards/ContainerCard";
 
 function ContainerAdd(propr) {
   const useStyles = createUseStyles((theme, border) => ({
     container: {
-      marginTop: "24px",
-      padding: "24px 12px 8px",
-      boxShadow: " 0 0 0 1px rgba(0,0,0,.15)",
+      boxShadow: " 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2)",
       //border: "3px solid black"
     },
     title: {
@@ -28,14 +25,13 @@ function ContainerAdd(propr) {
     item: {
       listStyle: "none inside",
       marginTop: "16px",
-
     },
   }));
 
   const classes = useStyles();
 
   return (
-    <>
+    <div className={classes.container}>
       <Card.Header>Add to your feed</Card.Header>
       <Card.Body>
         <ProfileImage
@@ -45,17 +41,37 @@ function ContainerAdd(propr) {
           width={"56px"}
           height={"56px"}
         />
-        <Button variant="primary">+ Follow</Button>{' '}
-        <Card.Title> Tobia De Angelis
-        {/* <IconButton>
+        <Button className={"ml-4"} variant="primary">
+          + Follow
+        </Button>{" "}
+        <Card.Title>
+          {" "}
+          <span
+            style={{
+              fontSize: "1rem",
+              fontWeight: "600",
+              color: "rgba(0,0,0,.7)",
+              paddingBottom: "0",
+            }}
+          >
+            Tobia De Angelis
+          </span>
+          {/* <IconButton>
             <MdAdd />
-          </IconButton> */}
+          </Icon Button> */}
         </Card.Title>
-
-
         <Card.Text>
-          Chief Executive Officer at Strive School
-      </Card.Text>
+          <span
+            style={{
+              fontSize: "1rem",
+              fontWeight: "400",
+              color: "rgba(0,0,0,.7)",
+              paddingBottom: "0",
+            }}
+          >
+            Chief Executive Officer at Strive School
+          </span>
+        </Card.Text>
       </Card.Body>
       <Card.Body>
         <ProfileImage
@@ -65,24 +81,40 @@ function ContainerAdd(propr) {
           width={"56px"}
           height={"56px"}
         />
-        <Button variant="primary">+ Follow</Button>{' '}
-        <Card.Title> Stefano Casasola
-        {/* <IconButton>
+        <Button className={"ml-4"} variant="primary">
+          + Follow
+        </Button>{" "}
+        <Card.Title>
+          <span
+            style={{
+              fontSize: "1rem",
+              fontWeight: "600",
+              color: "rgba(0,0,0,.7)",
+              paddingBottom: "0",
+            }}
+          >
+            Stefano Casasola
+          </span>
+
+          {/* <IconButton>
             <MdAdd />
           </IconButton> */}
         </Card.Title>
         <Card.Text>
-          Founder & Software Developer @ Nucleode SRL - Tutor @ Strive School
-      </Card.Text>
+          <span
+            style={{
+              fontSize: "1rem",
+              fontWeight: "400",
+              color: "rgba(0,0,0,.7)",
+              paddingBottom: "0",
+            }}
+          >
+            Founder & Software Developer @ Nucleode SRL - Tutor @ Strive School
+          </span>
+        </Card.Text>
       </Card.Body>
-
-    </>
+    </div>
   );
-
-
-
-
-
 }
 
-export default ContainerAdd
+export default ContainerAdd;
