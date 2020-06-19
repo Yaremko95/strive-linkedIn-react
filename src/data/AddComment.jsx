@@ -15,13 +15,13 @@ class AddComment extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchComments();
+    this.fetchComments(this.props.postId);
   };
-  fetchComments = async () => {
+  fetchComments = async (id) => {
     const { postId } = this.props;
     try {
       let response = await fetch(
-        `https://striveschool.herokuapp.com/api/comments/${postId}`,
+        `https://striveschool.herokuapp.com/api/comments/${id}`,
         {
           method: "GET",
           headers: {
@@ -69,14 +69,14 @@ class AddComment extends Component {
         }
       );
       if (response.ok) {
-        //alert("good");
-        this.fetchComments();
-
-        this.setState({
+        let newComment = {
           comment: "",
           rate: "5",
-          elementId: "",
-        });
+          elementId: this.props.postId,
+        };
+        this.setState({ comment: newComment });
+
+        this.fetchComments(postId);
       } else {
         let json = await response.json();
         alert(json);

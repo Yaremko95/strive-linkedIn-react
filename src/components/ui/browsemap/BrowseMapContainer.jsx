@@ -32,7 +32,7 @@ function BrowseMapContainer(props) {
     <>
       <div className={classes.container}>
         <h2 className={classes.title}>People also viewed</h2>
-        {users.map((user) => (
+        {users.slice(0, 15).map((user) => (
           <div className={classes.item}>
             <BrowserMapMemberContainer>
               <BrowserMapMember user={user} />
