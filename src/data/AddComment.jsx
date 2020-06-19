@@ -12,7 +12,6 @@ class AddComment extends Component {
       },
       comments: [],
     };
-    console.log(this.state);
   }
 
   componentDidMount = () => {

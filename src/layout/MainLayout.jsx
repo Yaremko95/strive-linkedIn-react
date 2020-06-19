@@ -9,17 +9,16 @@ function MainLayout(props) {
   const useStyles = createUseStyles((theme) => ({
     main: {
       fontFamily: "'Source Sans Pro', sans-serif",
+      width: "1200px",
     },
   }));
   const classes = useStyles();
   return (
     <>
-
       <NavBar />
       <hr />
       <Container className={classes.main}>{props.children}</Container>
       <Footer />
-    
     </>
   );
 }
