@@ -15,7 +15,6 @@ import IconButton from "../button/IconButton";
 import ExperienceForm from "../../form/ExperienceForm";
 import BrowserMapEdu from "./BrowserMapEdu";
 
-
 function CardEducation(props) {
   const useStyles = createUseStyles({
     container: {
@@ -31,43 +30,35 @@ function CardEducation(props) {
   });
   const classes = useStyles();
 
- /*  const { user, profilesexperience } = props;
+  /*  const { user, profilesexperience } = props;
   console.log("profilesexperience", props.profilesexperience); */
   return (
     <>
-     
       <CardItemContainer>
         <div className={"w-100"}>
           <Link
             className={classes.container} /* to={`/profile/${user.username}`} */
           >
             <ProfileImage
-              src=""
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQjgz-SpEKXN8h8rPSi19jdpsU2ZhVWu8CpC5yL7_ukA7eu6y4a&usqp=CAU"
               width={"56px"}
               height={"56px"}
             />
 
             <BrowserMapEdu />
-           
           </Link>
 
           <div style={{ width: "calc(100% - 52px)", marginLeft: "auto" }}>
             {/* <Break color={"rgba(0,0,0,.15)"} weight={"1px"} /> */}
           </div>
         </div>
-        
-          <ModalCustom
-            title={"Update Education"}
-            button={
-              <IconButton>
-               
-              </IconButton>
-            }
-          >            
-              <ExperienceForm />
-            
-          </ModalCustom>
-        
+
+        <ModalCustom
+          title={"Update Education"}
+          button={<IconButton></IconButton>}
+        >
+          <ExperienceForm />
+        </ModalCustom>
       </CardItemContainer>
     </>
   );

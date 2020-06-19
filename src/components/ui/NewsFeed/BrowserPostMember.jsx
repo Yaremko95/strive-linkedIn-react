@@ -33,7 +33,7 @@ function BrowserPostMember(props) {
         width={"56px"}
         height={"56px"}
       />
-      <BrowserPostMemberDetail post={post} />
+      <BrowserPostMemberDetail post={post} {...props} />
     </>
 
     /*  </Link> */

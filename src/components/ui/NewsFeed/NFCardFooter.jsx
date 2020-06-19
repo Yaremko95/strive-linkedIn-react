@@ -27,6 +27,22 @@ function NFCardFooter(props) {
       marginTop: "10px",
       borderRadius: "40px",
     },
+    commentContainer: {
+      display: "flex",
+      justifyContent: "start",
+      paddingLeft: "16px",
+    },
+    comment: {
+      position: "relative",
+      overflow: "hidden",
+      fontSize: "0.8rem",
+      fontWeight: "400",
+      color: "rgba(0,0,0,.7)",
+      paddingBottom: "0",
+      marginLeft: "16px",
+      display: "flex",
+      flexDirection: "column",
+    },
   }));
   const [showInput, setShowInput] = React.useState(false);
 
@@ -55,15 +71,19 @@ function NFCardFooter(props) {
                   (user) => user.username == comment.author
                 );
                 return (
-                  <>
+                  <div key={comment._id} className={classes.commentContainer}>
                     <ProfileImage
                       src={user.image}
                       height={"30px"}
                       width={"30px"}
                     />
-                    <span>{user.name}</span>
-                    <p>{comment.comment}</p>
-                  </>
+                    <div className={classes.comment}>
+                      <span style={{ fontWeight: "600" }}>
+                        {user.name} {user.surname}
+                      </span>
+                      <span>{comment.comment}</span>
+                    </div>
+                  </div>
                 );
               })}
               {showInput && (

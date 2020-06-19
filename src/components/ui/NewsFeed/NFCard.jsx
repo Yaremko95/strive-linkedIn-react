@@ -13,6 +13,13 @@ import RemarksMenu from "./RemarksMenu";
 import NFCardFooter from "./NFCardFooter";
 import Break from "../themantic-break/Break";
 import BrowserPostMemberDetail from "./BrowserPostMemberDetail";
+import CardItemContainer from "../cards/CardItemContainer";
+import IconButton from "../button/IconButton";
+import { BsPencil } from "react-icons/all";
+import Auth from "../../../authorization/Auth";
+import ModalCustom from "../modals/ModalCustom";
+import UpdateData from "../../../data/UpdateData";
+import PostForm from "../../form/PostForm";
 
 function NFCard(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -29,8 +36,6 @@ function NFCard(props) {
     },
     item: {
       listStyle: "none inside",
-      marginTop: "16px",
-   
     },
   }));
   const classes = useStyles();
@@ -40,11 +45,37 @@ function NFCard(props) {
   return (
     <>
       {posts.reverse().map((post) => (
-        <ContainerCard background="white">
+        <ContainerCard key={post._id} background="white">
           <div className={classes.item}>
-            <BrowserMapMemberContainer>
-              <BrowserPostMember post={post} />
-            </BrowserMapMemberContainer>
+            <CardItemContainer>
+              <BrowserMapMemberContainer>
+                <BrowserPostMember post={post} {...props} />
+              </BrowserMapMemberContainer>
+              {Auth.user === post.username && (
+                <ModalCustom
+                  title={"Update Experience"}
+                  button={
+                    <BsPencil
+                      style={{
+                        color: "rgba(0,0,0,.7)",
+                        fontSize: "1.2rem",
+                        cursor: "pointer",
+                        marginTop: "16px",
+                      }}
+                    />
+                  }
+                >
+                  <UpdateData
+                    data={post}
+                    method={"PUT"}
+                    endpoint={`https://striveschool.herokuapp.com/api/posts/${post._id}`}
+                    {...props}
+                  >
+                    <PostForm {...props} />
+                  </UpdateData>
+                </ModalCustom>
+              )}
+            </CardItemContainer>
 
             {post.image !== "none" && (
               <Image src={post.image} style={{ width: "100%" }} />

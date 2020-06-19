@@ -1,11 +1,10 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-
 function BrowserMapEdu(props) {
   const useStyles = createUseStyles((theme) => ({
     container: {
-      padding: "0 0 0 8px",
+      padding: "0 0 0 15px",
       flex: " 1 0 0",
       display: "flex",
       flexDirection: "column",
@@ -27,7 +26,7 @@ function BrowserMapEdu(props) {
 
       lineHeight: "0.9",
     },
-    
+
     span: {
       fontSize: theme.text.size.t1,
 
@@ -43,14 +42,13 @@ function BrowserMapEdu(props) {
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-          <span>School</span>
+          <span>Universidad de Alicante</span>
           {/* {console.log('USEREXPERIENCE',props.profilesexperience)} */}
         </span>
       </span>
 
-      <span className={classes.span}>Degree</span>
-      <span className={classes.span}>Year</span>
-     
+      <span className={classes.span}>Master Degree</span>
+      <span className={classes.span}>2019</span>
     </div>
   );
 }
