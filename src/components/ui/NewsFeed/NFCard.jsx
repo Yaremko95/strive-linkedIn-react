@@ -27,6 +27,7 @@ function NFCard(props) {
     item: {
       listStyle: "none inside",
       marginTop: "16px",
+   
     },
   }));
   const classes = useStyles();

@@ -10,6 +10,7 @@ function ContainerCard({ background, children, padding, margin }) {
       padding: padding ? padding : "24px",
       borderRadius: "2px",
       backgroundColor: background ? background : "inherit",
+    
     },
   });
   const classes = useStyles();

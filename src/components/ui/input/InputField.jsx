@@ -29,6 +29,7 @@ function InputField({
       backgroundColor: "transparent",
       color: theme.text.color.dark,
       fontFamily: "inherit",
+    
     },
   }));
   const classes = useStyles();

@@ -96,15 +96,16 @@ console.log('THISPROPSSSSSSSSSS',props)
             justifyContent: "flex-end",
           }}
         >
-          //type file
+   
           <Button type={"submit"} variant={"filled"}>
             Submit
           </Button>
-          <Button type={"button"}  onClick={getDelete}>
-            Delete
-      </Button>
+     
         </div>
       </Form>
+           <Button type={"button"}  onClick={getDelete}>
+            Delete
+      </Button>
     
     </div>
   );
