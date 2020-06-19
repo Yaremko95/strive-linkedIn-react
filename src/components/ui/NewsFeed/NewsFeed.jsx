@@ -5,7 +5,7 @@ import InteractionCard from "../NewsFeed/InteractionCard";
 
 import LeftRailNf from "./LeftRailNF";
 
-export default function NewsFeed(props) {
+  function NewsFeed(props) {
   return (
     <Row>
       <Col md={2} className={"pr-0 pl-0"}>

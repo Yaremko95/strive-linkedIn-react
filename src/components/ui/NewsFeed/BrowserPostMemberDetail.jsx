@@ -1,10 +1,21 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
-import { withRouter, Link } from "react-router-dom";
+import {withRouter,Link} from 'react-router-dom'
+import Auth from '../../../authorization/Auth'
+import IconButton from '../../ui/button/IconButton'
+import { BsPencil, MdAdd } from "react-icons/all";
+import PostForm from '../../form/PostForm'
+import ModalCustom from '../modals/ModalCustom'
 import Image from "react-bootstrap/Image";
 
+
+
 function BrowserPostMemberDetail(props) {
+  const { post, profilesexperience } = props;
+
+
+
   const useStyles = createUseStyles((theme) => ({
     container: {
       padding: "0 0 0 8px",
