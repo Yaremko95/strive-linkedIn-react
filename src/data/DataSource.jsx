@@ -25,18 +25,21 @@ class DataSource extends Component {
 
   fetchData = async () => {
     let { query } = this.props;
-    if (query !== "all") {
-      if (query === "me") {
-        query = Auth.user;
-      }
-      this.fetchUser(query);
-      this.fetchExperience(query);
+    console.log("query", query);
+    if (!query) {
+      this.fetchUser(Auth.user);
       this.fetchPost(query);
       this.fetchUsers();
     } else {
+      if (query === "me") {
+        query = Auth.user;
+      }
+
       this.fetchUsers();
-      this.fetchUser("me");
-      this.fetchPost();
+
+      this.fetchUser(query);
+      // this.fetchPost();
+      this.fetchExperience(query);
     }
   };
 
@@ -82,7 +85,7 @@ class DataSource extends Component {
 
   render() {
     const { user, users, experience, posts } = this.state;
-    return users ? (
+    return users && user ? (
       React.cloneElement(this.props.children, {
         users,
         user,

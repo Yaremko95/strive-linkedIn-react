@@ -11,69 +11,64 @@ class UpdateData extends Component {
     };
     console.log("updateData", this.props);
   }
+
   onSubmit = async (event) => {
-    
-    event.preventDefault();
+    // event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    } else {
-      this.setState({
-        validated: true,
-      });
-
-      const { endpoint, method, newFetch, closeModal } = this.props;
-
-      let response = await fetch(endpoint, {
-        method: method,
-        body: JSON.stringify(this.state.data),
-        headers: {
-          Authorization: Auth.auth,
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        closeModal();
-        newFetch();
-      } else {
-        let error = await response.json();
-        console.log(error);
-      }
     }
-  };
-  getDelete=async()=>{
-    
 
-    const { endpoint, newFetch, closeModal } = this.props;
+    this.setState({ validated: true });
+
+    const { endpoint, method, newFetch, closeModal } = this.props;
+
     let response = await fetch(endpoint, {
-      method:'Delete',
-     
+      method: method,
+      body: JSON.stringify(this.state.data),
       headers: {
         Authorization: Auth.auth,
         "Content-Type": "application/json",
       },
     });
-   
     if (response.ok) {
-
       closeModal();
       newFetch();
     } else {
       let error = await response.json();
       console.log(error);
     }
-  }
+  };
+  getDelete = async () => {
+    const { endpoint, newFetch, closeModal } = this.props;
+    let response = await fetch(endpoint, {
+      method: "Delete",
+
+      headers: {
+        Authorization: Auth.auth,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      closeModal();
+      newFetch();
+    } else {
+      let error = await response.json();
+      console.log(error);
+    }
+  };
 
   render() {
-    
     const { data } = this.state;
     return React.cloneElement(this.props.children, {
       state: this.state,
       //setImage
       setData: (state) => this.setState({ data: { ...data, ...state } }),
       onSubmit: (e) => this.onSubmit(e),
-      getDelete:()=>this.getDelete()
+      getDelete: () => this.getDelete(),
+      ...this.state,
     });
   }
 }

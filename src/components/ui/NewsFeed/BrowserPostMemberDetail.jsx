@@ -1,20 +1,11 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
-import {withRouter,Link} from 'react-router-dom'
-import Auth from '../../../authorization/Auth'
-import IconButton from '../../ui/button/IconButton'
-import { BsPencil, MdAdd } from "react-icons/all";
-import PostForm from '../../form/PostForm'
-import ModalCustom from '../modals/ModalCustom'
-
-
+import { withRouter, Link } from "react-router-dom";
+import Image from "react-bootstrap/Image";
 
 function BrowserPostMemberDetail(props) {
-  const { post, profilesexperience } = props;
   const useStyles = createUseStyles((theme) => ({
-
-
     container: {
       padding: "0 0 0 8px",
       flex: " 1 0 0",
@@ -31,7 +22,6 @@ function BrowserPostMemberDetail(props) {
       fontWeight: theme.text.weight.bold,
       color: theme.text.color.dark,
 
-   
       paddingBottom: "0",
     },
     nameAndIcon: {
@@ -91,10 +81,10 @@ function BrowserPostMemberDetail(props) {
     )}
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-        
-     
           <span>
-           <Link to={'/profile/'+post.username}>{post.user.name} {post.user.surname}</Link>
+            <Link to={"/profile/" + post.username}>
+              {post.user.name} {post.user.surname}
+            </Link>
           </span>
        
             
@@ -105,10 +95,6 @@ function BrowserPostMemberDetail(props) {
       </span>
   
       <span className={classes.span}>{post.user.bio}</span>
-      <span>{post.text}</span>
-
-     
-
     </div>
   );
 }

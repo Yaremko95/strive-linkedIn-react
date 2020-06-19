@@ -6,6 +6,7 @@ import {
   Dropdown,
   Button,
   Jumbotron,
+  Image,
 } from "react-bootstrap";
 import CardTitle from "./ui/titles/CardTitle";
 import Auth from "../authorization/Auth";
@@ -15,6 +16,7 @@ import { BsPencil } from "react-icons/all";
 import UpdateData from "../data/UpdateData";
 import ProfileForm from "./form/ProfileForm";
 import UploadFile from "../data/UploadFile";
+import ExperienceForm from "./form/ExperienceForm";
 
 function ProfileJumbotron(props) {
   const ColStyle = {
@@ -36,6 +38,7 @@ function ProfileJumbotron(props) {
   };
   const ProfileImageStyle = {
     width: "170px",
+    height: "170px",
     borderRadius: "200px",
     border: "3px solid rgba(0,0,0,0.08)",
     marginTop: "3rem",
@@ -111,11 +114,56 @@ function ProfileJumbotron(props) {
         </div>
         <Row>
           <Col style={ProfileInfoStyle}>
-            <img
-              style={ProfileImageStyle}
-              src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
-            />
-            <CardTitle>{user.name+' '+user.surname}</CardTitle>
+            {user.username !== Auth.user && (
+              <img
+                style={ProfileImageStyle}
+                src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
+              />
+            )}
+            {user.username === Auth.user && (
+              <ModalCustom
+                title={"Upload Image"}
+                button={
+                  <img
+                    style={ProfileImageStyle}
+                    src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
+                  />
+                }
+              >
+                <UploadFile
+                  {...props}
+                  type={"profile"}
+                  query={`profile/${user.username}/picture`}
+                >
+                  {({ handleInputClick, handleUpload, toBase64 }) => (
+                    <div
+                      className={
+                        "d-flex flex-column w-100 justify-content-center align-items-center"
+                      }
+                    >
+                      <Image
+                        src={user.image}
+                        style={{
+                          width: "170px",
+                          height: "170px",
+                          borderRadius: "200px",
+                          border: "3px solid rgba(0,0,0,0.08)",
+                        }}
+                      />
+                      <div>
+                        <Button onClick={() => handleInputClick()}>
+                          Choose Image
+                        </Button>
+                        {toBase64 && (
+                          <Button onClick={() => handleUpload()}>Save</Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </UploadFile>
+              </ModalCustom>
+            )}
+            <CardTitle>{user.name + " " + user.surname}</CardTitle>
             <h6 style={h3Style}>{user.bio}</h6>
             <h7 style={h3Style}>
               Spain &nbsp;.&nbsp;&nbsp;{" "}
@@ -179,7 +227,6 @@ function ProfileJumbotron(props) {
             </div>
           </div>
         </div>
-        <UploadFile />
       </Jumbotron>
     </>
   );

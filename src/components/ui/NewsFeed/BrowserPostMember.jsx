@@ -6,7 +6,7 @@ import { Col } from "react-bootstrap";
 import ProfileImage from "../profile-images/ProfileImage";
 //import BrowserMapMemberDetail from "../browsemap/BrowserMapMemberDetail";
 import BrowserPostMemberDetail from "./BrowserPostMemberDetail";
-
+import Image from "react-bootstrap/Image";
 
 function BrowserPostMember(props) {
   const useStyles = createUseStyles({
@@ -26,17 +26,17 @@ function BrowserPostMember(props) {
   const { post } = props;
 
   return (
-      <>
-    {/* <Link className={classes.container} to={`/profile/${post.postname}`}> */}
+    <>
+      {/* <Link className={classes.container} to={`/profile/${post.postname}`}> */}
       <ProfileImage
         src={post.user.image ? post.user.image : "/assets/LinkedInNoPic.png"}
         width={"56px"}
         height={"56px"}
       />
       <BrowserPostMemberDetail post={post} />
-      </>
+    </>
 
-   /*  </Link> */
+    /*  </Link> */
   );
 }
 
