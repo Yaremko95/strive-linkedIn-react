@@ -43,6 +43,13 @@ class AddComment extends Component {
     comment[currentId] = event.currentTarget.value;
     this.setState({ comment: comment });
   };
+
+  onKeyPress =(target) => {
+    if(target.charCode===13){
+     // alert('Enter clicked!!!');
+      this.onSubmit()   
+    } 
+  }
   onSubmit = async () => {
     const { postId, newFetch } = this.props;
     // this.setState({
@@ -62,7 +69,7 @@ class AddComment extends Component {
         }
       );
       if (response.ok) {
-        alert("good");
+        //alert("good");
         this.fetchComments();
 
         this.setState({
@@ -81,8 +88,9 @@ class AddComment extends Component {
 
   render() {
     return this.props.children({
-      onSubmit: () => this.onSubmit(),
+      onSubmit: () => this.onSubmit(),      
       onChange: (e) => this.onChange(e),
+      onKeyPress: (target) => this.onKeyPress(target),
       ...this.state,
       fetchComments: () => this.fetchComments(),
     });
