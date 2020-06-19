@@ -10,6 +10,9 @@ import BrowserPostMember from "./BrowserPostMember";
 import NavButton from "../navBar/NavButton";
 import navMenu from "../../../constants/menu/navMenu";
 import RemarksMenu from "./RemarksMenu";
+import NFCardFooter from "./NFCardFooter";
+import Break from "../themantic-break/Break";
+import BrowserPostMemberDetail from "./BrowserPostMemberDetail";
 
 function NFCard(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -27,24 +30,28 @@ function NFCard(props) {
     item: {
       listStyle: "none inside",
       marginTop: "16px",
+   
     },
   }));
   const classes = useStyles();
   const { posts } = props;
-  console.log(props);
+  console.log("posts", posts);
 
   return (
     <>
-      
-        {posts.reverse().map((post) => (
-          <ContainerCard background='white'>
-            <div className={classes.item}>
-              <BrowserMapMemberContainer>
-                <BrowserPostMember post={post} />
-              </BrowserMapMemberContainer>
-            
-            
-                {/* {post.user.image && (
+      {posts.reverse().map((post) => (
+        <ContainerCard background="white">
+          <div className={classes.item}>
+            <BrowserMapMemberContainer>
+              <BrowserPostMember post={post} />
+            </BrowserMapMemberContainer>
+
+            {post.image !== "none" && (
+              <Image src={post.image} style={{ width: "100%" }} />
+            )}
+            <span>{post.text}</span>
+
+            {/* {post.user.image && (
                  
                   <Image style={{width:'100px'}}
                     src={post.user.image}
@@ -54,21 +61,23 @@ function NFCard(props) {
                   />
                    
                 )} */}
-              
-              <Nav
-                className=" d-flex justify-content-between ml-auto"
-                className={classes.title.color}
-              >
-                {RemarksMenu.map((item) => (
-                  <Nav.Link as={Link} to={item.to} className={"py-0"}>
-                    <NavButton item={item} color={"black"} />
-                  </Nav.Link>
-                ))}
-              </Nav>
-            </div>
-          </ContainerCard>
-        ))}
 
+            {/*<Nav*/}
+            {/*  className=" d-flex justify-content-between ml-auto"*/}
+            {/*  className={classes.title.color}*/}
+            {/*>*/}
+            {/*  /!*{RemarksMenu.map((item) => (*!/*/}
+            {/*  /!*  <Nav.Link as={Link} to={item.to} className={"py-0"}>*!/*/}
+            {/*  /!*    <NavButton item={item} color={"black"} />*!/*/}
+            {/*  /!*  </Nav.Link>*!/*/}
+            {/*  /!*))}*!/*/}
+            {/*  */}
+            {/*</Nav>*/}
+          </div>
+          <Break color={"rgba(0,0,0,.6)"} weight={"400"} />
+          <NFCardFooter {...props} postId={post._id} />
+        </ContainerCard>
+      ))}
     </>
   );
 }

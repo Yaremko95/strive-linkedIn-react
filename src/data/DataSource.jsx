@@ -16,8 +16,6 @@ class DataSource extends Component {
   }
   componentDidMount() {
     this.fetchData();
-    this.fetchExperience();
-    this.fetchPost();
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
@@ -27,15 +25,22 @@ class DataSource extends Component {
 
   fetchData = async () => {
     let { query } = this.props;
-    if (query !== "all") {
+    console.log("query", query);
+    if (!query) {
+      this.fetchUser(Auth.user);
+      this.fetchPost(query);
+      this.fetchUsers();
+    } else {
       if (query === "me") {
         query = Auth.user;
       }
+
+      this.fetchUsers();
+
       this.fetchUser(query);
+      // this.fetchPost();
       this.fetchExperience(query);
-      this.fetchPost(query);
     }
-    this.fetchUsers();
   };
 
   fetchExperience = async (query) => {
@@ -47,7 +52,7 @@ class DataSource extends Component {
     let experience = await response.json();
     this.setState({ experience });
   };
-  fetchPost = async (query) => {
+  fetchPost = async () => {
     let response = await fetch(this.urlPost, {
       headers: {
         Authorization: Auth.auth,
@@ -80,7 +85,7 @@ class DataSource extends Component {
 
   render() {
     const { user, users, experience, posts } = this.state;
-    return users ? (
+    return users && user ? (
       React.cloneElement(this.props.children, {
         users,
         user,

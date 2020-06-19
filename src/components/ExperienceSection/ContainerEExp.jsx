@@ -15,6 +15,7 @@ import Break from "../ui/themantic-break/Break";
 import Auth from "../../authorization/Auth";
 import CardItemContainer from "../ui/cards/CardItemContainer";
 import IconButton from "../ui/button/IconButton";
+import ContainerEdu from "../ui/education/ContainerEdu";
 
 function ContainerEExp(props) {
   /* const useStyles = createUseStyles((theme) => ({
@@ -35,7 +36,7 @@ function ContainerEExp(props) {
   const classes = useStyles(); */
   const { user } = props;
   return (
-    <ContainerCard background="white">
+    <ContainerCard background="white" margin = {"0"}>
       <CardItemContainer>
         <CardTitle>Experience</CardTitle>
         {Auth.user === user.username && (
@@ -63,7 +64,11 @@ function ContainerEExp(props) {
           <CardEExp {...props} profilesexperience={experience} />
         ))}
       </div>
+     
+      
+      
     </ContainerCard>
+    
   );
 }
 

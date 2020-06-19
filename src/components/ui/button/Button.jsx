@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-function Button({ variant, type, children }) {
+function Button({ variant, type, children, onClick }) {
   const useStyles = createUseStyles((theme) => ({
     button: {
       transitionTimingFunction: " cubic-bezier(.4,0,.2,1)",

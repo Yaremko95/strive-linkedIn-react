@@ -1,29 +1,38 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Break from "../themantic-break/Break";
-import {Link} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
+import Auth from '../../../authorization/Auth'
+import IconButton from '../../ui/button/IconButton'
+import { BsPencil, MdAdd } from "react-icons/all";
+import PostForm from '../../form/PostForm'
+import ModalCustom from '../modals/ModalCustom'
+import Image from "react-bootstrap/Image";
+
+
 
 function BrowserPostMemberDetail(props) {
+  const { post, profilesexperience } = props;
+
+
 
   const useStyles = createUseStyles((theme) => ({
-
-
     container: {
       padding: "0 0 0 8px",
       flex: " 1 0 0",
       display: "flex",
       flexDirection: "column",
+      position:'relative'
     },
     name: {
       maxWidth: "200px",
-      position: "relative",
+      
       overflow: "hidden",
 
       fontSize: theme.text.size.t12,
       fontWeight: theme.text.weight.bold,
       color: theme.text.color.dark,
 
-   
       paddingBottom: "0",
     },
     nameAndIcon: {
@@ -47,28 +56,56 @@ function BrowserPostMemberDetail(props) {
       color: theme.text.color.dark,
       maxWidth: "200px",
     },
+    pen:{
+      position:'absolute',
+      top:'0',
+      right:'0',
+    },
   }));
   const classes = useStyles();
-  const { post } = props;
 
   return (
+
+  
+
     <div className={classes.container}>
+        {Auth.user === post.username && (
+      <ModalCustom
+        title={"Update Experience"}
+        button={
+          <IconButton>
+          <BsPencil />
+          </IconButton>
+        }
+      >
+   
+        {/* <UpdateData
+          data={profilesexperience}
+          method={"PUT"}
+          endpoint={`https://striveschool.herokuapp.com/api/posts/${}`}
+          {...props}
+        >
+          <PostForm />
+        </UpdateData> */}
+            <PostForm />
+      </ModalCustom>
+    )}
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-
           <span>
-           <Link to={'/profile/'+post.username}>{post.user.name} {post.user.surname}</Link>
+            <Link to={"/profile/" + post.username}>
+              {post.user.name} {post.user.surname}
+            </Link>
           </span>
-
+       
+            
           <span>
             <span className={classes.distanceBadge}>2nd</span>
           </span>
         </span>
       </span>
-
+  
       <span className={classes.span}>{post.user.bio}</span>
-      <span>{post.text}</span>
-
     </div>
   );
 }

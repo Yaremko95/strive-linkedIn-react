@@ -11,6 +11,10 @@ function IconButton(props) {
       height: "2.4rem",
       padding: "5px 5px",
       borderRadius: "49.5%",
+      marginLeft:'auto',
+      marginBottom:'20px',
+    
+   
 
       "&:hover": { backgroundColor: " rgba(152,216,244,.25)" },
     },

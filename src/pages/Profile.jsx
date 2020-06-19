@@ -13,7 +13,7 @@ function Profile(props) {
     console.log(params);
   }
   return (
-    <DataSource query={params ? params.username : "all"}>
+    <DataSource query={params ? params.username : ""}>
       <ProfileContainer />
     </DataSource>
   );

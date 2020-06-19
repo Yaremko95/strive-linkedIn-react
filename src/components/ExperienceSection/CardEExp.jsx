@@ -30,11 +30,22 @@ function CardEExp(props) {
   });
   const classes = useStyles();
 
+  const [isHovering, setHover] = React.useState(true);
+  const handleMouseHover = () => {
+    setHover(!isHovering);
+  };
+
+  const toggleHoverState = () => {
+    return {
+      isHovering: !isHovering,
+    };
+  };
+
   const { user, profilesexperience } = props;
   console.log("profilesexperience", props.profilesexperience);
   return (
     <>
-      <CardItemContainer>
+      <CardItemContainer >
         <div className={"w-100"}>
           <Link
             className={classes.container} /* to={`/profile/${user.username}`} */
@@ -48,7 +59,6 @@ function CardEExp(props) {
               width={"56px"}
               height={"56px"}
             />
-
             <BrowserMapEExp profilesexperience={props.profilesexperience} />
             {/* <BrowserMapMemberDetail user={user} /> */}
           </Link>
@@ -57,7 +67,7 @@ function CardEExp(props) {
             <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
           </div>
         </div>
-        {Auth.user === user.username && (
+        {Auth.user === user.username && isHovering && (
           <ModalCustom
             title={"Update Experience"}
             button={
@@ -66,6 +76,7 @@ function CardEExp(props) {
               </IconButton>
             }
           >
+       
             <UpdateData
               data={profilesexperience}
               method={"PUT"}
