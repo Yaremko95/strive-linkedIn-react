@@ -33,6 +33,7 @@ function NFCardFooter(props) {
   const triggerInput = () => {
     setShowInput(true);
   };
+  
   const classes = useStyles();
   const { postId, users } = props;
   return (
@@ -47,7 +48,7 @@ function NFCardFooter(props) {
 
       <div className={classes.input}>
         <AddComment {...props} postId={postId}>
-          {({ onChange, onSubmit, comment, comments }) => (
+          {({ onChange, onSubmit, comment, comments, onKeyPress }) => (
             <>
               {comments.map((comment) => {
                 let user = users.find(
@@ -73,8 +74,9 @@ function NFCardFooter(props) {
                     id={"comment"}
                     value={comment.comment}
                     onChange={(e) => onChange(e)}
+                    onKeyPress={(target) => onKeyPress(target)}
                   />
-                  <Button onClick={onSubmit}>Add Comment</Button>
+                  {/* <Button onClick={onSubmit}>Add Comment</Button> */}
                 </>
               )}
             </>
