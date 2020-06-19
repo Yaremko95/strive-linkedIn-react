@@ -1,8 +1,10 @@
 import React from "react";
 import ContainerCard from "../cards/ContainerCard";
 import { createUseStyles } from "react-jss";
-import { Image } from "react-bootstrap";
+import { Image} from "react-bootstrap";
+import {Link} from "react-router-dom"
 import CardTitle from "../titles/CardTitle";
+import Break from "../themantic-break/Break";
 
 function LeftRailNf(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -32,6 +34,14 @@ function LeftRailNf(props) {
       justifyContent: "center",
       alignItems: "center",
     },
+    view: {
+      width: "100%",
+      display: "flex",
+      paddingLeft:"10px",
+      paddingRight:"10px",
+      justifyContent: "space-between",
+      //alignItems: "center",
+    },
   }));
   const classes = useStyles();
   const { user } = props;
@@ -44,9 +54,29 @@ function LeftRailNf(props) {
       />
       <Image className={classes.profileImage} src={user.image} />
       <div className={classes.details}>
-        <span>Welcome {user.name}</span>
+        <span>Welcome {user.name}</span>        
+      </div>
+      <div className={classes.details}>
+      <small><Link>Update your profile</Link></small>
+      </div>
+      <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
+      <div className={classes.view}>
+        <div><small>Who viewed your profile</small></div>
+        <div> <small>28</small></div>    
+      </div>
+      <div className={classes.view}>
+        <div><small>Connections</small></div>
+        <div> <small>28</small></div>    
+      </div>
+      <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
+      <div className={classes.details} size="small">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" width="16" height="16" focusable="false">
+      <path d="M12 1H4a1 1 0 00-1 1v13.64l5-3.36 5 3.36V2a1 1 0 00-1-1zM5 12V3h6v9l-3-2z"></path>
+      </svg>
+      <div  ><small>Saved Items</small></div>
       </div>
     </div>
+    
   );
 }
 
