@@ -8,6 +8,7 @@ import InputField from "../input/InputField";
 import Form from "react-bootstrap/Form";
 import AddComment from "../../../data/AddComment";
 import Button from "react-bootstrap/Button";
+import ProfileImage from "../profile-images/ProfileImage";
 
 function NFCardFooter(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -33,7 +34,7 @@ function NFCardFooter(props) {
     setShowInput(true);
   };
   const classes = useStyles();
-  const { postId } = props;
+  const { postId, users } = props;
   return (
     <>
       <div className={classes.container}>
@@ -45,12 +46,25 @@ function NFCardFooter(props) {
       </div>
 
       <div className={classes.input}>
-        <AddComment postId={postId}>
+        <AddComment {...props} postId={postId}>
           {({ onChange, onSubmit, comment, comments }) => (
             <>
-              {comments.map((comment) => (
-                <p>{comment.comment}</p>
-              ))}
+              {comments.map((comment) => {
+                let user = users.find(
+                  (user) => user.username == comment.author
+                );
+                return (
+                  <>
+                    <ProfileImage
+                      src={user.image}
+                      height={"30px"}
+                      width={"30px"}
+                    />
+                    <span>{user.name}</span>
+                    <p>{comment.comment}</p>
+                  </>
+                );
+              })}
               {showInput && (
                 <>
                   <Form.Control

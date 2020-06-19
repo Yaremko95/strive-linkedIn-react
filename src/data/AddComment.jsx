@@ -33,6 +33,7 @@ class AddComment extends Component {
       this.setState({
         comments: comments,
       });
+      console.log(this.state.comments);
     } catch (e) {}
   };
 

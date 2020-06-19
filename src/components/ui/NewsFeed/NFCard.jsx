@@ -12,6 +12,7 @@ import navMenu from "../../../constants/menu/navMenu";
 import RemarksMenu from "./RemarksMenu";
 import NFCardFooter from "./NFCardFooter";
 import Break from "../themantic-break/Break";
+import BrowserPostMemberDetail from "./BrowserPostMemberDetail";
 
 function NFCard(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -33,7 +34,7 @@ function NFCard(props) {
   }));
   const classes = useStyles();
   const { posts } = props;
-  console.log(props);
+  console.log("posts", posts);
 
   return (
     <>
@@ -43,6 +44,11 @@ function NFCard(props) {
             <BrowserMapMemberContainer>
               <BrowserPostMember post={post} />
             </BrowserMapMemberContainer>
+
+            {post.image !== "none" && (
+              <Image src={post.image} style={{ width: "100%" }} />
+            )}
+            <span>{post.text}</span>
 
             {/* {post.user.image && (
                  

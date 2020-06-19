@@ -29,7 +29,7 @@ class DataSource extends Component {
     if (!query) {
       this.fetchUser(Auth.user);
       this.fetchPost(query);
-      // this.fetchUsers();
+      this.fetchUsers();
     } else {
       if (query === "me") {
         query = Auth.user;
