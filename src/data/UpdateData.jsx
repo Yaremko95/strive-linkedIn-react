@@ -39,8 +39,8 @@ class UpdateData extends Component {
       this.setState({
         id: data._id,
       });
-      // closeModal();
-      // newFetch();
+      closeModal();
+      newFetch();
     } else {
       let error = await response.json();
       console.log(error);
