@@ -10,6 +10,8 @@ import BrowserPostMember from "./BrowserPostMember";
 import NavButton from "../navBar/NavButton";
 import navMenu from "../../../constants/menu/navMenu";
 import RemarksMenu from "./RemarksMenu";
+import NFCardFooter from "./NFCardFooter";
+import Break from "../themantic-break/Break";
 
 function NFCard(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -35,16 +37,14 @@ function NFCard(props) {
 
   return (
     <>
-      
-        {posts.reverse().map((post) => (
-          <ContainerCard background='white'>
-            <div className={classes.item}>
-              <BrowserMapMemberContainer>
-                <BrowserPostMember post={post} />
-              </BrowserMapMemberContainer>
-            
-            
-                {/* {post.user.image && (
+      {posts.reverse().map((post) => (
+        <ContainerCard background="white">
+          <div className={classes.item}>
+            <BrowserMapMemberContainer>
+              <BrowserPostMember post={post} />
+            </BrowserMapMemberContainer>
+
+            {/* {post.user.image && (
                  
                   <Image style={{width:'100px'}}
                     src={post.user.image}
@@ -54,21 +54,23 @@ function NFCard(props) {
                   />
                    
                 )} */}
-              
-              <Nav
-                className=" d-flex justify-content-between ml-auto"
-                className={classes.title.color}
-              >
-                {RemarksMenu.map((item) => (
-                  <Nav.Link as={Link} to={item.to} className={"py-0"}>
-                    <NavButton item={item} color={"black"} />
-                  </Nav.Link>
-                ))}
-              </Nav>
-            </div>
-          </ContainerCard>
-        ))}
 
+            {/*<Nav*/}
+            {/*  className=" d-flex justify-content-between ml-auto"*/}
+            {/*  className={classes.title.color}*/}
+            {/*>*/}
+            {/*  /!*{RemarksMenu.map((item) => (*!/*/}
+            {/*  /!*  <Nav.Link as={Link} to={item.to} className={"py-0"}>*!/*/}
+            {/*  /!*    <NavButton item={item} color={"black"} />*!/*/}
+            {/*  /!*  </Nav.Link>*!/*/}
+            {/*  /!*))}*!/*/}
+            {/*  */}
+            {/*</Nav>*/}
+          </div>
+          <Break color={"rgba(0,0,0,.6)"} weight={"400"} />
+          <NFCardFooter {...props} postId={post._id} />
+        </ContainerCard>
+      ))}
     </>
   );
 }

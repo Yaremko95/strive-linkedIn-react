@@ -136,15 +136,29 @@ function ProfileJumbotron(props) {
                   query={`profile/${user.username}/picture`}
                 >
                   {({ handleInputClick, handleUpload, toBase64 }) => (
-                    <>
-                      <Image src={user.image} style={ProfileImageStyle} />
-                      <Button onClick={() => handleInputClick()}>
-                        Choose Image
-                      </Button>
-                      {toBase64 && (
-                        <Button onClick={() => handleUpload()}>Save</Button>
-                      )}
-                    </>
+                    <div
+                      className={
+                        "d-flex flex-column w-100 justify-content-center align-items-center"
+                      }
+                    >
+                      <Image
+                        src={user.image}
+                        style={{
+                          width: "170px",
+                          height: "170px",
+                          borderRadius: "200px",
+                          border: "3px solid rgba(0,0,0,0.08)",
+                        }}
+                      />
+                      <div>
+                        <Button onClick={() => handleInputClick()}>
+                          Choose Image
+                        </Button>
+                        {toBase64 && (
+                          <Button onClick={() => handleUpload()}>Save</Button>
+                        )}
+                      </div>
+                    </div>
                   )}
                 </UploadFile>
               </ModalCustom>

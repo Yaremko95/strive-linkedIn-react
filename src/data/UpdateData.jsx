@@ -68,6 +68,7 @@ class UpdateData extends Component {
       setData: (state) => this.setState({ data: { ...data, ...state } }),
       onSubmit: (e) => this.onSubmit(e),
       getDelete: () => this.getDelete(),
+      ...this.state,
     });
   }
 }
