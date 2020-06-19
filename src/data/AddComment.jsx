@@ -62,14 +62,14 @@ class AddComment extends Component {
         }
       );
       if (response.ok) {
-        alert("good");
-        this.fetchComments(postId);
-
-        this.setState({
+        let newComment = {
           comment: "",
           rate: "5",
           elementId: this.props.postId,
-        });
+        };
+        this.setState({ comment: newComment });
+
+        this.fetchComments(postId);
       } else {
         let json = await response.json();
         alert(json);
