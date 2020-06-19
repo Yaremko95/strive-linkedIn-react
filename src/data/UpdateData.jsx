@@ -8,12 +8,13 @@ class UpdateData extends Component {
       data: this.props.data || {},
       //image
       validated: false,
+      id: "",
     };
-    console.log("updateData", this.props);
+    console.log("updateData", this.state);
   }
 
   onSubmit = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -33,8 +34,13 @@ class UpdateData extends Component {
       },
     });
     if (response.ok) {
-      closeModal();
-      newFetch();
+      let data = await response.json();
+      console.log(data);
+      this.setState({
+        id: data._id,
+      });
+      // closeModal();
+      // newFetch();
     } else {
       let error = await response.json();
       console.log(error);
@@ -69,6 +75,7 @@ class UpdateData extends Component {
       onSubmit: (e) => this.onSubmit(e),
       getDelete: () => this.getDelete(),
       ...this.state,
+      ...this.props,
     });
   }
 }
