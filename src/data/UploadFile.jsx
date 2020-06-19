@@ -14,6 +14,13 @@ class UploadFile extends Component {
     console.log("upload", this.props);
   }
 
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.query !== this.props.query) {
+      alert("props.changed");
+      this.handleUpload();
+    }
+  };
+
   encodeImageFileAsURL = (element) => {
     const { files } = element.target;
     let file = files[0];
@@ -33,24 +40,26 @@ class UploadFile extends Component {
     const { type, query, newFetch, closeModal } = this.props;
     const formData = new FormData();
     formData.append(type, this.state.file);
-    const response = await fetch(
-      `https://striveschool.herokuapp.com/api/${query}`,
-      {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: Auth.auth,
-        },
+    if (query) {
+      const response = await fetch(
+        `https://striveschool.herokuapp.com/api/${query}`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: Auth.auth,
+          },
+        }
+      );
+      if (response.ok) {
+        let data = await response.json();
+        closeModal();
+        newFetch();
+        this.setState({ data });
+      } else {
+        let error = await response.json();
+        this.setState({ error });
       }
-    );
-    if (response.ok) {
-      let data = await response.json();
-      closeModal();
-      newFetch();
-      this.setState({ data });
-    } else {
-      let error = await response.json();
-      this.setState({ error });
     }
   };
 
