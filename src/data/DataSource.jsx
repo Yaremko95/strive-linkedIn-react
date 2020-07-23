@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Auth from "../authorization/Auth";
+import queryString from "query-string";
 
 class DataSource extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class DataSource extends Component {
       posts: [],
       educations: [],
       loading: false,
+      searchPostsQuery: "",
     };
     this.url = "https://agile-brushlands-83006.herokuapp.com/profile/";
     this.urlPost = "https://agile-brushlands-83006.herokuapp.com/posts/";
@@ -59,13 +61,17 @@ class DataSource extends Component {
     this.setState({ experience });
   };
   fetchPost = async () => {
-    let response = await fetch(this.urlPost, {
-      headers: {
-        Authorization: Auth.auth,
-      },
-    });
+    let response = await fetch(
+      this.urlPost + "?username=" + this.state.searchPostsQuery,
+      {
+        headers: {
+          Authorization: Auth.auth,
+        },
+      }
+    );
     let posts = await response.json();
-    this.setState({ posts });
+    let rev = posts.reverse();
+    this.setState({ posts: rev });
   };
 
   fetchUser = async (query) => {
@@ -98,15 +104,65 @@ class DataSource extends Component {
     this.setState({ educations });
   };
 
+  downloadCV = async () => {
+    let response = await fetch(this.url + this.state.user.username + "/pdf", {
+      headers: {
+        Authorization: Auth.auth,
+      },
+    });
+    let blob = await response.blob();
+    let url = window.URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.setAttribute("download", `${this.state.user.username}-cv.pdf`);
+    document.body.appendChild(a);
+    a.click();
+  };
+
+  downloadCSV = async (param) => {
+    let response = await fetch(
+      this.url + this.state.user.username + `/${param}/csv`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: Auth.auth,
+        },
+      }
+    );
+    let blob = await response.blob();
+    let url = window.URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.setAttribute(
+      "download",
+      `${this.state.user.username}-experiences_csv.csv`
+    );
+    document.body.appendChild(a);
+    a.click();
+  };
+
   render() {
-    const { user, users, experience, posts, loading, educations } = this.state;
+    const {
+      user,
+      users,
+      experience,
+      posts,
+      loading,
+      educations,
+      searchPostsQuery,
+    } = this.state;
     return users && user ? (
       React.cloneElement(this.props.children, {
         users,
         user,
         experience,
         newFetch: () => this.fetchData(),
+        onChangeSearchPosts: (value) =>
+          this.setState({ searchPostsQuery: value }),
+        downloadCV: (param) => this.downloadCV(param),
+        downloadCSV: (param) => this.downloadCSV(param),
         posts,
+        searchPostsQuery,
         loading,
         educations,
       })

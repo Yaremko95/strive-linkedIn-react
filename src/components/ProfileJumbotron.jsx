@@ -103,7 +103,7 @@ function ProfileJumbotron(props) {
   // useEffect(() => {
   //   setUser(props.user);
   // }, []);
-  const { user } = props;
+  const { user, downloadCV, downloadCSV } = props;
   return (
     <>
       {console.log("user", props)}
@@ -199,9 +199,27 @@ function ProfileJumbotron(props) {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Button style={MoreProfilebtn} variant="light">
-              More...
-            </Button>
+            <Dropdown>
+              <Dropdown.Toggle
+                style={MoreProfilebtn}
+                variant={"secondary"}
+                id="dropdown-basic"
+              >
+                More..
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => downloadCV()}>
+                  Download CV
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => downloadCSV("experiences")}>
+                  Download experiences in csv
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => downloadCSV("educations")}>
+                  Download educations in csv
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
             <div style={PenIconStyle}>
               {Auth.user === user.username && (

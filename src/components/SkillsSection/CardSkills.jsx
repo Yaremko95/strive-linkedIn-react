@@ -2,13 +2,10 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import ProfileImage from "../ui/profile-images/ProfileImage";
-import { Card } from "react-bootstrap";
-
-//import ContainerCard from "../ui/cards/ContainerCard";
+import Auth from "../../authorization/Auth";
 import IconButton from "../ui/button/IconButton";
 import CardItemContainer from "../ui/cards/CardItemContainer";
-import Break from "../ui/themantic-break/Break";
-import { BsPencil /*MdAdd*/ } from "react-icons/all";
+import { BsPencil } from "react-icons/all";
 
 function CardSkills(props) {
   const useStyles = createUseStyles({
@@ -24,18 +21,14 @@ function CardSkills(props) {
     },
   });
   const classes = useStyles();
+  const { user } = props;
 
-  //const { user, profilesexperience } = props;
-  //console.log("profilesexperience", props.profilesexperience);
   return (
     <>
       <CardItemContainer>
         <div className={"w-100"}>
           <div className={classes.container}>
-            <Link
-              className="mb-5"
-              /* to={`/profile/${user.username}`} */
-            >
+            <Link className="mb-5">
               <ProfileImage
                 src={
                   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"
@@ -44,7 +37,7 @@ function CardSkills(props) {
                 height={"56px"}
               />
             </Link>
-            {/*  <BrowserMapMemberDetail user={user} /> */}
+
             <span
               style={{
                 maxWidth: "200px",
@@ -90,9 +83,11 @@ function CardSkills(props) {
             </span>
           </div>
         </div>
-        <IconButton>
-          <BsPencil />
-        </IconButton>
+        {user.username === Auth.user && (
+          <IconButton>
+            <BsPencil />
+          </IconButton>
+        )}
       </CardItemContainer>
     </>
   );

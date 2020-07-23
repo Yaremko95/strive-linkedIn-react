@@ -17,7 +17,7 @@ function LeftRail(props) {
 
       <Dashboard {...props} />
       <ContainerEExp {...props} />
-      <ContainerSkills />
+      <ContainerSkills {...props} />
 
       <ContainerEdu {...props} />
     </Col>
