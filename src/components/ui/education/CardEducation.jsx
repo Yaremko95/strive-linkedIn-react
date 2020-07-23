@@ -29,7 +29,7 @@ function CardEducation(props) {
     },
   });
   const classes = useStyles();
-
+  const { education } = props;
   /*  const { user, profilesexperience } = props;
   console.log("profilesexperience", props.profilesexperience); */
   return (
@@ -40,12 +40,12 @@ function CardEducation(props) {
             className={classes.container} /* to={`/profile/${user.username}`} */
           >
             <ProfileImage
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQjgz-SpEKXN8h8rPSi19jdpsU2ZhVWu8CpC5yL7_ukA7eu6y4a&usqp=CAU"
+              src={education.image}
               width={"56px"}
               height={"56px"}
             />
 
-            <BrowserMapEdu />
+            <BrowserMapEdu education={education} />
           </Link>
 
           <div style={{ width: "calc(100% - 52px)", marginLeft: "auto" }}>

@@ -133,7 +133,7 @@ function ProfileJumbotron(props) {
                 <UploadFile
                   {...props}
                   type={"profile"}
-                  query={`profile/${user.username}/picture`}
+                  query={`profile/${user._id}`}
                 >
                   {({ handleInputClick, handleUpload, toBase64 }) => (
                     <div
@@ -216,7 +216,8 @@ function ProfileJumbotron(props) {
                   <UpdateData
                     data={user}
                     method={"PUT"}
-                    endpoint={`https://striveschool.herokuapp.com/api/profile/`}
+                    params={Auth.user}
+                    endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/`}
                     {...props}
                   >
                     <ProfileForm />

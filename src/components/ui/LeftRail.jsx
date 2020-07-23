@@ -6,7 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import ProgressBarComponent from "./ProgressBarSection/ProgressBarComponent";
 
 import ContainerEExp from "../ExperienceSection/ContainerEExp";
-import ContainerSkills from '../SkillsSection/ContainerSkills'
+import ContainerSkills from "../SkillsSection/ContainerSkills";
 import ContainerEdu from "./education/ContainerEdu";
 
 function LeftRail(props) {
@@ -18,8 +18,8 @@ function LeftRail(props) {
       <Dashboard {...props} />
       <ContainerEExp {...props} />
       <ContainerSkills />
-       
-      <ContainerEdu />
+
+      <ContainerEdu {...props} />
     </Col>
   );
 }

@@ -36,13 +36,13 @@ class UploadFile extends Component {
   handleInputClick = () => {
     this.ref.current.click();
   };
-  handleUpload = async () => {
+  handleUpload = async (e) => {
     const { type, query, newFetch, closeModal } = this.props;
     const formData = new FormData();
     formData.append(type, this.state.file);
     if (query) {
       const response = await fetch(
-        `https://striveschool.herokuapp.com/api/${query}`,
+        `https://agile-brushlands-83006.herokuapp.com/${query}`,
         {
           method: "POST",
           body: formData,
@@ -76,7 +76,7 @@ class UploadFile extends Component {
         />
         {this.props.children({
           handleInputClick: () => this.handleInputClick(),
-          handleUpload: () => this.handleUpload(),
+          handleUpload: (e) => this.handleUpload(e),
           ...this.state,
         })}
       </>

@@ -36,19 +36,24 @@ function BrowserMapEdu(props) {
     },
   }));
   const classes = useStyles();
-  const { user } = props;
+  const { user, education } = props;
+  education.startDate = new Date(education.startDate).getFullYear();
+
+  education.endDate = new Date(education.endDate).getFullYear();
 
   return (
     <div className={classes.container}>
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
-          <span>Universidad de Alicante</span>
+          <span>{education.name}</span>
           {/* {console.log('USEREXPERIENCE',props.profilesexperience)} */}
         </span>
       </span>
 
-      <span className={classes.span}>Master Degree</span>
-      <span className={classes.span}>2019</span>
+      <span className={classes.span}>{education.degree}</span>
+      <span className={classes.span}>
+        {education.startDate} {education.endDate ? "-" + education.endDate : ""}
+      </span>
     </div>
   );
 }

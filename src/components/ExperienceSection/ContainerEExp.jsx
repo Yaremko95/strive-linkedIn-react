@@ -36,7 +36,7 @@ function ContainerEExp(props) {
   const classes = useStyles(); */
   const { user } = props;
   return (
-    <ContainerCard background="white" margin = {"0"}>
+    <ContainerCard background="white" margin={"0"}>
       <CardItemContainer>
         <CardTitle>Experience</CardTitle>
         {Auth.user === user.username && (
@@ -50,7 +50,8 @@ function ContainerEExp(props) {
           >
             <UpdateData
               method={"POST"}
-              endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences`}
+              params={`${Auth.user}/experiences`}
+              endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/`}
               {...props}
             >
               <ExperienceForm />
@@ -64,11 +65,7 @@ function ContainerEExp(props) {
           <CardEExp {...props} profilesexperience={experience} />
         ))}
       </div>
-     
-      
-      
     </ContainerCard>
-    
   );
 }
 

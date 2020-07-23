@@ -45,7 +45,7 @@ function BrowserPostMemberDetail(props) {
       fontSize: theme.text.size.t1,
 
       color: theme.text.color.light,
-      marginLeft: "10px",
+      marginLeft: "5px",
     },
     span: {
       fontSize: theme.text.size.t1,
@@ -67,7 +67,7 @@ function BrowserPostMemberDetail(props) {
       <span className={classes.name}>
         <span className={classes.nameAndIcon}>
           <span>
-            <Link to={"/profile/" + post.username}>
+            <Link className={classes.name} to={"/profile/" + post.username}>
               {post.user.name} {post.user.surname}
             </Link>
           </span>

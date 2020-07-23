@@ -45,7 +45,7 @@ function CardEExp(props) {
   console.log("profilesexperience", props.profilesexperience);
   return (
     <>
-      <CardItemContainer >
+      <CardItemContainer>
         <div className={"w-100"}>
           <Link
             className={classes.container} /* to={`/profile/${user.username}`} */
@@ -76,11 +76,10 @@ function CardEExp(props) {
               </IconButton>
             }
           >
-       
             <UpdateData
               data={profilesexperience}
               method={"PUT"}
-              endpoint={`https://striveschool.herokuapp.com/api/profile/userName/experiences/${profilesexperience._id}`}
+              endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/userName/experiences/${profilesexperience._id}`}
               {...props}
             >
               <ExperienceForm />

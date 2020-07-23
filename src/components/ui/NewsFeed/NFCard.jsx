@@ -71,7 +71,7 @@ function NFCard(props) {
                     <UpdateData
                       data={post}
                       method={"PUT"}
-                      endpoint={`https://striveschool.herokuapp.com/api/posts/${post._id}`}
+                      endpoint={`https://agile-brushlands-83006.herokuapp.com/posts/${post._id}`}
                       {...props}
                     >
                       <PostForm {...props} />

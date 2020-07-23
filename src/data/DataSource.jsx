@@ -10,10 +10,11 @@ class DataSource extends Component {
       users: [],
       experience: [],
       posts: [],
+      educations: [],
       loading: false,
     };
-    this.url = "https://striveschool.herokuapp.com/api/profile/";
-    this.urlPost = "https://striveschool.herokuapp.com/api/posts/";
+    this.url = "https://agile-brushlands-83006.herokuapp.com/profile/";
+    this.urlPost = "https://agile-brushlands-83006.herokuapp.com/posts/";
   }
   componentDidMount() {
     this.fetchData();
@@ -39,11 +40,12 @@ class DataSource extends Component {
       }
 
       this.fetchUsers();
-
+      // this.fetchPost(query);
       this.fetchUser(query);
       // this.fetchPost();
       this.fetchExperience(query);
       // this.setState({ loading: false });
+      this.fetchEducations(query);
     }
   };
 
@@ -83,12 +85,21 @@ class DataSource extends Component {
       },
     });
     let users = await response.json();
-    this.setState({ users });
+    this.setState({ users: users.data });
     // console.log(this.state.users);
+  };
+  fetchEducations = async (query) => {
+    let response = await fetch(this.url + query + "/educations", {
+      headers: {
+        Authorization: Auth.auth,
+      },
+    });
+    let educations = await response.json();
+    this.setState({ educations });
   };
 
   render() {
-    const { user, users, experience, posts, loading } = this.state;
+    const { user, users, experience, posts, loading, educations } = this.state;
     return users && user ? (
       React.cloneElement(this.props.children, {
         users,
@@ -97,6 +108,7 @@ class DataSource extends Component {
         newFetch: () => this.fetchData(),
         posts,
         loading,
+        educations,
       })
     ) : (
       <div></div>

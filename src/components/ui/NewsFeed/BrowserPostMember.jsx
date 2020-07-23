@@ -28,11 +28,13 @@ function BrowserPostMember(props) {
   return (
     <>
       {/* <Link className={classes.container} to={`/profile/${post.postname}`}> */}
-      <ProfileImage
-        src={post.user.image ? post.user.image : "/assets/LinkedInNoPic.png"}
-        width={"56px"}
-        height={"56px"}
-      />
+      {post.user.image && (
+        <ProfileImage
+          src={post.user.image ? post.user.image : "/assets/LinkedInNoPic.png"}
+          width={"56px"}
+          height={"56px"}
+        />
+      )}
       <BrowserPostMemberDetail post={post} {...props} />
     </>
 

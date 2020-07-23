@@ -23,9 +23,9 @@ class UpdateData extends Component {
 
     this.setState({ validated: true });
 
-    const { endpoint, method, newFetch, closeModal } = this.props;
+    const { endpoint, method, newFetch, closeModal, params } = this.props;
 
-    let response = await fetch(endpoint, {
+    let response = await fetch(params ? endpoint + params : endpoint, {
       method: method,
       body: JSON.stringify(this.state.data),
       headers: {

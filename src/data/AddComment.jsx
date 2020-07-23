@@ -21,11 +21,11 @@ class AddComment extends Component {
     const { postId } = this.props;
     try {
       let response = await fetch(
-        `https://striveschool.herokuapp.com/api/comments/${id}`,
+        `https://agile-brushlands-83006.herokuapp.com/comments/${id}`,
         {
           method: "GET",
           headers: {
-            Authorization: "Basic " + btoa("user27:ZGDWyFCA8umbgpvZ"),
+            Authorization: Auth.auth,
           },
         }
       );
@@ -44,12 +44,12 @@ class AddComment extends Component {
     this.setState({ comment: comment });
   };
 
-  onKeyPress =(target) => {
-    if(target.charCode===13){
-     // alert('Enter clicked!!!');
-      this.onSubmit()   
-    } 
-  }
+  onKeyPress = (target) => {
+    if (target.charCode === 13) {
+      // alert('Enter clicked!!!');
+      this.onSubmit();
+    }
+  };
   onSubmit = async () => {
     const { postId, newFetch } = this.props;
     // this.setState({
@@ -58,12 +58,12 @@ class AddComment extends Component {
 
     try {
       let response = await fetch(
-        " https://striveschool.herokuapp.com/api/comments/",
+        " https://agile-brushlands-83006.herokuapp.com/comments/",
         {
           method: "POST",
           body: JSON.stringify(this.state.comment),
           headers: {
-            Authorization: "Basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc=",
+            Authorization: Auth.auth,
             "Content-Type": "application/json",
           },
         }
@@ -88,7 +88,7 @@ class AddComment extends Component {
 
   render() {
     return this.props.children({
-      onSubmit: () => this.onSubmit(),      
+      onSubmit: () => this.onSubmit(),
       onChange: (e) => this.onChange(e),
       onKeyPress: (target) => this.onKeyPress(target),
       ...this.state,

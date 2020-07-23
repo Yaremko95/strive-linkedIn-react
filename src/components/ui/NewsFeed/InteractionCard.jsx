@@ -65,7 +65,7 @@ class InteractionCard extends Component {
             >
               <UpdateData
                 method={"POST"}
-                endpoint={`https://striveschool.herokuapp.com/api/posts/`}
+                endpoint={`https://agile-brushlands-83006.herokuapp.com/posts`}
                 {...this.props}
               >
                 <PostForm />
