@@ -14,7 +14,7 @@ function Profile(props) {
   }
   return (
     <DataSource query={params ? params.username : ""}>
-      <ProfileContainer />
+      <ProfileContainer {...props} />
     </DataSource>
   );
 }

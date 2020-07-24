@@ -11,7 +11,7 @@ class UploadFile extends Component {
       data: {},
     };
     this.ref = React.createRef();
-    console.log("upload", this.props);
+    console.log("upload", this.state);
   }
 
   componentDidUpdate = (prevProps) => {
@@ -53,6 +53,19 @@ class UploadFile extends Component {
       );
       if (response.ok) {
         let data = await response.json();
+        console.log("for upload", data);
+
+        const existing = JSON.parse(localStorage.getItem("user"));
+
+        console.log("storage", this.props);
+        if (existing) {
+          existing.image = data.image;
+        }
+        console.log(JSON.stringify(existing));
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(existing));
+        this.props.setTrigger(!this.props.triggerNav);
+
         closeModal();
         newFetch();
         this.setState({ data });

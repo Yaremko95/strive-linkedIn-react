@@ -67,7 +67,7 @@ class Auth extends Component {
         this.props.history.push("/profile/me");
         this.props.setTrigger(!this.props.triggerNav);
       } else {
-        this.setState({ registered: false });
+        this.setState({ success: false });
       }
     } catch (err) {}
   };

@@ -50,11 +50,11 @@ export default [
     to: "/",
     icon: MdOndemandVideo,
   },
-  {
-    label: "Registration",
-    to: "/register",
-    icon: MdOndemandVideo,
-  },
+  // {
+  //   label: "Registration",
+  //   to: "/register",
+  //   icon: MdOndemandVideo,
+  // },
   {
     label: "Login",
     to: "/login",
