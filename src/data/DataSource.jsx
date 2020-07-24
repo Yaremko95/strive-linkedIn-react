@@ -36,6 +36,7 @@ class DataSource extends Component {
   };
 
   fetchData = async () => {
+    console.log("trigger", this.props);
     // this.setState({ loading: true });
     let { query } = this.props;
     console.log("query", query);
@@ -62,7 +63,7 @@ class DataSource extends Component {
   fetchExperience = async (query) => {
     let response = await fetch(this.url + query + "/experiences", {
       headers: {
-        Authorization: this.getHeader(),
+        Authorization: getHeader(),
       },
     });
     let experience = await response.json();

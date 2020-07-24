@@ -13,11 +13,17 @@ function MainLayout(props) {
     },
   }));
   const classes = useStyles();
+  const [triggerNav, setTrigger] = React.useState(false);
   return (
     <>
-      <NavBar />
+      <NavBar setTrigger={setTrigger} trigger={triggerNav} />
       <hr />
-      <Container className={classes.main}>{props.children}</Container>
+      <Container className={classes.main}>
+        {React.cloneElement(props.children, {
+          setTrigger: () => setTrigger(),
+          triggerNav,
+        })}
+      </Container>
       <Footer />
     </>
   );

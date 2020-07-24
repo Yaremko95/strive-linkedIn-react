@@ -64,7 +64,8 @@ class Auth extends Component {
         user.password = this.state.credentials.password;
         localStorage.setItem("user", JSON.stringify(user));
         console.log(JSON.parse(localStorage.getItem("user")));
-        //this.props.history.push("/profile/me");
+        this.props.history.push("/profile/me");
+        this.props.setTrigger(!this.props.triggerNav);
       } else {
         this.setState({ registered: false });
       }

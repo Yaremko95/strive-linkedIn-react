@@ -1,18 +1,23 @@
 import React from "react";
 
 import { Navbar, Nav, NavDropdown, Container, Image } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
 import SearchForm from "../search/SearchForm";
 import navMenu from "../../../constants/menu/navMenu";
 import NavButton from "./NavButton";
+import {
+  getUserFromLocalStorage,
+  getHeader,
+} from "../../../authorization/Auth";
 
-export default function NavBar() {
+function NavBar(props) {
   const useStyles = createUseStyles((theme) => ({
     main: {
       backgroundColor: theme.primary.darkblue,
       padding: ".3rem 0",
-      height:'54px'
+      height: "54px",
     },
     logo: {
       height: "2rem",
@@ -22,7 +27,13 @@ export default function NavBar() {
       marginLeft: "10px",
     },
   }));
+  // const [storage, setStorage] = React.useState(false);
   const classes = useStyles();
+  const logout = () => {
+    localStorage.removeItem("user");
+    props.history.push("profile.login");
+    props.setTrigger(!props.triggerNav);
+  };
   return (
     <Navbar expand="lg" className={classes.main}>
       <Container className="px-4">
@@ -34,19 +45,41 @@ export default function NavBar() {
             }
           />
         </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav ">
-          <SearchForm />
-          <Nav className=" d-flex justify-content-between ml-auto">
-            {navMenu.map((item) => (
-              <Nav.Link as={Link} to={item.to} className={"py-0"}>
-                <NavButton item={item} />
-              </Nav.Link>
-            ))}
-          </Nav>
-        </Navbar.Collapse>
+        {getUserFromLocalStorage() && (
+          <>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav ">
+              <SearchForm />
+              <Nav className=" d-flex justify-content-between ml-auto">
+                {navMenu.map(
+                  (item) =>
+                    item.label !== "Registration" &&
+                    item.label !== "Login" && (
+                      <Nav.Link
+                        as={Link}
+                        to={item.to}
+                        className={"py-0"}
+                        onClick={item.label === "Log out" && logout}
+                      >
+                        <NavButton item={item} />
+                      </Nav.Link>
+                    )
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        )}
+        {!getUserFromLocalStorage() &&
+          navMenu.map(
+            (item) =>
+              (item.label === "Registration" || item.label === "Login") && (
+                <Nav.Link as={Link} to={item.to} className={"py-0"}>
+                  <NavButton item={item} />
+                </Nav.Link>
+              )
+          )}
       </Container>
     </Navbar>
   );
 }
+export default withRouter(NavBar);

@@ -2,8 +2,9 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { createUseStyles } from "react-jss";
 import ProfileImage from "../profile-images/ProfileImage";
+import { getImageLocalStorage } from "../../../authorization/Auth";
 
-function NavButton({item, color}) {
+function NavButton({ item, color }) {
   const useStyles = createUseStyles((theme) => ({
     container: {
       display: "flex",
@@ -22,13 +23,13 @@ function NavButton({item, color}) {
     },
   }));
   const classes = useStyles();
- 
+
   return (
     <div className={classes.container}>
       {item.icon ? (
         <item.icon className={classes.icon} />
       ) : (
-        <ProfileImage src={"/assets/image.jpg"} height={"1.3rem"} />
+        <ProfileImage src={getImageLocalStorage()} height={"1.3rem"} />
       )}
       <span className={classes.label}>
         {item.label} {item.secondaryIcon && <item.secondaryIcon />}

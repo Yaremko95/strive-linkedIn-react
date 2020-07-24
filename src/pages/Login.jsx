@@ -4,7 +4,7 @@ import LoginForm from "../components/form/LoginForm";
 
 function Login(props) {
   return (
-    <Auth>
+    <Auth {...props}>
       <LoginForm />
     </Auth>
   );

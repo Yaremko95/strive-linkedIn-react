@@ -60,4 +60,9 @@ export default [
     to: "/login",
     icon: MdOndemandVideo,
   },
+  {
+    label: "Log out",
+    to: "/login",
+    icon: MdOndemandVideo,
+  },
 ];
