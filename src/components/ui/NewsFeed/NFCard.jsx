@@ -16,7 +16,10 @@ import BrowserPostMemberDetail from "./BrowserPostMemberDetail";
 import CardItemContainer from "../cards/CardItemContainer";
 import IconButton from "../button/IconButton";
 import { BsPencil } from "react-icons/all";
-import Auth from "../../../authorization/Auth";
+import {
+  getUserFromLocalStorage,
+  getHeader,
+} from "../../../authorization/Auth";
 import ModalCustom from "../modals/ModalCustom";
 import UpdateData from "../../../data/UpdateData";
 import PostForm from "../../form/PostForm";
@@ -51,7 +54,7 @@ function NFCard(props) {
               <BrowserMapMemberContainer>
                 <BrowserPostMember post={post} {...props} />
               </BrowserMapMemberContainer>
-              {Auth.user === post.username && (
+              {getUserFromLocalStorage() === post.username && (
                 <ModalCustom
                   title={"Update Experience"}
                   button={

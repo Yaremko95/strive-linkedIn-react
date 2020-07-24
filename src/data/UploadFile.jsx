@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import Auth from "../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../authorization/Auth";
 
 class UploadFile extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class UploadFile extends Component {
           method: "POST",
           body: formData,
           headers: {
-            Authorization: Auth.auth,
+            Authorization: getHeader(),
           },
         }
       );

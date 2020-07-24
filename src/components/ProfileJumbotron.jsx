@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-bootstrap";
 import CardTitle from "./ui/titles/CardTitle";
-import Auth from "../authorization/Auth";
+import { getHeader, getUserFromLocalStorage } from "../authorization/Auth";
 import ModalCustom from "./ui/modals/ModalCustom";
 import IconButton from "./ui/button/IconButton";
 import { BsPencil } from "react-icons/all";
@@ -114,13 +114,13 @@ function ProfileJumbotron(props) {
         </div>
         <Row>
           <Col style={ProfileInfoStyle}>
-            {user.username !== Auth.user && (
+            {user.username !== getUserFromLocalStorage() && (
               <img
                 style={ProfileImageStyle}
                 src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
               />
             )}
-            {user.username === Auth.user && (
+            {user.username === getUserFromLocalStorage() && (
               <ModalCustom
                 title={"Upload Image"}
                 button={
@@ -222,7 +222,7 @@ function ProfileJumbotron(props) {
             </Dropdown>
 
             <div style={PenIconStyle}>
-              {Auth.user === user.username && (
+              {getUserFromLocalStorage() === user.username && (
                 <ModalCustom
                   title={"Update Experience"}
                   button={
@@ -234,7 +234,7 @@ function ProfileJumbotron(props) {
                   <UpdateData
                     data={user}
                     method={"PUT"}
-                    params={Auth.user}
+                    params={getUserFromLocalStorage()}
                     endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/`}
                     {...props}
                   >

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Auth from "../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../authorization/Auth";
 class UpdateData extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class UpdateData extends Component {
       method: method,
       body: JSON.stringify(this.state.data),
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
         "Content-Type": "application/json",
       },
     });
@@ -53,7 +53,7 @@ class UpdateData extends Component {
       method: "Delete",
 
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
         "Content-Type": "application/json",
       },
     });

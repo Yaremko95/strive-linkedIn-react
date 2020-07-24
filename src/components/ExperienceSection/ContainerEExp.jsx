@@ -12,7 +12,7 @@ import NavButton from "../ui/navBar/NavButton";
 import { MdAdd } from "react-icons/all";
 import { Modal } from "react-bootstrap";
 import Break from "../ui/themantic-break/Break";
-import Auth from "../../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../../authorization/Auth";
 import CardItemContainer from "../ui/cards/CardItemContainer";
 import IconButton from "../ui/button/IconButton";
 import ContainerEdu from "../ui/education/ContainerEdu";
@@ -39,7 +39,7 @@ function ContainerEExp(props) {
     <ContainerCard background="white" margin={"0"}>
       <CardItemContainer>
         <CardTitle>Experience</CardTitle>
-        {Auth.user === user.username && (
+        {getUserFromLocalStorage() === user.username && (
           <ModalCustom
             title={"Add Experience"}
             button={
@@ -50,7 +50,7 @@ function ContainerEExp(props) {
           >
             <UpdateData
               method={"POST"}
-              params={`${Auth.user}/experiences`}
+              params={`${getUserFromLocalStorage()}/experiences`}
               endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/`}
               {...props}
             >

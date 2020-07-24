@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Auth from "../authorization/Auth";
+import { getHeader, getUserFromLocalStorage } from "../authorization/Auth";
 
 class AddComment extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class AddComment extends Component {
         {
           method: "GET",
           headers: {
-            Authorization: Auth.auth,
+            Authorization: getHeader(),
           },
         }
       );
@@ -63,7 +63,7 @@ class AddComment extends Component {
           method: "POST",
           body: JSON.stringify(this.state.comment),
           headers: {
-            Authorization: Auth.auth,
+            Authorization: getHeader(),
             "Content-Type": "application/json",
           },
         }

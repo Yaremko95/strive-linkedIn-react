@@ -7,7 +7,7 @@ import CardTitle from "../ui/titles/CardTitle";
 import { MdAdd } from "react-icons/all";
 import CardItemContainer from "../ui/cards/CardItemContainer";
 import IconButton from "../ui/button/IconButton";
-import Auth from "../../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../../authorization/Auth";
 
 function ContainerSkills(props) {
   /* const useStyles = createUseStyles((theme) => ({
@@ -31,7 +31,7 @@ function ContainerSkills(props) {
     <ContainerCard background="white">
       <CardItemContainer>
         <CardTitle>Skills</CardTitle>
-        {user.username === Auth.user && (
+        {user.username === getUserFromLocalStorage() && (
           <IconButton>
             <MdAdd />
           </IconButton>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { Base64 } from "js-base64";
 class Auth extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,8 @@ class Auth extends Component {
     };
   }
 
-  registerUser = async () => {
+  registerUser = async (e) => {
+    e.preventDefault();
     const { credentials } = this.state;
     try {
       let response = await fetch(
@@ -28,10 +30,19 @@ class Auth extends Component {
       } else {
         this.setState({ success: false });
       }
-    } catch (e) {}
+    } catch (err) {}
   };
-  login = async () => {
+  login = async (e) => {
+    e.preventDefault();
     const { credentials } = this.state;
+    const header = `${this.state.username}:${this.state.password}`;
+    console.log(
+      Base64.encode(
+        `${this.state.credentials.username}:${this.state.credentials.password}`
+      )
+    );
+    console.log(header);
+
     try {
       let response = await fetch(
         "https://agile-brushlands-83006.herokuapp.com/profile/login",
@@ -40,27 +51,35 @@ class Auth extends Component {
           body: JSON.stringify(this.state.credentials),
           headers: {
             "Content-Type": "application/json",
+            Authorization:
+              "Basic " +
+              Base64.encode(
+                `${this.state.credentials.username}:${this.state.credentials.password}`
+              ),
           },
         }
       );
       if (response.ok) {
         let user = await response.json();
+        user.password = this.state.credentials.password;
         localStorage.setItem("user", JSON.stringify(user));
-        this.props.history.push("/me");
+        console.log(JSON.parse(localStorage.getItem("user")));
+        //this.props.history.push("/profile/me");
       } else {
         this.setState({ registered: false });
       }
-    } catch (e) {}
+    } catch (err) {}
   };
 
   render() {
+    console.log(this.state);
     const { credentials } = this.state;
     return React.cloneElement(this.props.children, {
       ...this.state,
       setData: (state) =>
         this.setState({ credentials: { ...credentials, ...state } }),
-      registerUser: () => this.registerUser(),
-      login: () => this.login(),
+      register: (e) => this.registerUser(e),
+      login: (e) => this.login(e),
     });
   }
 }

@@ -8,7 +8,10 @@ import {
   Jumbotron,
 } from "react-bootstrap";
 import ProfileImage from "../profile-images/ProfileImage";
-import Auth from "../../../authorization/Auth";
+import {
+  getHeader,
+  getUserFromLocalStorage,
+} from "../../../authorization/Auth";
 import ModalCustom from "../modals/ModalCustom";
 import IconButton from "../button/IconButton";
 import { BsPencil } from "react-icons/all";
@@ -144,7 +147,7 @@ function ProfileJumbotron(props) {
                 More...
               </Button>
               <div style={PenIconStyle}>
-                {Auth.user === user.username && (
+                {getUserFromLocalStorage() === user.username && (
                   <ModalCustom
                     title={"Update Experience"}
                     button={

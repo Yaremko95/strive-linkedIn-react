@@ -1,7 +1,10 @@
 import React, { useEffect, useState, Component } from "react";
 import { createUseStyles } from "react-jss";
 import { GoSearch } from "react-icons/go";
-import Auth from "../../../authorization/Auth";
+import {
+  getUserFromLocalStorage,
+  getHeader,
+} from "../../../authorization/Auth";
 import { withRouter, useParams, Link } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { ListGroup } from "react-bootstrap";
@@ -40,7 +43,7 @@ class SearchForm extends Component {
   componentDidMount = async () => {
     let response = await fetch(this.url, {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let users = await response.json();

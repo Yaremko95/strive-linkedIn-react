@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 import ProfileImage from "../ui/profile-images/ProfileImage";
-import Auth from "../../authorization/Auth";
+import { getHeader, getUserFromLocalStorage } from "../../authorization/Auth";
 import IconButton from "../ui/button/IconButton";
 import CardItemContainer from "../ui/cards/CardItemContainer";
 import { BsPencil } from "react-icons/all";
@@ -83,7 +83,7 @@ function CardSkills(props) {
             </span>
           </div>
         </div>
-        {user.username === Auth.user && (
+        {user.username === getUserFromLocalStorage() && (
           <IconButton>
             <BsPencil />
           </IconButton>
