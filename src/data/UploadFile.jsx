@@ -55,17 +55,17 @@ class UploadFile extends Component {
         let data = await response.json();
         console.log("for upload", data);
 
-        const existing = JSON.parse(localStorage.getItem("user"));
-
-        console.log("storage", this.props);
-        if (existing) {
-          existing.image = data.image;
-        }
-        console.log(JSON.stringify(existing));
-        localStorage.removeItem("user");
-        localStorage.setItem("user", JSON.stringify(existing));
-
-        this.props.setTrigger(!this.props.triggerNav);
+        // const existing = JSON.parse(localStorage.getItem("user"));
+        //
+        // console.log("storage", this.props);
+        // if (existing) {
+        //   existing.image = data.image;
+        // }
+        // console.log(JSON.stringify(existing));
+        // localStorage.removeItem("user");
+        // localStorage.setItem("user", JSON.stringify(existing));
+        //
+        // this.props.setTrigger(!this.props.triggerNav);
         // this.props.setavatar(data.image);
         closeModal();
         newFetch();
