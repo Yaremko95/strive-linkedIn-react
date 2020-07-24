@@ -27,13 +27,29 @@ function NavBar(props) {
       marginLeft: "10px",
     },
   }));
+  // const [image, setImage] = React.useState("");
+  // React.useEffect(async () => {
+  //   const user = getUserFromLocalStorage();
+  //   let response = await fetch(
+  //     `https://agile-brushlands-83006.herokuapp.com/profile/${user}`,
+  //     {
+  //       headers: {
+  //         Authorization: getHeader(),
+  //       },
+  //     }
+  //   );
+  //   let data = await response.json();
+  //   setImage(data.image);
+  // });
   // const [storage, setStorage] = React.useState(false);
+  console.log("avatar-button", props.avatar);
   const classes = useStyles();
   const logout = () => {
     localStorage.removeItem("user");
     props.history.push("profile.login");
     props.setTrigger(!props.triggerNav);
   };
+  console.log("triggered button");
   return (
     <Navbar expand="lg" className={classes.main}>
       <Container className="px-4">
@@ -61,7 +77,12 @@ function NavBar(props) {
                         className={"py-0"}
                         onClick={item.label === "Log out" && logout}
                       >
-                        <NavButton item={item} />
+                        <NavButton
+                          item={item}
+                          avatar={props.avatar}
+                          setTrigger={props.setTrigger}
+                          trigger={props.triggerNav}
+                        />
                       </Nav.Link>
                     )
                 )}

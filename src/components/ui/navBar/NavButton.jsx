@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 import ProfileImage from "../profile-images/ProfileImage";
 import { getImageLocalStorage } from "../../../authorization/Auth";
 
-function NavButton({ item, color }) {
+function NavButton({ item, color, avatar }) {
   const useStyles = createUseStyles((theme) => ({
     container: {
       display: "flex",
@@ -29,7 +29,7 @@ function NavButton({ item, color }) {
       {item.icon ? (
         <item.icon className={classes.icon} />
       ) : (
-        <ProfileImage src={getImageLocalStorage()} height={"1.3rem"} />
+        <ProfileImage src={avatar} height={"1.3rem"} />
       )}
       <span className={classes.label}>
         {item.label} {item.secondaryIcon && <item.secondaryIcon />}

@@ -64,8 +64,9 @@ class UploadFile extends Component {
         console.log(JSON.stringify(existing));
         localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(existing));
-        this.props.setTrigger(!this.props.triggerNav);
 
+        this.props.setTrigger(!this.props.triggerNav);
+        // this.props.setavatar(data.image);
         closeModal();
         newFetch();
         this.setState({ data });
