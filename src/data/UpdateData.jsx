@@ -24,7 +24,7 @@ class UpdateData extends Component {
     this.setState({ validated: true });
 
     const { endpoint, method, newFetch, closeModal, params } = this.props;
-
+    delete this.state.data.password;
     let response = await fetch(params ? endpoint + params : endpoint, {
       method: method,
       body: JSON.stringify(this.state.data),
@@ -33,6 +33,7 @@ class UpdateData extends Component {
         "Content-Type": "application/json",
       },
     });
+    console.log(response);
     if (response.ok) {
       let data = await response.json();
       console.log(data);

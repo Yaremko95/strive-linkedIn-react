@@ -1,4 +1,4 @@
 export default {
-  auth: "Basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc=",
+  auth: "Basic dXNlcjIwOnRldGlhbmE=",
   user: "user20",
 };
