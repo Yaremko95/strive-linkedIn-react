@@ -56,7 +56,7 @@ function NFCard(props) {
               </BrowserMapMemberContainer>
               {getUserFromLocalStorage() === post.username && (
                 <ModalCustom
-                  title={"Update Experience"}
+                  title={"Update Post"}
                   button={
                     <BsPencil
                       style={{

@@ -14,6 +14,9 @@ import ModalCustom from "../modals/ModalCustom";
 import IconButton from "../button/IconButton";
 import ExperienceForm from "../../form/ExperienceForm";
 import BrowserMapEdu from "./BrowserMapEdu";
+import { getUserFromLocalStorage } from "../../../authorization/Auth";
+import UpdateData from "../../../data/UpdateData";
+import EducationForm from "../../form/EducationForm";
 
 function CardEducation(props) {
   const useStyles = createUseStyles({
@@ -29,7 +32,8 @@ function CardEducation(props) {
     },
   });
   const classes = useStyles();
-  const { education } = props;
+  const { education, user } = props;
+  console.log("..................", props);
   /*  const { user, profilesexperience } = props;
   console.log("profilesexperience", props.profilesexperience); */
   return (
@@ -53,12 +57,25 @@ function CardEducation(props) {
           </div>
         </div>
 
-        <ModalCustom
-          title={"Update Education"}
-          button={<IconButton></IconButton>}
-        >
-          <ExperienceForm />
-        </ModalCustom>
+        {getUserFromLocalStorage() === user.username && (
+          <ModalCustom
+            title={"Update Education"}
+            button={
+              <IconButton>
+                <BsPencil />
+              </IconButton>
+            }
+          >
+            <UpdateData
+              data={education}
+              method={"PUT"}
+              endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/${user.username}/educations/${education._id}`}
+              {...props}
+            >
+              <EducationForm />
+            </UpdateData>
+          </ModalCustom>
+        )}
       </CardItemContainer>
     </>
   );

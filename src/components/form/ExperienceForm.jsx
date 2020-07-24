@@ -7,10 +7,12 @@ import UploadFile from "../../data/UploadFile";
 import ModalCustom from "../ui/modals/ModalCustom";
 import { RiDeleteBin6Line } from "react-icons/all";
 // import Button from "../ui/button/Button";
+import { getUserFromLocalStorage } from "../../authorization/Auth";
+import "../../authorization/Auth";
 
 function ExperienceForm(props) {
-  const { data, validated } = props.state;
-  const { setData, onSubmit, getDelete } = props;
+  const { data, validated, id } = props.state;
+  const { setData, onSubmit, getDelete, user } = props;
   console.log("THISPROPSSSSSSSSSS", props);
   return (
     <div style={{ padding: "0 20px" }}>
@@ -99,7 +101,41 @@ function ExperienceForm(props) {
             justifyContent: "flex-end",
           }}
         >
-          <Button type={"submit"}>Submit</Button>
+          <UploadFile
+            {...props}
+            type={"picture"}
+            query={`profile/${user.username}/experiences/${id}/picture`}
+          >
+            {({ handleInputClick, handleUpload, toBase64 }) => (
+              <div
+                className={
+                  "d-flex flex-column w-100 justify-content-center align-items-center"
+                }
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    marginTop: "2rem",
+                  }}
+                >
+                  <Button onClick={() => handleInputClick()}>
+                    Choose Image
+                  </Button>
+                  {toBase64 && (
+                    <>
+                      {/*<Button onClick={() => handleUpload()}>Save</Button>*/}
+                    </>
+                  )}{" "}
+                  <Button style={{ marginLeft: "1rem" }} type={"submit"}>
+                    Update
+                  </Button>
+                </div>
+              </div>
+            )}
+          </UploadFile>
+          {/*<Button type={"submit"}>Submit</Button>*/}
         </div>
       </Form>
       <RiDeleteBin6Line type={"button"} onClick={getDelete} />

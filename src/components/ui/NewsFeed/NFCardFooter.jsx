@@ -49,7 +49,7 @@ function NFCardFooter(props) {
   const triggerInput = () => {
     setShowInput(true);
   };
-  
+
   const classes = useStyles();
   const { postId, users } = props;
   return (
@@ -89,6 +89,7 @@ function NFCardFooter(props) {
               {showInput && (
                 <>
                   <Form.Control
+                    className={"mt-4"}
                     type="text"
                     placeholder="Add comment"
                     id={"comment"}

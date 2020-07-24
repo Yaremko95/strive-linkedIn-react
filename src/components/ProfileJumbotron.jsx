@@ -224,7 +224,7 @@ function ProfileJumbotron(props) {
             <div style={PenIconStyle}>
               {getUserFromLocalStorage() === user.username && (
                 <ModalCustom
-                  title={"Update Experience"}
+                  title={"Update Profile"}
                   button={
                     <IconButton>
                       <BsPencil />
