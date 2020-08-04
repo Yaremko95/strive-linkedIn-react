@@ -5,6 +5,7 @@ import NavBar from "../components/ui/navBar/NavBar";
 import Footer from "../components/Footer";
 import DataSource from "../data/DataSource";
 import { getImageLocalStorage } from "../authorization/Auth";
+import MessengerContainer from "../components/ui/messenger/MessengerContainer";
 
 function MainLayout(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -39,6 +40,7 @@ function MainLayout(props) {
           setavatar: (e) => setavatar(e),
         })}
       </Container>
+      <MessengerContainer />
 
       <Footer />
     </>

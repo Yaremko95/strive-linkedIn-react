@@ -3,22 +3,27 @@ import io from "socket.io-client";
 const connOpt = {
   transports: ["websocket"],
 };
-let socket = io(
-  "https://striveschool-test.herokuapp.com/api/messages/user27",
-  connOpt
-);
+let socket = io("https://striveschool.herokuapp.com/git ", connOpt);
 
 function MessengerContainer(props) {
   const [payload, setPayload] = useState({
     username: "username27",
     messages: [],
   });
+  console.log(payload);
+  useEffect(() => {
+    // socket.on("list", (msg) => console.log("%%%%%%%%%%%%%%%%%%%%%%%%5", msg));
+    // console.log("%%%%%%%%%%%%%%%%%%%%%%%%5");
 
-  useEffect(() => {}, [socket]);
+    socket.on("bmsg", (msg) =>
+      setPayload({ ...payload, messages: [...payload, msg] })
+    );
+  }, [socket]);
 
   const setUsername = () => {
-    socket.emit("setUsername", {
-      username: "user27",
+    socket.emit("chatmessage", {
+      to: "user25",
+      msg: "hello Solomon",
     });
   };
 
