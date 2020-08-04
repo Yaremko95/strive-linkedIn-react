@@ -39,6 +39,7 @@ function MainLayout(props) {
           setavatar: (e) => setavatar(e),
         })}
       </Container>
+
       <Footer />
     </>
   );
