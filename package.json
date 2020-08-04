@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
+    "js-base64": "^3.2.4",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-autosuggest": "^10.0.2",
@@ -19,8 +20,10 @@
     "react-fontawesome": "^1.7.1",
     "react-icons": "^3.10.0",
     "react-jss": "^10.3.0",
+    "react-moment": "^0.9.7",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

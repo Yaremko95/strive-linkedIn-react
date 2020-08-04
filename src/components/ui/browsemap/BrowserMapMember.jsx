@@ -25,12 +25,15 @@ function BrowserMapMember(props) {
   return (
     <Link className={classes.container} to={`/profile/${user.username}`}>
       <ProfileImage
-        src={user.image ? user.image : "/assets/LinkedInNoPic.png"}
+        src={
+          user.image
+            ? user.image
+            : "https://lh3.googleusercontent.com/proxy/o2hwLlL4TSf2pEksv7MJXe8_rGSJ6DVHW3Bb0dc1829FyVhEmDXAfthN6fFvaZxuIf-m44p1YkU5HKXy_8GJxqueV-TXsDYZOxZ_NTRaOIhX8-6-Mw"
+        }
         width={"56px"}
         height={"56px"}
       />
       <BrowserMapMemberDetail user={user} />
-
     </Link>
   );
 }

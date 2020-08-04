@@ -8,8 +8,10 @@ import CardTitle from "../titles/CardTitle";
 import ModalCustom from "../modals/ModalCustom";
 import IconButton from "../button/IconButton";
 import CardEducation from "./CardEducation";
-import EducationForm from "./EducationForm";
+import EducationForm from "./../../form/EducationForm";
 import Break from "../themantic-break/Break";
+import UpdateData from "../../../data/UpdateData";
+import { getUserFromLocalStorage } from "../../../authorization/Auth";
 
 function ContainerEdu(props) {
   const { user, educations } = props;
@@ -28,7 +30,14 @@ function ContainerEdu(props) {
               </IconButton>
             }
           >
-            <EducationForm />
+            <UpdateData
+              method={"POST"}
+              params={`${getUserFromLocalStorage()}/educations`}
+              endpoint={`https://agile-brushlands-83006.herokuapp.com/profile/`}
+              {...props}
+            >
+              <EducationForm />
+            </UpdateData>
           </ModalCustom>
         </CardItemContainer>
 
@@ -36,7 +45,7 @@ function ContainerEdu(props) {
           {educations.map((education) => (
             <>
               {" "}
-              <CardEducation education={education} />
+              <CardEducation education={education} {...props} />
               <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
             </>
           ))}

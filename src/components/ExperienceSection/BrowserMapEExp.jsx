@@ -57,8 +57,13 @@ function BrowserMapEExp(props) {
       </span>
 
       <span className={classes.span}>{props.profilesexperience.company}</span>
-      <span className={classes.span}>{props.profilesexperience.startDate}</span>
-      <span className={classes.span}>{props.profilesexperience.area}</span>
+      <span className={classes.span}>
+        {new Date(props.profilesexperience.startDate)
+          .toDateString()
+          .substring(3)}{" "}
+        -{" "}
+        {new Date(props.profilesexperience.endDate).toDateString().substring(3)}
+      </span>
     </div>
   );
 }

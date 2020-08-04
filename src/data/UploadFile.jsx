@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import Auth from "../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../authorization/Auth";
 
 class UploadFile extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class UploadFile extends Component {
       data: {},
     };
     this.ref = React.createRef();
-    console.log("upload", this.props);
+    console.log("upload", this.state);
   }
 
   componentDidUpdate = (prevProps) => {
@@ -47,12 +47,26 @@ class UploadFile extends Component {
           method: "POST",
           body: formData,
           headers: {
-            Authorization: Auth.auth,
+            Authorization: getHeader(),
           },
         }
       );
       if (response.ok) {
         let data = await response.json();
+        console.log("for upload", data);
+
+        // const existing = JSON.parse(localStorage.getItem("user"));
+        //
+        // console.log("storage", this.props);
+        // if (existing) {
+        //   existing.image = data.image;
+        // }
+        // console.log(JSON.stringify(existing));
+        // localStorage.removeItem("user");
+        // localStorage.setItem("user", JSON.stringify(existing));
+        //
+        // this.props.setTrigger(!this.props.triggerNav);
+        // this.props.setavatar(data.image);
         closeModal();
         newFetch();
         this.setState({ data });

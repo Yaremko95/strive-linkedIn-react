@@ -10,7 +10,7 @@ import { BsPencil, MdAdd } from "react-icons/all";
 import UpdateData from "../../data/UpdateData";
 import ExperienceForm from "../form/ExperienceForm";
 import ContainerCard from "../ui/cards/ContainerCard";
-import Auth from "../../authorization/Auth";
+import { getUserFromLocalStorage, getHeader } from "../../authorization/Auth";
 import { IconBase } from "react-icons";
 import IconButton from "../ui/button/IconButton";
 import CardItemContainer from "../ui/cards/CardItemContainer";
@@ -67,7 +67,7 @@ function CardEExp(props) {
             <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
           </div>
         </div>
-        {Auth.user === user.username && isHovering && (
+        {getUserFromLocalStorage() === user.username && isHovering && (
           <ModalCustom
             title={"Update Experience"}
             button={

@@ -26,25 +26,28 @@ function BrowseMapContainer(props) {
     },
   }));
   const classes = useStyles();
-  const { users } = props;
+  const { users, user } = props;
 
   return (
     <>
       <div className={classes.container}>
         <h2 className={classes.title}>People also viewed</h2>
-        {users.slice(0, 15).map((user) => (
-          <div className={classes.item}>
-            <BrowserMapMemberContainer>
-              <BrowserMapMember user={user} />
-              <BrowseButton>
-                <RiUserAddLine />
-              </BrowseButton>
-            </BrowserMapMemberContainer>
-            <div style={{ width: "calc(100% - 52px)", marginLeft: "auto" }}>
-              <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
-            </div>
-          </div>
-        ))}
+        {users.slice(0, 15).map(
+          (data) =>
+            user.username !== data.username && (
+              <div className={classes.item}>
+                <BrowserMapMemberContainer>
+                  <BrowserMapMember user={data} />
+                  <BrowseButton>
+                    <RiUserAddLine />
+                  </BrowseButton>
+                </BrowserMapMemberContainer>
+                <div style={{ width: "calc(100% - 52px)", marginLeft: "auto" }}>
+                  <Break color={"rgba(0,0,0,.15)"} weight={"1px"} />
+                </div>
+              </div>
+            )
+        )}
       </div>
     </>
   );

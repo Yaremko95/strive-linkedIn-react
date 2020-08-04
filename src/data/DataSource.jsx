@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import Auth from "../authorization/Auth";
+import { getHeader, getUserFromLocalStorage } from "../authorization/Auth";
 import queryString from "query-string";
+import { Base64 } from "js-base64";
 
 class DataSource extends Component {
   constructor(props) {
@@ -26,19 +27,27 @@ class DataSource extends Component {
       this.fetchData();
     }
   };
+  getHeader = () => {
+    const username = JSON.parse(localStorage.getItem("user")).username;
+    const password = JSON.parse(localStorage.getItem("user")).password;
+    const toBase64 = Base64.encode(`${username}:${password}`);
+    console.log(toBase64);
+    return "Basic " + toBase64;
+  };
 
   fetchData = async () => {
+    console.log("trigger", this.props);
     // this.setState({ loading: true });
     let { query } = this.props;
     console.log("query", query);
     if (!query) {
-      this.fetchUser(Auth.user);
+      this.fetchUser(getUserFromLocalStorage());
       this.fetchPost(query);
       this.fetchUsers();
       this.setState({ loading: false });
     } else {
       if (query === "me") {
-        query = Auth.user;
+        query = getUserFromLocalStorage();
       }
 
       this.fetchUsers();
@@ -54,7 +63,7 @@ class DataSource extends Component {
   fetchExperience = async (query) => {
     let response = await fetch(this.url + query + "/experiences", {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let experience = await response.json();
@@ -62,10 +71,10 @@ class DataSource extends Component {
   };
   fetchPost = async () => {
     let response = await fetch(
-      this.urlPost + "?username=" + this.state.searchPostsQuery,
+      this.urlPost + "?namegit check=" + this.state.searchPostsQuery,
       {
         headers: {
-          Authorization: Auth.auth,
+          Authorization: getHeader(),
         },
       }
     );
@@ -77,7 +86,7 @@ class DataSource extends Component {
   fetchUser = async (query) => {
     let response = await fetch(this.url + query, {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let user = await response.json();
@@ -87,7 +96,7 @@ class DataSource extends Component {
   fetchUsers = async () => {
     let response = await fetch(this.url, {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let users = await response.json();
@@ -97,7 +106,7 @@ class DataSource extends Component {
   fetchEducations = async (query) => {
     let response = await fetch(this.url + query + "/educations", {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let educations = await response.json();
@@ -107,7 +116,7 @@ class DataSource extends Component {
   downloadCV = async () => {
     let response = await fetch(this.url + this.state.user.username + "/pdf", {
       headers: {
-        Authorization: Auth.auth,
+        Authorization: getHeader(),
       },
     });
     let blob = await response.blob();
@@ -125,7 +134,7 @@ class DataSource extends Component {
       {
         method: "POST",
         headers: {
-          Authorization: Auth.auth,
+          Authorization: getHeader(),
         },
       }
     );
