@@ -71,7 +71,7 @@ class DataSource extends Component {
   };
   fetchPost = async () => {
     let response = await fetch(
-      this.urlPost + "?namegit check=" + this.state.searchPostsQuery,
+      this.urlPost + "?name=" + this.state.searchPostsQuery,
       {
         headers: {
           Authorization: getHeader(),
