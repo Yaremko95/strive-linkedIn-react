@@ -24,9 +24,7 @@ function LoginForm(props) {
             ></img>
             <div className="mt-3 my-3 ml-3 mr-3">
               {!success && (
-                <Alert variant={"danger"}>
-                  Incorrect username or password!
-                </Alert>
+                <Alert variant={"danger"}>Incorrect Email or password!</Alert>
               )}
               <Form
                 onSubmit={(e) => {
@@ -34,12 +32,12 @@ function LoginForm(props) {
                 }}
               >
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Username</Form.Label>
+                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter username"
-                    value={credentials.username}
-                    onChange={(e) => setData({ username: e.target.value })}
+                    placeholder="Enter email"
+                    value={credentials.email}
+                    onChange={(e) => setData({ email: e.target.value })}
                   />
                 </Form.Group>
 
@@ -55,7 +53,10 @@ function LoginForm(props) {
 
                 <div className={"d-flex justify-content-between"}>
                   <Button variant="primary" type="submit">
-                    Submit
+                    Log In
+                  </Button>
+                  <Button variant="primary" type="submit">
+                    Log In with Facebook
                   </Button>
                   <Nav.Link as={Link} to={"/register"} className={"py-0"}>
                     <span>Sign Up</span>

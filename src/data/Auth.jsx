@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Base64 } from "js-base64";
+import Cookies from "js-cookie";
 class Auth extends Component {
   constructor(props) {
     super(props);
@@ -14,16 +15,13 @@ class Auth extends Component {
     e.preventDefault();
     const { credentials } = this.state;
     try {
-      let response = await fetch(
-        "https://agile-brushlands-83006.herokuapp.com/profile/",
-        {
-          method: "POST",
-          body: JSON.stringify(this.state.credentials),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      let response = await fetch("http://localhost:3006/profile/", {
+        method: "POST",
+        body: JSON.stringify(this.state.credentials),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         let user = await response.json();
         this.props.history.push("/login");
@@ -35,30 +33,27 @@ class Auth extends Component {
   login = async (e) => {
     e.preventDefault();
     const { credentials } = this.state;
-    const header = `${this.state.username}:${this.state.password}`;
+    const header = `${this.state.email}:${this.state.password}`;
     console.log(
-      Base64.encode(
-        `${this.state.credentials.username}:${this.state.credentials.password}`
-      )
+      // Base64.encode(
+      //   `${this.state.credentials.email}:${this.state.credentials.password}`)
+      `Bearer ${localStorage.getItem("accessToken")}`
     );
     console.log(header);
 
     try {
-      let response = await fetch(
-        "https://agile-brushlands-83006.herokuapp.com/profile/login",
-        {
-          method: "POST",
-          body: JSON.stringify(this.state.credentials),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Basic " +
-              Base64.encode(
-                `${this.state.credentials.username}:${this.state.credentials.password}`
-              ),
-          },
-        }
-      );
+      let response = await fetch("http://localhost:3006/profile/login", {
+        method: "POST",
+        body: JSON.stringify(this.state.credentials),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          // "Basic " +
+          // Base64.encode(
+          //   `${this.state.credentials.username}:${this.state.credentials.password}`
+          // ),
+        },
+      });
       if (response.ok) {
         let user = await response.json();
         user.password = this.state.credentials.password;

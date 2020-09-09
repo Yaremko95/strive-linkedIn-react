@@ -72,10 +72,14 @@ function RegisterForm(props) {
                     onChange={(e) => setData({ password: e.target.value })}
                   />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
+                <div className={"d-flex justify-content-between"}>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                  <Button variant="primary" type="submit">
+                    Sign Up with Facebook
+                  </Button>
+                </div>
               </Form>
             </div>
           </Col>
