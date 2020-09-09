@@ -9,3 +9,8 @@ export const appendMessage = (data, targetUser) => ({
   payload: data,
   targetUser: targetUser,
 });
+
+export const updateActiveUsers = (data) => ({
+  type: C.UPDATE_ACTIVE_USERS,
+  payload: data,
+});
