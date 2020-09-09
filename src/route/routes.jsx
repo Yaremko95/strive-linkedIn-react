@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Registration from "../pages/Registration";
 import Login from "../pages/Login";
+import Messenger from "../pages/Messenger";
 
 export default [
   {
@@ -40,5 +41,11 @@ export default [
     exact: true,
     layout: MainLayout,
     component: Login,
+  },
+  {
+    path: "/messenger",
+    exact: true,
+    layout: MainLayout,
+    component: Messenger,
   },
 ];

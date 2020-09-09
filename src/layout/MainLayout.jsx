@@ -40,7 +40,7 @@ function MainLayout(props) {
           setavatar: (e) => setavatar(e),
         })}
       </Container>
-      <MessengerContainer />
+      {/*<MessengerContainer />*/}
 
       <Footer />
     </>

@@ -1,0 +1,71 @@
+import React, { useEffect } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import CustomCard from "../components/ui/cards/CustomCard";
+import socketIOClient from "socket.io-client";
+import { connect } from "react-redux";
+import {
+  setHistory,
+  appendMessage,
+  updateActiveUsers,
+} from "../store/messenger/actions";
+const ENDPOINT = process.env.REACT_APP_BE_URL_API;
+
+function Messenger(props) {
+  const { setHistory, listOfChats, appendMessage, updateActiveUsers } = props;
+  console.log(ENDPOINT);
+  const socket = socketIOClient(ENDPOINT, {
+    transports: ["websocket"],
+    query:
+      "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjFhZGY3ZDQwMTM4OTAwMTc3NmZiYWYiLCJpYXQiOjE1OTk1OTAxMDEsImV4cCI6MTYwMDE5NDkwMX0.-CCztBpM7Yhxi3DA4gCPndF36m0oue5CdIs0km4a8P8",
+  });
+  socket.emit("login");
+  useEffect(() => {
+    socket.on("loggedIn", (data) => {
+      console.log("loggedIn", data);
+      updateActiveUsers(data.users);
+    });
+    socket.on("leave", (data) => {
+      console.log("leave", data);
+      updateActiveUsers(data.users);
+    });
+
+    socket.on("receiveMsg", (data) => {
+      console.log("receiveMsg", data);
+      appendMessage(data, data.from);
+    });
+  }, [socket]);
+  useEffect(() => {
+    socket.on("history", (data) => {
+      setHistory(data);
+      console.log("history", data);
+    });
+  }, []);
+  return (
+    <Row>
+      <Col className={"col-9"}>
+        <CustomCard>
+          <h1>Messages</h1>
+        </CustomCard>
+      </Col>
+      <Col className={"col-3"}>
+        <CustomCard></CustomCard>
+      </Col>
+    </Row>
+  );
+}
+
+export default connect(
+  (state) => ({ listOfChats: state.listOfChats }),
+  (dispatch) => ({
+    setHistory: (data) => {
+      dispatch(setHistory(data));
+    },
+    appendMessage: (data, targetUser) => {
+      dispatch(appendMessage(data, targetUser));
+    },
+    updateActiveUsers: (data) => {
+      dispatch(updateActiveUsers(data));
+    },
+  })
+)(Messenger);

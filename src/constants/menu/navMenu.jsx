@@ -27,7 +27,7 @@ export default [
   {
     label: "Messaging",
     icon: MdMessage,
-    to: "/",
+    to: "/messenger",
   },
   {
     label: "Notifications",

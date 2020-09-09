@@ -34,12 +34,12 @@ function LoginForm(props) {
                 }}
               >
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Username</Form.Label>
+                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter username"
-                    value={credentials.username}
-                    onChange={(e) => setData({ username: e.target.value })}
+                    placeholder="Enter email"
+                    value={credentials.email}
+                    onChange={(e) => setData({ email: e.target.value })}
                   />
                 </Form.Group>
 
