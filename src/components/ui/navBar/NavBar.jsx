@@ -1,5 +1,5 @@
 import React from "react";
-
+import authAxios from "../../../authorization/authAxios";
 import { Navbar, Nav, NavDropdown, Container, Image } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { createUseStyles } from "react-jss";
@@ -44,10 +44,22 @@ function NavBar(props) {
   // const [storage, setStorage] = React.useState(false);
   console.log("avatar-button", props.avatar);
   const classes = useStyles();
-  const logout = () => {
-    localStorage.removeItem("user");
-    props.history.push("profile.login");
-    props.setTrigger(!props.triggerNav);
+  const logout = async () => {
+    // const res = await authAxios.get("/profile/me", { withCredentials: true });
+    // let user = {};
+    // if (!res) {
+    //   const secondRes = await axios.get("/users/me", {
+    //     withCredentials: true,
+    //   });
+    //   user = secondRes.data;
+    // } else {
+    //   user = res.data;
+    // }
+    // });
+    // if (response.ok) {
+    //   props.history.push("profile/login");
+    //   props.setTrigger(!props.triggerNav);
+    // }
   };
   console.log("triggered button");
   return (

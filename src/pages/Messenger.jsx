@@ -9,10 +9,11 @@ import {
   appendMessage,
   updateActiveUsers,
 } from "../store/messenger/actions";
-const ENDPOINT = "http://localhost:3006/";
+const ENDPOINT = process.env.REACT_APP_BE_URL_API;
 
 function Messenger(props) {
   const { setHistory, listOfChats, appendMessage, updateActiveUsers } = props;
+  console.log(ENDPOINT);
   const socket = socketIOClient(ENDPOINT, {
     transports: ["websocket"],
     query:

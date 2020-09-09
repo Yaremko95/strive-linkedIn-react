@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Base64 } from "js-base64";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { setUser } from "../store/users/actions";
 class Auth extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class Auth extends Component {
     const { credentials } = this.state;
     try {
       let response = await fetch(
-        "https://agile-brushlands-83006.herokuapp.com/profile/",
+        `${process.env.REACT_APP_BE_URL_API}/profile/`,
         {
           method: "POST",
           body: JSON.stringify(this.state.credentials),
@@ -26,6 +28,7 @@ class Auth extends Component {
       );
       if (response.ok) {
         let user = await response.json();
+
         this.props.history.push("/login");
       } else {
         this.setState({ success: false });
@@ -34,36 +37,29 @@ class Auth extends Component {
   };
   login = async (e) => {
     e.preventDefault();
-    const { credentials } = this.state;
-    const header = `${this.state.username}:${this.state.password}`;
-    console.log(
-      Base64.encode(
-        `${this.state.credentials.username}:${this.state.credentials.password}`
-      )
-    );
-    console.log(header);
+    // const { credentials } = this.state;
+    // const header = `${this.state.username}:${this.state.password}`;
+    // console.log(
+    //   Base64.encode(
+    //     `${this.state.credentials.username}:${this.state.credentials.password}`
+    //   )
+    // );
+    // console.log(header);
 
     try {
-      let response = await fetch(
-        "https://agile-brushlands-83006.herokuapp.com/profile/login",
-        {
-          method: "POST",
-          body: JSON.stringify(this.state.credentials),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Basic " +
-              Base64.encode(
-                `${this.state.credentials.username}:${this.state.credentials.password}`
-              ),
-          },
-        }
-      );
+      let response = await fetch(`http://localhost:3006/profile/login`, {
+        method: "POST",
+        body: JSON.stringify(this.state.credentials),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       if (response.ok) {
-        let user = await response.json();
-        user.password = this.state.credentials.password;
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log(JSON.parse(localStorage.getItem("user")));
+        console.log(console.log(this.props));
+        const user = await response.json();
+        console.log("response", user.user);
+        this.props.setUser(user);
         this.props.history.push("/profile/me");
         this.props.setTrigger(!this.props.triggerNav);
       } else {
@@ -85,4 +81,15 @@ class Auth extends Component {
   }
 }
 
-export default withRouter(Auth);
+export default compose(
+  withRouter,
+  connect(
+    (state) => ({ user: state.user }),
+    (dispatch) => ({
+      setUser: (data) => {
+        console.log("redux", data);
+        dispatch(setUser(data));
+      },
+    })
+  )
+)(Auth);
