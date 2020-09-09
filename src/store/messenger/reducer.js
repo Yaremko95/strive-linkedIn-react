@@ -28,6 +28,14 @@ const getListOfChats = (history, username) => {
       });
     }
   });
+  // .sort((a, b) => {
+  //   const keyA = Object.keys(a)[0];
+  //   const keyB = Object.keys(b)[0];
+  //   return (
+  //     new Date(a[keyA][a[keyA].length - 1]) -
+  //     new Date(b[keyB][b[keyB].length - 1])
+  //   );
+  // });
   return chatsList;
 };
 
@@ -49,17 +57,26 @@ export default (state = initialState, action) => {
       if (
         state.listOfChats.find((chat) => Object.keys(chat)[0] === targetUser)
       ) {
+        const updated = state.listOfChats.map((chat) => {
+          if (Object.keys(chat)[0] === targetUser) {
+            if (!chat[targetUser].map((msg) => msg._id).includes(msg._id)) {
+              chat[targetUser].push(msg);
+            }
+          }
+          return chat;
+        });
+        updated.forEach((item, i) => {
+          console.log(item);
+          if (Object.keys(item)[0] === targetUser) {
+            updated.splice(i, 1);
+            updated.unshift(item);
+          }
+        });
         return {
           ...state,
-          listOfChats: state.listOfChats.map((chat) => {
-            if (Object.keys(chat)[0] === targetUser) {
-              if (!chat[targetUser].map((msg) => msg._id).includes(msg._id)) {
-                chat[targetUser].push(msg);
-              }
-            }
-            return chat;
-          }),
+          listOfChats: updated,
         };
+        // objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0));
       } else {
         return {
           ...state,
