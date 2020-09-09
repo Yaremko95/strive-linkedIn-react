@@ -24,10 +24,10 @@ function Messenger(props) {
       console.log("loggedIn", data);
       updateActiveUsers(data.users);
     });
-    // socket.on("leave", (data) => {
-    //   console.log("leave", data);
-    //   updateActiveUsers(data);
-    // });
+    socket.on("leave", (data) => {
+      console.log("leave", data);
+      updateActiveUsers(data.users);
+    });
 
     socket.on("receiveMsg", (data) => {
       console.log("receiveMsg", data);

@@ -75,7 +75,7 @@ export default (state = initialState, action) => {
     case C.UPDATE_ACTIVE_USERS: {
       return {
         ...state,
-        activeUsers: action.payload.map((user) => user._id),
+        activeUsers: [...new Set(action.payload.map((user) => user.username))],
       };
     }
     default:
