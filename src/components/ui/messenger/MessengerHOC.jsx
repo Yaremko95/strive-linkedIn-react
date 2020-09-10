@@ -58,8 +58,14 @@ const MessengerHOC = (props) => {
 
     socket.on("receiveMsg", (data) => {
       console.log("receiveMsg", data);
-      appendMessage(data, data.from);
-      triggerModalOnMesgReceived(data);
+      if (data.from === props.usersReducer.authorizedUser.username) {
+        appendMessage(data, data.to);
+        triggerModalOnMesgReceived(data);
+      } else {
+        appendMessage(data, data.from);
+
+        triggerModalOnMesgReceived(data);
+      }
     });
   }, [socket]);
   useEffect(() => {
