@@ -4,7 +4,7 @@ import OnlineIcon from "./OnlineIcon";
 import { connect } from "react-redux";
 import messenger from "../../../store/messenger/reducer";
 
-const ChatHeader = React.memo(({ user, activeUsers, toggleModal, show }) => {
+const ChatHeader = ({ user, activeUsers, toggleModal, show }) => {
   const useStyles = createUseStyles({
     container: {
       display: "flex",
@@ -71,7 +71,7 @@ const ChatHeader = React.memo(({ user, activeUsers, toggleModal, show }) => {
       </span>
     </div>
   );
-});
+};
 
 export default connect((state) => ({
   activeUsers: state.messenger.activeUsers,

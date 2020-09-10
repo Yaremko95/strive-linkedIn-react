@@ -15,20 +15,20 @@ const getListOfChats = (history, username) => {
   console.log(list);
   const chatsList = [];
   list.map((user) => {
-    if (user !== username) {
-      chatsList.push({
-        username: user,
-        history: history
-          .filter(
-            (msg) =>
-              (msg.from === user && msg.to === username) ||
-              (msg.from === username && msg.to === user)
-          )
-          .sort((a, b) => {
-            return new Date(a.date) - new Date(b.date);
-          }),
-      });
-    }
+    // if (user !== username) {
+    chatsList.push({
+      username: user,
+      history: history
+        .filter(
+          (msg) =>
+            (msg.from === user && msg.to === username) ||
+            (msg.from === username && msg.to === user)
+        )
+        .sort((a, b) => {
+          return new Date(a.date) - new Date(b.date);
+        }),
+    });
+    // }
   });
   // .sort((a, b) => {
   //   const keyA = Object.keys(a)[0];
