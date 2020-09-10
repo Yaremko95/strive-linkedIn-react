@@ -5,7 +5,7 @@ import LoginForm from "../components/form/LoginForm";
 function Login(props) {
   return (
     <Auth {...props}>
-      <LoginForm />
+      <LoginForm style={{ color: "red" }} />
     </Auth>
   );
 }

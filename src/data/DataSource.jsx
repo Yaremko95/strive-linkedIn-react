@@ -28,14 +28,19 @@ class DataSource extends Component {
   componentDidMount() {
     if (!this.props.authorizedUser) {
       console.log("this.props.authorizedUser", this.props.authorizedUser);
-      // this.props.history.push("/login");
+      //this.props.history.push("/login");
     } else {
       this.fetchData();
     }
   }
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
-      this.fetchData();
+      if (!this.props.authorizedUser) {
+        // console.log("this.props.authorizedUser", this.props.authorizedUser);
+        //this.props.history.push("/login");
+      } else {
+        this.fetchData();
+      }
     }
   };
   // getHeader = () => {

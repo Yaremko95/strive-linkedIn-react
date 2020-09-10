@@ -6,6 +6,9 @@ import Footer from "../components/Footer";
 import DataSource from "../data/DataSource";
 import { getImageLocalStorage } from "../authorization/Auth";
 import MessengerContainer from "../components/ui/messenger/MessengerContainer";
+import ChatHoc from "../components/ui/messenger/ChatHOC";
+import MessengerHOC from "../components/ui/messenger/MessengerHOC";
+import { connect } from "react-redux";
 
 function MainLayout(props) {
   const useStyles = createUseStyles((theme) => ({
@@ -40,11 +43,13 @@ function MainLayout(props) {
           setavatar: (e) => setavatar(e),
         })}
       </Container>
-      {/*<MessengerContainer />*/}
 
       <Footer />
+      {props.authorizedUser && <MessengerHOC />}
     </>
   );
 }
 
-export default MainLayout;
+export default connect((state) => ({
+  authorizedUser: state.usersReducer.authorizedUser,
+}))(MainLayout);
