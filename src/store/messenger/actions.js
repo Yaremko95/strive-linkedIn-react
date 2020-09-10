@@ -24,10 +24,17 @@ export const triggerModalOnMesgReceived = (data) => (dispatch, getSate) => {
   console.log("triggerModalOnMesgReceived", getSate());
   const listOfChats = getSate().messenger.listOfChats;
   const windows = getSate().messenger.windows;
-  const res = listOfChats.find((chat) => chat.username === data.from);
+  const authorized = getSate().usersReducer.authorizedUser.username;
+  let res;
+  if (data.from === authorized) {
+    res = listOfChats.find((chat) => chat.username === data.to);
+  } else {
+    res = listOfChats.find((chat) => chat.username === data.from);
+  }
+
   console.log(
     "windows.find((w) => w.username !== data.from",
-    windows.filter((w) => w.username !== data.from)
+    windows.filter((w) => w.username !== data.username)
   );
   if (windows.filter((w) => w.username !== data.username).length === 0) {
     dispatch(updateWindows(res));
