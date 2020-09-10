@@ -4,6 +4,7 @@ import Profile from "../pages/Profile";
 import Registration from "../pages/Registration";
 import Login from "../pages/Login";
 import Messenger from "../pages/Messenger";
+import composedMessengerHOC from "../pages/Messenger";
 
 export default [
   {

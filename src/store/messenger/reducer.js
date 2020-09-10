@@ -3,6 +3,7 @@ import C from "./constants";
 const initialState = {
   activeUsers: [],
   listOfChats: [],
+  windows: [],
 };
 
 const getListOfChats = (history, username) => {
@@ -16,7 +17,8 @@ const getListOfChats = (history, username) => {
   list.map((user) => {
     if (user !== username) {
       chatsList.push({
-        [user]: history
+        username: user,
+        history: history
           .filter(
             (msg) =>
               (msg.from === user && msg.to === username) ||
@@ -38,7 +40,15 @@ const getListOfChats = (history, username) => {
   // });
   return chatsList;
 };
-
+const updateWindows = (window, windows) => {
+  const temp = [];
+  if (windows.find((w) => w.username === window.username)) {
+    const index = windows.findIndex((w) => w.username === window.username);
+    windows.splice(index, 1);
+  } else {
+    return windows.push(window);
+  }
+};
 export default (state = initialState, action) => {
   switch (action.type) {
     case C.SET_HISTORY: {
@@ -54,20 +64,18 @@ export default (state = initialState, action) => {
     case C.APPEND_MESSAGE: {
       const msg = action.payload;
       const targetUser = action.targetUser;
-      if (
-        state.listOfChats.find((chat) => Object.keys(chat)[0] === targetUser)
-      ) {
+      if (state.listOfChats.find((chat) => chat.username === targetUser)) {
         const updated = state.listOfChats.map((chat) => {
-          if (Object.keys(chat)[0] === targetUser) {
-            if (!chat[targetUser].map((msg) => msg._id).includes(msg._id)) {
-              chat[targetUser].push(msg);
+          if (chat.username === targetUser) {
+            if (!chat.history.map((msg) => msg._id).includes(msg._id)) {
+              chat.history.push(msg);
             }
           }
           return chat;
         });
         updated.forEach((item, i) => {
           console.log(item);
-          if (Object.keys(item)[0] === targetUser) {
+          if (item.username === targetUser) {
             updated.splice(i, 1);
             updated.unshift(item);
           }
@@ -81,10 +89,11 @@ export default (state = initialState, action) => {
         return {
           ...state,
           listOfChats: [
-            ...state.listOfChats,
             {
-              [targetUser]: [msg],
+              username: targetUser,
+              history: [msg],
             },
+            ...state.listOfChats,
           ],
         };
       }
@@ -95,6 +104,14 @@ export default (state = initialState, action) => {
         activeUsers: [...new Set(action.payload.map((user) => user.username))],
       };
     }
+    case C.UPDATE_WINDOWS: {
+      updateWindows(action.payload, state.windows);
+      return {
+        ...state,
+        windows: state.windows,
+      };
+    }
+
     default:
       return state;
   }

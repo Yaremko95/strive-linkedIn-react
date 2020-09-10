@@ -8,6 +8,7 @@ const authAxios = axios.create({
 
 authAxios.interceptors.response.use(
   (response) => {
+    console.log("response", response);
     return response;
   },
   function (error) {
@@ -25,7 +26,7 @@ authAxios.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      console.log("retrying");
+      console.log("retrying", error);
 
       return axios
         .post(
