@@ -29,6 +29,7 @@ function MessageCard(props) {
       boxSizing: "border-box",
       backgroundClip: "content-box",
       border: "3px solid transparent",
+      borderRadius: "50%",
       top: "0",
       left: "0",
       backgroundSize: "cover",
@@ -48,7 +49,7 @@ function MessageCard(props) {
       padding: "0 0 0 56px",
     },
     time: {
-      fontSize: "0.9rem",
+      fontSize: "0.6rem",
       lineHeight: "1.33333",
       fontWeight: "400",
       color: "rgba(0,0,0,0.4)",
@@ -67,6 +68,9 @@ function MessageCard(props) {
       wordWrap: "break-word",
       whiteSpace: "pre-line",
       fontSize: "1rem",
+      backgroundColor: "rgb(155, 177, 126)",
+      borderRadius: "5px",
+      padding: "5px",
     },
   });
   const classes = useStyles();

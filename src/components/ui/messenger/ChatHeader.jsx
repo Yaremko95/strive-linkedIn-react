@@ -2,12 +2,18 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import OnlineIcon from "./OnlineIcon";
 import { connect } from "react-redux";
+import {
+  PencilSquare,
+  ThreeDots,
+  ChevronCompactDown,
+} from "react-bootstrap-icons";
 import messenger from "../../../store/messenger/reducer";
 
 const ChatHeader = ({ user, activeUsers, toggleModal, show }) => {
   const useStyles = createUseStyles({
     container: {
       display: "flex",
+      justifyContent: "space-between",
       flexDirection: "row",
       alignItems: "center",
       padding: "0 8px",
@@ -23,6 +29,7 @@ const ChatHeader = ({ user, activeUsers, toggleModal, show }) => {
     },
     details: {
       display: "flex",
+      alignItems: "center",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -34,6 +41,7 @@ const ChatHeader = ({ user, activeUsers, toggleModal, show }) => {
       width: "32px",
       height: "32px",
       display: "flex",
+      justifyContent: "center",
       position: "relative",
       margin: " 0",
       padding: "0",
@@ -62,13 +70,19 @@ const ChatHeader = ({ user, activeUsers, toggleModal, show }) => {
     <div className={classes.container} onClick={() => toggleModal(!show)}>
       <div className={classes.details}>
         <div className={classes.imgWrapper}>
-          <img className={classes.image} src={user.image} />
+          <img className={classes.img} src={user.image} />
           {activeUsers.includes(user.username) && <OnlineIcon />}
         </div>
+        <span style={{ color: "whitesmoke", fontWeight: "600" }}>
+          {user.username}
+        </span>
       </div>
-      <span style={{ color: "whitesmoke", fontWeight: "600" }}>
-        {user.username}
-      </span>
+
+      <div style={{ color: "whitesmoke", fontWeight: "600" }}>
+        <PencilSquare />
+        <ThreeDots className="ml-3" />
+        <ChevronCompactDown className="ml-3" />
+      </div>
     </div>
   );
 };

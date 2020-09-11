@@ -11,10 +11,11 @@ function MessageField(props) {
       width: "288px",
       position: "sticky",
       bottom: "0",
+      display: "flex",
 
       boxShadow: "0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2)",
     },
-    input: {
+    inputBox: {
       outline: "none",
       "&:focus": {
         outline: "none",
@@ -38,7 +39,7 @@ function MessageField(props) {
 
   const classes = useStyles();
   const [msg, setMsg] = useState("");
-  const sendMsg = () => {
+  const sendMsg = (e) => {
     socket.emit("sendMsg", { to: props.user.username, text: msg });
     props.appendMessage({
       to: props.user.username,
@@ -46,15 +47,21 @@ function MessageField(props) {
       date: new Date(),
       from: props.authorizedUser.username,
     });
+    setMsg("");
   };
   return (
     <div className={classes.container}>
-      <textarea
-        className={classes.input}
+      <input
+        type="text"
+        className={classes.inputBox}
         value={msg}
+        placeholder="Send a message..."
         onChange={(e) => setMsg(e.currentTarget.value)}
         onKeyDown={(e) => e.key === "Enter" && sendMsg()}
       />
+      <button onClick={sendMsg} className="border-0">
+        Send
+      </button>
     </div>
   );
 }

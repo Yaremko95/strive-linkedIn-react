@@ -47,14 +47,17 @@ class Auth extends Component {
     // console.log(header);
 
     try {
-      let response = await fetch(`http://localhost:3006/profile/login`, {
-        method: "POST",
-        body: JSON.stringify(this.state.credentials),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      let response = await fetch(
+        `${process.env.REACT_APP_BE_URL_API}/profile/login`,
+        {
+          method: "POST",
+          body: JSON.stringify(this.state.credentials),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
       if (response.ok) {
         console.log(console.log(this.props));
         const user = await response.json();
